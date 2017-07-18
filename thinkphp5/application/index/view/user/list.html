@@ -1,0 +1,5 @@
+<!-- 告诉编译器，使用模板，模板名称layout 对单个文件有效-->
+<!-- {layout name='layout' /} -->
+{foreach $data as $value}
+  {$value:name}----{$value:password}<br/>
+{/foreach}
