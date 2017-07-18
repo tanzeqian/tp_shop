@@ -1,79 +1,10 @@
 <?php
 namespace app\index\controller;
-use think\Controller;
-use think\Request;
-use think\Db;//引入数据库操作类
 
-
-use app\index\model\Blog;
-
-class Index extends Controller
+class Index
 {
-    protected $blog;
-    public function _initialize()
+    public function index()
     {
-        $this->blog = new Blog();
+        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_bd568ce7058a1091"></thinkad>';
     }
-    public function index(Request $request)
-    {
-        //1 使用单例获取请求
-        // $url = Request::instance()->url();
-        // $this->assign('url',$url);
-    
-        //2通依赖注入实现请求
-        // $url = $request->url();
-        //  $this->assign('url',$url);
-        //3 使用助手函数
-        $url = request()->url();
-        $this->assign('url',$url);
-
-        //请求参数
-        $para = request()->param();
-        //dump是tp自己的调试方法
-        // dump($para);
-        //input
-        // dump(input());
-        // dump(input('pwd'));
-        $this->redirect("index/index/login?username=123");
-        if (false) {
-            $this->success("登录成功",'index/index/user');
-        } else {
-            $this->error("失败");
-        }
-        // return $this->fetch();
-    }
-
-    public function user(Request $request)
-    {
-        //name取表名，不需要加表的前缀
-        // $data = Db::name('user')
-        //         ->where('uid','>',1) //三个参数：1 查询关键字，2 比较运算符，3 值，第二个参数不传，默认是判等
-        //         // ->where('type',1)
-        //         ->limit(2)
-        //         ->order('uid','desc')
-                // ->select();
-                // ->column('uid');
-        $data = Db::field('*')
-                ->table(['php_category'=>'c','php_blog'=>'b'])
-                ->where('c.cid=b.cid')
-                ->select();
-        dump($data);
-    	//return '我是新来的';
-    }
-
-    public function login($username)
-    {
-    	return "大家好:".$username;
-    }
-
-
-    public function add()
-    {
-        $this->blog->delete1();
-        // $this->blog->update1();
-
-        // dump($this->blog->add(['title'=>'高温桑拿','content'=>'空调wifi西瓜']));
-    }
-
-   
 }

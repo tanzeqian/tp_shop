@@ -8,13 +8,6 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-//自定义路由
-use think\Route;
-
-Route::get('login','User/login'); // 定义GET请求路由规则
-// Route::get('see/:id','User/see'); // 定义GET请求路由规则
-Route::rule('see/:id','User/see');
-//Route::post('new/:id','News/update'); // 定义POST请求路由规则
 
 return [
     '__pattern__' => [

@@ -17,9 +17,9 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => true,
+    'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -32,7 +32,7 @@ return [
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
     // 默认输出类型
     'default_return_type'    => 'html',
-    // 默认AJAX 数据返回格式,cons可选json xml ...
+    // 默认AJAX 数据返回格式,可选json xml ...
     'default_ajax_return'    => 'json',
     // 默认JSONP格式返回的处理方法
     'default_jsonp_handler'  => 'jsonpReturn',
@@ -136,9 +136,6 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
-        //是否使用全局模板
-       // 'layout_on' => true,
-        //'layout_name' => 'layout',
     ],
 
     // 视图输出字符串内容替换
@@ -179,7 +176,7 @@ return [
     // +----------------------------------------------------------------------
     'trace'                  => [
         // 内置Html Console 支持扩展
-        'type' => 'console',
+        'type' => 'Html',
     ],
 
     // +----------------------------------------------------------------------
@@ -238,19 +235,5 @@ return [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
-    ],
-
-    //验证码
-    'captcha' => [
-    // 验证码字符集合
-    'codeSet' => '1234567890',
-    // 验证码字体大小(px)
-    'fontSize' => 25,
-  // 是否画混淆曲线
-    'useCurve' => false,
-    // 验证码位数
-    'length' => 4,
-    // 验证成功后是否重置
-    'reset' => true
     ],
 ];
