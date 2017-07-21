@@ -13,11 +13,11 @@ class User extends Model
 		return $data?true:false;
 	}
 
-	//返回用户列表
-	public function getUserList()
-	{
-		$res = $this->paginate(3);
-		$render = $res->render();
-		return ['data'=>$res,'render'=>$render];
-	}
-}
+// 	//返回用户列表
+// 	public function getUserList()
+// 	{
+// 		$res = $this->paginate(3);
+// 		$render = $res->render();
+// 		return ['data'=>$res,'render'=>$render];
+// 	}
+ }

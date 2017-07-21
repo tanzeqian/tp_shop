@@ -203,7 +203,7 @@ class User extends Controller
 		$req->setSmsType("normal");//短信类型，传入值请填写normal
 		
 		//签名，阿里大于-控制中心-验证码--配置签名 中配置的签名，必须填
-		$req->setSmsFreeSignName("谭泽乾");
+		$req->setSmsFreeSignName("杂七杂八");
 		//你在短信中显示的验证码，这个要保存下来用于验证
 		$num = rand(100000,999999);
 		$_SESSION['smscode'] = $num;

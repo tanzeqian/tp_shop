@@ -27,7 +27,7 @@ class Base extends Controller {
         
        $tpshop_config = array();
        $tp_config = db('config')->cache(true,1/*TPSHOP_CACHE_TIME*/)->select();   
-       var_dump($tp_config);
+       // var_dump($tp_config);
        foreach($tp_config as $k => $v)
        {
        	 // if($v['name'] == 'hot_keywords'){

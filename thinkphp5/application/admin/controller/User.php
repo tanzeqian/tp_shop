@@ -25,7 +25,7 @@ class User extends Controller
 		//查询数据库
 		$username = input('username');
 		$password = input('password');
-		//dump($user->adminUser($username,$password));die;
+		//var_dump($user->adminUser($username,$password));die;
 		//dump($password);die;
 		if ($user->adminUser($username,$password)) {
 			//session('username',$username);
