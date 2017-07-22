@@ -158,13 +158,37 @@ include file="public/header" w="w1224"/}
                 <if condition="$goods['exchange_integral'] gt 0">
                     <div class="standard p">
                         <ul>
-                            <li class="jaj"><span>可&nbsp;&nbsp;用：</span></li>
-                            <li class="lawir"><span class="service"></span></li>
+                            
                         </ul>
                     </div>
                 </if>
 
                 <!-- 规格 start [[-->
+                
+                    
+                    {foreach $filter_spec as $k=>$v}
+                        <div class="standard p">
+                            <ul>
+                                <li class="jaj"><span>{$k}：</span></li>
+                                <li class="lawir colo">
+                                    
+                                    {foreach $v as $k2=>$v2}
+                                    {if condition="$v2['src'] neq ''"}
+
+                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec[{$k}]" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
+                                        <a   onclick="switch_zooming('{$v2['src']}');select_filter(this); {if condition="!empty($v2['src'])" } $('#zoomimg').attr('src','{$v2['src']}'){/if}" {if condition="$k2 eq 0 "} class="red"{/if}>
+                                        <img src="{$v2['src']}" style="width: 40px;height: 40px;"/>
+                                        <span class="dis_alintro">{$v2['item']}</span>
+                                        </a>
+                                        <else/>
+                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec[{$k}]" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
+                                        <a   onclick="select_filter(this);" {if condition="$k2 eq 0 "} class="red"{/if}>{$v2['item']}</a>
+                                    {/if}
+                                {/foreach}
+                                </li>
+                            </ul>
+                        </div>
+                    {/foreach}
                 
                 <script>
                     /**

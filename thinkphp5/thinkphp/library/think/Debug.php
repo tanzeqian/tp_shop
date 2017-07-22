@@ -166,7 +166,7 @@ class Debug
     {
         $label = (null === $label) ? '' : rtrim($label) . ':';
         ob_start();
-        //var_dump($var);
+        var_dump($var);
         $output = ob_get_clean();
         $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
         if (IS_CLI) {

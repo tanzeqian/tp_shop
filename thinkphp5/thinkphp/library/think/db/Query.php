@@ -387,6 +387,29 @@ class Query
         }
     }
 
+     /**
+     * 兼容TP3.2里面的getField
+     * 获取一条记录的某个字段值
+     * @access public
+     * @param string $field  字段名
+     * @param string $spea  字段数据间隔符号 NULL返回数组
+     * @return mixed
+     */
+    public function getField($field,$sepa=null) {
+        if($sepa == true)
+        {                        
+            return $this->column($field);
+        }elseif(strstr($field,','))
+        {
+            $field2 = explode(',', $field);
+            $f = array_shift($field2);             
+            return $this->column($field,$f); 
+        }else
+        {
+            return $this->value($field);
+        }
+    }
+
     /**
      * 得到某个字段的值
      * @access public

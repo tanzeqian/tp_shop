@@ -116,6 +116,8 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
     //
     protected static $db;
 
+    protected $autoCheckFields =false;
+
     /**
      * 初始化过的模型.
      *

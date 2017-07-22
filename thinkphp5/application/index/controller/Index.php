@@ -26,8 +26,7 @@ class Index extends Base {
 
     
     public function index(){
-        //$a = $this->getAd();
-        //dump($a);
+        
         //轮播图
         $ad2 = db('ad')->where('pid=2')->order('start_time','desc')->limit(5)->cache(true,1)->select();   
         $this->assign('ad2',$ad2);
