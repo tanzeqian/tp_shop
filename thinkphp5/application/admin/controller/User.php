@@ -2,7 +2,7 @@
 namespace app\admin\controller;
 use think\Controller;
 
-use app\admin\model\User as UserModel;
+use app\admin\model\Admin;
 
 class User extends Controller
 {
@@ -13,8 +13,9 @@ class User extends Controller
 
 	//登录处理
 	//$user 依赖注入
-	public function doLogin(UserModel $user)
+	public function adminLogin(Admin $user)
 	{
+
 		//验证失败
 		$res = $this->validate(input(),'User');
 		if ($res !== true) {
@@ -24,8 +25,10 @@ class User extends Controller
 		//查询数据库
 		$username = input('username');
 		$password = input('password');
-		if ($user->checkUser($username,$password)) {
-			session('username',$username);
+		//var_dump($user->adminUser($username,$password));die;
+		//dump($password);die;
+		if ($user->adminUser($username,$password)) {
+			//session('username',$username);
 			$this->success('登陆成功','admin/index/index');
 		} else {
 			$this->error('登录失败');

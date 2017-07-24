@@ -17,11 +17,21 @@ class Goods_category extends Model
 	public function chPage($haha)
 	{
 
-		 $data = $this->field('id')
-		 ->where("name='{$haha}'")
+		 $data = $this->field('name,id')
+		 ->where("parent_id='{$haha}'")
 		->select();
 
 		return $data;
 	}
+	public function chhPage($haha)
+	{
+
+		 $data = $this->field('name,id')
+		 ->where("parent_id='{$haha}'")
+		->select();
+
+		return $data;
+	}
+	
 
 }

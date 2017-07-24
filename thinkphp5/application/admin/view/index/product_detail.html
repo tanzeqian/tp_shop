@@ -130,13 +130,48 @@
        <li>
         <span class="item_name" style="width:120px;" >分类：</span>
         <select class="select" id="pagg">
-         <option id="testdiv">选择产品分类</option>
+        <option>选择产品分类</option>
+        {foreach $data as $vall}
+         <option value="{$vall['id']}">{$vall['name']}</option>
+        {/foreach}
         </select>
         <select class="select" id="pa">
          <option>选择产品分类</option>
         </select>
-        <select class="select" id="pagg">
+        <select class="select" id="pag">
          <option>选择产品分类</option>
+        </select>
+        <!-- <span class="errorTips"></span> -->
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;" >商品属性：</span>
+        <select class="select" id="shu">
+         <option>选择商品属性</option>
+         {foreach $dat as $val}
+         <option value="{$val['id']}">{$val['name']}</option>
+        {/foreach}
+        </select>
+        <select class="select" id="shu1">
+         <option>选择商品属性</option>
+        </select>
+        <select class="select" id="shu2">
+         <option>选择商品属性</option>
+        </select>
+        <!-- <span class="errorTips"></span> -->
+       </li>
+        <li>
+        <span class="item_name" style="width:120px;" >商品规格：</span>
+        <select class="select" id="guige">
+         <option>选择商品规格</option>
+         {foreach $dat as $val}
+         <option value="{$val['id']}">{$val['name']}</option>
+        {/foreach}
+        </select>
+        <select class="select" id="guige1">
+         <option>选择商品规格</option>
+        </select>
+        <select class="select" id="guige2">
+         <option>选择商品规格</option>
         </select>
         <!-- <span class="errorTips"></span> -->
        </li>
@@ -161,7 +196,7 @@
 
 <script>
 
-$('#pin').click(  
+$('#pin').dblclick(  
   function(){
     var pin = $(this).val(); 
     $.post(
@@ -170,56 +205,125 @@ $('#pin').click(
       function success(data)
       { 
         //console.log($data);
+        $('#pin').empty();
         for (var i = 0; i < data.length; i++) {
             var $claa = data[i]['name'];
+             var $cla = data[i]['id'];
             //console.log($claa);
-          $("#pin").append("<option>" + $claa +"</option>");
+          $("#pin").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+
         }
 
       }    
     )
   }
 );
+
+
 $('#pagg').click(  
   function(){
-    var pagg = $(this).val(); 
-    $.post(
-      'pageCha',
-      {pagg:pagg},
-      function success(data)
-      { 
-        for (var i = 0; i < data.length; i++) {
-            var $claa = data[i]['name'];
-            console.log($claa);
-          $("#pagg").append("<option>" + $claa +"</option>");
-
-        }
-      }   
-    )
-  }
-);
-
-$('#pa').click(  
-  function(){
     var pa = $(this).val(); 
-    var testdiv = document.getElementById('testdiv').options;
-    console.log(testdiv);
+    var testdiv = document.getElementById('pagg').value;
+    //console.log(testdiv);
     $.post(
-      'pageCha',
+      'paCha',
       {pa:pa,testdiv:testdiv},
       function success(data)
       { 
+         $('#pa').empty();
         for (var i = 0; i < data.length; i++) {
             var $claa = data[i]['name'];
-            console.log($claa);
-          $("#pa").append("<option>" + $claa +"</option>");
+            var $cla = data[i]['id'];
+           
+          $("#pa").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+        }
+         //console.log(data);
+      }    
+    )
+  }
+);
+$('#pa').click(  
+  function(){
+    var pag = $(this).val(); 
+    var testdiv = document.getElementById('pa').value;
+    //console.log(testdiv);
+    $.post(
+      'ppCha',
+      {pag:pag,testdiv:testdiv},
+      function success(data)
+      { 
+      $('#pag').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['name'];
+            var $cla = data[i]['id'];
+          // console.log($claa);
+          $("#pag").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+        }
+         //console.log(data);
+      }    
+    )
+  }
+);
+
+$('#shu').click(   
+  function(){
+    var testdiv = document.getElementById('shu').value;
+    $.post(
+      'guCha',
+      {testdiv:testdiv},
+      function success(data)
+      { 
+      $('#shu1').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['attr_name'];
+            var $cla = data[i]['attr_id'];
+          // console.log($claa);
+          $("#shu1").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+        }
+      }    
+    )
+  }
+);
+$('#shu1').click(   
+  function(){
+    var testdiv = document.getElementById('shu1').value;
+    $.post(
+      'guuCha',
+      {testdiv:testdiv},
+      function success(data)
+      { 
+      $('#shu2').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['attr_value'];
+            var $cla = data[i]['goods_attr_id'];
+           //console.log($claa);
+          $("#shu2").append("<option "+'value='+$cla+">"+ $claa +"</option>");
         }
 
       }    
     )
   }
 );
+$('#guige').click(   
+  function(){
+    var testdiv = document.getElementById('guige').value;
+    $.post(
+      'guigeCha',
+      {testdiv:testdiv},
+      function success(data)
+      { 
+      $('#guige1').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['name'];
+            var $cla = data[i]['id'];
+           //console.log($claa);
+          $("#guige1").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+        }
 
+      }    
+    )
+  }
+);
 
 </script>
 </body>

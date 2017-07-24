@@ -2,17 +2,17 @@
 namespace app\admin\model;
 use think\Model;
 
-class Brand extends Model
+class Spec extends Model
 {
 	
-	public function chaPinb()
+	public function guigePage($haha)
 	{
 
 		 $data = $this->field('name,id')
-		 
+		 ->where("type_id='{$haha}'")
 		->select();
 
 		return $data;
 	}
-
+	
 }
