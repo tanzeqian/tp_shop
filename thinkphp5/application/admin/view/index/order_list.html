@@ -49,21 +49,21 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="index.html">起始页</a></h2>
+ <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
   <li>
    <dl>
     <dt>常用布局示例</dt>
     <!--当前链接则添加class:active-->
-    <dd><a href="product_list" class="active">商品列表示例</a></dd>
-    <dd><a href="product_detail">商品详情示例</a></dd>
+    <dd><a href="/admin/product/product_list" >商品列表示例</a></dd>
+    <dd><a href="product_detail.html">商品详情示例</a></dd>
     <dd><a href="recycle_bin.html">商品回收站示例</a></dd>
    </dl>
   </li>
   <li>
    <dl>
     <dt>订单信息</dt>
-    <dd><a href="order_list.html">订单列表示例</a></dd>
+    <dd><a href="order_list.html" class="active">订单列表</a></dd>
     <dd><a href="order_detail.html">订单详情示例</a></dd>
    </dl>
   </li>
@@ -105,61 +105,45 @@
 <section class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
       <div class="page_title">
-       <h2 class="fl">商品列表示例</h2>
-       <a href="product_detail.html" class="fr top_rt_btn add_icon">添加商品</a>
+       <h2 class="fl">订单列表示例</h2>
+       <a class="fr top_rt_btn add_icon">添加商品</a>
       </div>
-      <form action="doLogin"  method="post">
       <section class="mtb">
        <select class="select">
-        <option>下拉菜单</option>
-        <option>菜单1</option>
+        <option>订单状态</option>
+        <option>待付款</option>
+        <option>待发货</option>
+        <option>待评价</option>
        </select>
-       <input type="text" id="tt" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
-       <input type="submit" value="查询" class="group_btn"/>
+       <input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
+       <input type="button" value="查询" class="group_btn"/>
       </section>
-      </form>
       <table class="table">
        <tr>
-        <th>缩略图</th>
-        <th>产品名称</th>
-        <th>货号</th>
-        <th>单价</th>
-        <th>单位</th>
-        <th>精品</th>
-        <th>新品</th>
-        <th>热销</th>
-        <th>库存</th>
+        <th>订单编号</th>
+        <th>收件人</th>
+        <th>联系电话</th>
+        <th>收件人地址</th>
+        <th>订单金额</th>
+        <th>配送方式</th>
         <th>操作</th>
        </tr>
-       {foreach $data as $vall}
+      {foreach $oder as $va}
        <tr>
-        <td class="center"><img src="{$vall['original_img']}" width="50" height="50"/></td>
-        <td>{$vall['goods_name']}</td>
-        <td class="center">{$vall['goods_sn']}</td>
-        <td class="center"><strong class="rmb_icon">{$vall['shop_price']}</strong></td>
-        <td class="center">件</td>
-        {if $vall['is_recommend'] == 1}
-        <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        {else}
-        <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        {/if}
-        {if $vall['is_new'] == 1}
-        <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        {else}
-         <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-         {/if}
-         {if $vall['is_hot'] == 1}
-        <td class="center"><a title="是" class="link_icon">&#89;</td>
-        {else}
-        <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        {/if}
-        <td class="center">{$vall['store_count']}</td>
+        <td class="center" style="width: 500px;">{$va['order_sn']}</td>
+        <td>{$va['consignee']}</td>
+        <td>{$va['mobile']}</td>
+        <td>
+         <address>{$va['address']}</address>
+        </td>
+        <td class="center"><strong class="rmb_icon">{$va['goods_price']}</strong></td>
+        <td class="center">{$va['shipping_name']}</td>
         <td class="center">
-         <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="product_detail" title="编辑" class="link_icon">&#101;</a>
+         <a href="#" title="查看订单" class="link_icon" target="_blank">&#118;</a>
          <a href="#" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
+       
        {/foreach}
       </table>
       <aside class="paging">

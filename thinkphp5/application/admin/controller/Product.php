@@ -9,13 +9,8 @@ use app\admin\model\Goods_attribute;
 use app\admin\model\Spec;
 use app\admin\model\Goods_attr;
 use app\admin\model\Spec_item;
-class Index extends Controller
+class Product extends Controller
 {
-	
-	public function index()
-	{
-		return $this->fetch();
-	}
 	public function product_detail(Goods_category $goods_category,Goods_type $goods_type)
 	{
 		$data = $goods_category->chaPage();
@@ -127,7 +122,6 @@ class Index extends Controller
 			$this->error('注册失败');
 		}
 	}
-
 
 }
 

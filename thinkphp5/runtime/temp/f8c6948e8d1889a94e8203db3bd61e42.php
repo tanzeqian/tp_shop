@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\index\index.html";i:1500861304;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,25 +36,25 @@
                     </div>
                     <!-- 收货地址，物流运费 -end-->
                         <div class="fl nologin">
-                            <a class="red" href="{:url('index/user/login')}">Hi.请登录</a>
-                            <a href="{:url('index/user/register')}">免费注册</a>
+                            <a class="red" href="<?php echo url('index/user/login'); ?>">Hi.请登录</a>
+                            <a href="<?php echo url('index/user/register'); ?>">免费注册</a>
                         </div>
                         <div class="fl islogin">
-                            <a class="red userinfo" href="{:url('Home/user/index')}" ></a>
-                            <a  href="{:url('Home/user/logout')}"  title="退出" target="_self">安全退出</a>
+                            <a class="red userinfo" href="<?php echo url('Home/user/index'); ?>" ></a>
+                            <a  href="<?php echo url('Home/user/logout'); ?>"  title="退出" target="_self">安全退出</a>
                         </div>
                 </div>
                 <div class="top-ri-header fr">
                     <ul>
-                        <li><a target="_blank" href="{:url('/Home/User/order_list')}">我的订单</a></li>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/order_list'); ?>">我的订单</a></li>
                         <li class="spacer"></li>
-                        <li><a target="_blank" href="{:url('Home/User/visit_log')}">我的浏览</a></li>
+                        <li><a target="_blank" href="<?php echo url('Home/User/visit_log'); ?>">我的浏览</a></li>
                         <li class="spacer"></li>
-                        <li><a target="_blank" href="{:url('/Home/User/coupon')}">我的优惠券</a></li>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/coupon'); ?>">我的优惠券</a></li>
                         <li class="spacer"></li>
-                        <li><a target="_blank" href="{:url('/Home/User/goods_collect')}">我的收藏</a></li>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/goods_collect'); ?>">我的收藏</a></li>
                         <li class="spacer"></li>
-                        <li><a target="_blank" title="点击这里给我发消息" href="{:url('Home/Article/detail',array('article_id'=>22))}" target="_blank">在线客服</a></li>
+                        <li><a target="_blank" title="点击这里给我发消息" href="<?php echo url('Home/Article/detail',array('article_id'=>22)); ?>" target="_blank">在线客服</a></li>
                         <li class="spacer"></li>
                         <li class="hover-ba-navdh">
                             <div class="nav-dh">
@@ -62,10 +63,10 @@
                                 <div class="conta-hv-nav">
                                     <ul>
                                         <li>
-                                            <a href="{:url('Home/Activity/group_list')}">团购</a>
+                                            <a href="<?php echo url('Home/Activity/group_list'); ?>">团购</a>
                                         </li>
                                         <li>
-                                            <a href="{:url('Home/Activity/flash_sale_list')}">抢购</a>
+                                            <a href="<?php echo url('Home/Activity/flash_sale_list'); ?>">抢购</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -79,12 +80,12 @@
         <div class="nav-middan-z p">
             <div class="header w1224 p">
                 <div class="ecsc-logo">
-                    <a href="{:url('Index/index')}" class="logo"> <img src="$tpshop_config['store_logo']}"></a>
+                    <a href="<?php echo url('Index/index'); ?>" class="logo"> <img src="$tpshop_config['store_logo']}"></a>
                 </div>
                 <!--搜索-s-->
                 <div class="ecsc-search">
-                    <form id="searchForm" name="" method="get" action="{:url('Home/Goods/search')}" class="ecsc-search-form">
-                        <input autocomplete="off" name="q" id="q" type="text" value="{$Request.param.q}" placeholder="搜索关键字" class="ecsc-search-input">
+                    <form id="searchForm" name="" method="get" action="<?php echo url('Home/Goods/search'); ?>" class="ecsc-search-form">
+                        <input autocomplete="off" name="q" id="q" type="text" value="<?php echo \think\Request::instance()->param('q'); ?>" placeholder="搜索关键字" class="ecsc-search-input">
                         <button type="submit" class="ecsc-search-button" onclick="if($.trim($('#q').val()) != '') $('#searchForm').submit();"><i></i></button>
                         <div class="candidate p">
                             <ul id="search_list"></ul>
@@ -139,7 +140,7 @@
                                         type:'post',
                                         dataType:'json',
                                         data: {key: search_key},
-                                        url:"{:url('Home/Api/searchKey')}",
+                                        url:"<?php echo url('Home/Api/searchKey'); ?>",
                                         success:function(data){
                                             if(data.status == 1){
                                                 var html = '';
@@ -173,7 +174,7 @@
                 
                 <div class="shopingcar-index fr">
                     <div class="u-g-cart fr fixed" id="hd-my-cart">
-                        <a href="{:url('Index/Cart/cart')}">
+                        <a href="<?php echo url('Index/Cart/cart'); ?>">
                             <div class="c-n fl" >
                                 <i class="share-shopcar-index"></i>
                                 <span>我的购物车<em class="sc_z" id="cart_quantity"></em></span>
@@ -190,20 +191,20 @@
             <div class="w1224 p">
                 <div class="categorys2 home_categorys">
                     <div class="dt">
-                        <a href="{:url('Home/Goods/all_category')}" target="_blank"><i class="share-a_a2"></i>商品分类</a>
+                        <a href="<?php echo url('Home/Goods/all_category'); ?>" target="_blank"><i class="share-a_a2"></i>商品分类</a>
                     </div>
                     <!--全部商品分类-s-->
                     <div class="dd">
                         <div class="cata-nav">
                             <!-- 外层循环点-->
-                            {foreach $goods_category_tree as $k=>$v}
+                            <?php foreach($goods_category_tree as $k=>$v): ?>
                                 <div class="item fore1">
                                 <if condition="$v['level'] eq 1">
                                 <div class="item-left">
                                     <div class="cata-nav-name">
                                         <h3>
-                                            <div class="contiw-cer"><span class="share-icon-{$k}"></span></div>
-                                            <a href="{:url('Home/Goods/goodsList',array('id'=>$v['id']))}" title="{$v['name']}">{$v['name']}</a>
+                                            <div class="contiw-cer"><span class="share-icon-<?php echo $k; ?>"></span></div>
+                                            <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>"><?php echo $v['name']; ?></a>
                                         </h3>
                                     </div>
                                     <b>&gt;</b>
@@ -212,36 +213,36 @@
                                 <div class="cata-nav-layer">
                                     <div class="cata-nav-left">
                                         <div class="subitems">
-                                        {foreach $v['tmenu'] as $k2=>$v2}
+                                        <?php foreach($v['tmenu'] as $k2=>$v2): ?>
                                            
                                                 <if condition="$v2[parent_id] eq $v['id']">
                                                 <dl><!-- 2级循环点-->
                                                     <dt>
-                                                        <a href="{:url('Home/Goods/goodsList',array('id'=>$v2['id']))}" target="_blank">{$v2['name']}<i>&gt;</i></a>
+                                                        <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v2['id'])); ?>" target="_blank"><?php echo $v2['name']; ?><i>&gt;</i></a>
                                                     </dt>
                                                     <dd>
-                                                        {foreach $v2['sub_menu'] as $k3=>$v3}
+                                                        <?php foreach($v2['sub_menu'] as $k3=>$v3): ?>
                                                         
                                                             <if condition="$v3[parent_id] eq $v2['id']">
-                                                            <a href="{:url('Home/Goods/goodsList',array('id'=>$v3['id']))}" target="_blank">{$v3['name']}</a></if>
+                                                            <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v3['id'])); ?>" target="_blank"><?php echo $v3['name']; ?></a></if>
                                                         
-                                                        {/foreach}
+                                                        <?php endforeach; ?>
                                                     </dd>
                                                 </dl>
                                                 </if>
                                             
-                                            {/foreach}
+                                            <?php endforeach; ?>
                                             <!--商品分类底部广告-s-->
                                             <div class="advertisement_down">
                                                 <ul>                              
-                                                    {foreach $ad14 as $adk=>$adv}                  
+                                                    <?php foreach($ad14 as $adk=>$adv): ?>                  
                                                     
                                                         <li>
-                                                            <a href="{$adv['ad_link']}" {if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                                                                <img src="{$adv['ad_code']}" title="{$adv['ad_name']}" style="$v3[style]}" width="129" height="45"/>
+                                                            <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                                                                <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$v3[style]}" width="129" height="45"/>
                                                             </a>
                                                         </li>
-                                                    {/foreach}                                                
+                                                    <?php endforeach; ?>                                                
                                                 </ul>
                                             </div>
                                             <!--商品分类底部广告-e-->
@@ -249,17 +250,17 @@
                                     </div>
                                     <!--商品分类右侧广告-s-->
                                     <div class="cata-nav-rigth">
-                                        {foreach $ad51 as $adk=>$adv}
+                                        <?php foreach($ad51 as $adk=>$adv): ?>
                                         
-                                            <a href="{$adv['ad_link']}" {if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                                                <img src="{$adv['ad_code']}" title="{$adv['ad_name']}" style="$adv[style]}"/>
+                                            <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                                                <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$adv[style]}"/>
                                             </a>
-                                        {/foreach}
+                                        <?php endforeach; ?>
                                     </div>
                                     <!--商品分类右侧广告-e-->
                                 </div>
                             </div>
-                            {/foreach}
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <!--全部商品分类-e-->
@@ -268,7 +269,7 @@
                  <div class="navitems" id="nav">
                     <ul>
                         <li class="index_modify">
-                            <a href="{:url('Index/index')}" class="selected">首页</a>
+                            <a href="<?php echo url('Index/index'); ?>" class="selected">首页</a>
                         </li>
                         导航栏
                     </ul>
@@ -288,13 +289,13 @@
 
         </ol>
         <div class="carousel-inner">
-            {foreach $ad2 as $adk=>$adv}
-                <div class="item {if condition='$adk++ eq 1'}active{/if}" style="background:white;">
-                    <a href="{$adv['ad_link']}"{if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                        <img  src="{$adv['ad_code']}" title="{$adv['ad_name']}" style="$adv['style']}">
+            <?php foreach($ad2 as $adk=>$adv): ?>
+                <div class="item <?php if($adk++ == 1): ?>active<?php endif; ?>" style="background:white;">
+                    <a href="<?php echo $adv['ad_link']; ?>"<?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                        <img  src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$adv['style']}">
                     </a>
                 </div>
-            {/foreach}
+            <?php endforeach; ?>
         </div>
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
         <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
@@ -302,13 +303,13 @@
         <div class="adcertiserment_head">
             <div class="w1224">
                 <ul>
-                    {foreach $ad52 as $adk=>$adv}
+                    <?php foreach($ad52 as $adk=>$adv): ?>
                         <li>
-                            <a href="{$adv['ad_link']}" {if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                            <img src="{$adv['ad_code']}" title="{$adv['ad_name']}" style="$v[style]}"/>
+                            <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                            <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$v[style]}"/>
                             </a>
                         </li>
-                    {/foreach}
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
@@ -319,44 +320,43 @@
     <div class="adv3 p">
         <div class="w1224">
             <ul>
-                {foreach $ad53 as $adk=>$adv}
+                <?php foreach($ad53 as $adk=>$adv): ?>
                     <li>
-                        <a href="{$adv['ad_link']}" {if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                            <img src="{$adv['ad_code']}" title="{$adv['ad_name']}" style="$v[style]}"/>
+                        <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                            <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$v[style]}"/>
                         </a>
                     </li>
-                {/foreach}
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
     <!--轮播图底部广告-e-->
     <div class="adver_line">
         <div class="w1224">
-            {foreach $ad3 as $adk=>$adv}
-                <a href="{$adv['ad_link']}" {if condition="$adv['target'] eq 1"}target="_blank"{/if}>
-                <img src="{$adv['ad_code']}" width="1200" height="160"  title="{$adv['ad_name']}" style="$v[style]}"/>
+            <?php foreach($ad3 as $adk=>$adv): ?>
+                <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                <img src="<?php echo $adv['ad_code']; ?>" width="1200" height="160"  title="<?php echo $adv['ad_name']; ?>" style="$v[style]}"/>
                 </a> 
-            {/foreach}
+            <?php endforeach; ?>
         </div>
     </div>
 
 
 <!--------楼层-开始-------------->
-   {if !empty($cateList)}
-    {foreach $cateList as $k=>$v}
+   <?php if(!empty($cateList)): foreach($cateList as $k=>$v): ?>
     <!--商品楼层-s-->
-        <div class="layer-floor " id="floor{$k+1}">
+        <div class="layer-floor " id="floor<?php echo $k+1; ?>">
             <div class="w1224">
             <div class="top_title_layer p">
-                <div class="part-title">{$v['name']}</div>
+                <div class="part-title"><?php echo $v['name']; ?></div>
                 <div class="part-hot">
                     <ul>
                         
-                        {foreach $v['tmenu'] as $k2=>$v2}
+                        <?php foreach($v['tmenu'] as $k2=>$v2): ?>
                             <li>
-                                <a href="{:url('Home/Goods/goodsList',array('id'=>$v2['id']))}">{$v2['name']}</a>
+                                <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v2['id'])); ?>"><?php echo $v2['name']; ?></a>
                             </li>
-                        {/foreach}
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -365,37 +365,34 @@
                 <div class="hoste_ri">
                     <ul>
                         
-                        {foreach $v['hot_goods'] as $gk=>$g}
-                            {if condition="$gk lt 8"}
+                        <?php foreach($v['hot_goods'] as $gk=>$g): if($gk < 8): ?>
                                 <li>
-                                    <a href="{:url('Index/Goods/goodsInfo',array('id'=>$g['goods_id']))}">
-                                        <img class="picture_main" src="{$g['goods_id']|goods_thum_images=200,200}"/>
-                                        <span class="name_main">{$g['goods_name']}</span>
+                                    <a href="<?php echo url('Index/Goods/goodsInfo',array('id'=>$g['goods_id'])); ?>">
+                                        <img class="picture_main" src="<?php echo goods_thum_images($g['goods_id'],200,200); ?>"/>
+                                        <span class="name_main"><?php echo $g['goods_name']; ?></span>
                                         <?php 
     
                                         ?>
-                                        <span class="price_main"><i>￥</i>{$g['shop_price']}</span>
+                                        <span class="price_main"><i>￥</i><?php echo $g['shop_price']; ?></span>
                                     </a>
                                 </li>
-                            {/if}
-                        {/foreach}
+                            <?php endif; endforeach; ?>
                     </ul>
                 </div>
             </div>
         </div>
         </div>
     <!--商品楼层-e-->
-    {/foreach}
-    {/if}
+    <?php endforeach; endif; ?>
     <!--楼层导航-s-->
     <div class="floornav_left">
         <ul>
             
-            {foreach $cateList as $k=>$v}
+            <?php foreach($cateList as $k=>$v): ?>
                 <li class="elevators">
-                    <a >{$k+1}F<span class="cofin_floor">{$v['name']}</span></a>
+                    <a ><?php echo $k+1; ?>F<span class="cofin_floor"><?php echo $v['name']; ?></span></a>
                 </li>
-            {/foreach}
+            <?php endforeach; ?>
         </ul>
     </div>
     <!--楼层导航-e-->
@@ -470,7 +467,7 @@
                     </div>
                 </li>
                 <li class="re_phone">
-                    <a target="_blank" href="{:url('Mobile/Index/index')}" >手机商城</a>
+                    <a target="_blank" href="<?php echo url('Mobile/Index/index'); ?>" >手机商城</a>
                     <div class="rtipscont rstoretips" style="">
                         <span class="arrowr-bg"></span>
                         <span class="arrowr"></span>

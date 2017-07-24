@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\index\product_detail.html";i:1500871398;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +56,8 @@
    <dl>
     <dt>常用布局示例</dt>
     <!--当前链接则添加class:active-->
-    <dd><a href="product_list.html" >商品列表示例</a></dd>
-    <dd><a href="product_detail.html" class="active">商品详情示例</a></dd>
+    <dd><a href="product_list.html" >商品列表</a></dd>
+    <dd><a href="product_detail.html" class="active">添加商品</a></dd>
     <dd><a href="recycle_bin.html">商品回收站示例</a></dd>
    </dl>
   </li>
@@ -109,20 +110,21 @@
        <a class="fr top_rt_btn">返回产品列表</a>
       </div>
      <section>
+     <form action="shangchuan" method="post">
       <ul class="ulColumn2">
        <li>
         <span class="item_name" style="width:120px;">商品名称：</span>
-        <input type="text" class="textbox textbox_295" placeholder="商品名称..."/>
+        <input type="text" class="textbox textbox_295" id= "ming" name="ming" placeholder="商品名称..."/>
         <!-- <span class="errorTips"></span> -->
        </li>
        <li>
         <span class="item_name" style="width:120px;">商品货号：</span>
-        <input type="text" class="textbox" placeholder="商品货号..."/>
+        <input type="text" class="textbox" id="huohao" name="huohao" placeholder="商品货号..."/>
         <!-- <span class="errorTips"></span> -->
        </li>
        <li>
         <span class="item_name" style="width:120px;" >品牌：</span>
-        <select class="select" id="pin" >
+        <select class="select" id="pin" name="pin">
          <option >选择品牌</option>
         </select>
        <!--  <span class="errorTips"></span> -->
@@ -131,25 +133,25 @@
         <span class="item_name" style="width:120px;" >分类：</span>
         <select class="select" id="pagg">
         <option>选择产品分类</option>
-        {foreach $data as $vall}
-         <option value="{$vall['id']}">{$vall['name']}</option>
-        {/foreach}
+        <?php foreach($data as $vall): ?>
+         <option value="<?php echo $vall['id']; ?>"><?php echo $vall['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="pa">
          <option>选择产品分类</option>
         </select>
-        <select class="select" id="pag">
+        <select class="select" id="pag" name="pag">
          <option>选择产品分类</option>
         </select>
         <!-- <span class="errorTips"></span> -->
        </li>
        <li>
         <span class="item_name" style="width:120px;" >商品属性：</span>
-        <select class="select" id="shu">
+        <select class="select" id="shu" name="shu">
          <option>选择商品属性</option>
-         {foreach $dat as $val}
-         <option value="{$val['id']}">{$val['name']}</option>
-        {/foreach}
+         <?php foreach($dat as $val): ?>
+         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="shu1">
          <option>选择商品属性</option>
@@ -161,11 +163,11 @@
        </li>
         <li>
         <span class="item_name" style="width:120px;" >商品规格：</span>
-        <select class="select" id="guige">
+        <select class="select" id="guige" name="guige">
          <option>选择商品规格</option>
-         {foreach $dat as $val}
-         <option value="{$val['id']}">{$val['name']}</option>
-        {/foreach}
+         <?php foreach($dat as $val): ?>
+         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="guige1">
          <option>选择商品规格</option>
@@ -176,21 +178,40 @@
         <!-- <span class="errorTips"></span> -->
        </li>
        <li>
+        <span class="item_name" style="width:120px;" >库存：</span>
+        <!-- <select class="select" id="guige1">
+         <option>选择商品规格</option>
+        </select> -->
+        <input  class="select" type="text" name="kucun" id="kucun" value="">
+        </li>
+        <li>
+        <span class="item_name" style="width:120px;" >市场价：</span>
+        <input  class="select" type="text" name="shijia" id="shijia" value="">
+         <span class="item_name" style="width:120px;" >本店价：</span>
+        <input  class="select" type="text" name="benjia" id="benjia" value="">
+        </li>
+       <li>
         <span class="item_name" style="width:120px;">推荐：</span>
-        <label class="single_selection"><input type="radio" name="name"/>是否精品</label>
-        <label class="single_selection"><input type="radio" name="name"/>是否热销</label>
-        <label class="single_selection"><input type="radio" name="name"/>是否新品</label>
+        <label class="single_selection"><input type="radio" name="name1" id="name1"/>是否精品</label>
        </li>
+       <form action="upload" method="post" enctype="multipart/form-data">
        <li>
         <span class="item_name" style="width:120px;">上传图片：</span>
         <label class="uploadImg">
-         <input type="file"/>
+         <input type="file" name="image" id="image"/>
          <span>上传图片</span>
         </label>
        </li>
+      </form>
        <li>
         <span class="item_name" style="width:120px;">产品详情：</span>
-        
+        <input  class="select" style="width:220px;" type="text" name="xiang" id="xiang" value="">
+         <li>
+        <span class="item_name" style="width:120px;"></span>
+        <input type="submit" class="link_btn"/>
+       </li>
+       </form>
+       </section>
  </div>
 </section>
 
@@ -318,6 +339,26 @@ $('#guige').click(
             var $cla = data[i]['id'];
            //console.log($claa);
           $("#guige1").append("<option "+'value='+$cla+">"+ $claa +"</option>");
+        }
+
+      }    
+    )
+  }
+);
+$('#guige1').click(   
+  function(){
+    var testdiv = document.getElementById('guige1').value;
+    $.post(
+      'guige1Cha',
+      {testdiv:testdiv},
+      function success(data)
+      { 
+      $('#guige2').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['item'];
+            var $cla = data[i]['id'];
+           //console.log($claa);
+          $("#guige2").append("<option "+'value='+$cla+">"+ $claa +"</option>");
         }
 
       }    

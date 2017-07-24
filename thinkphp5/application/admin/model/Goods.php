@@ -24,11 +24,14 @@ class Goods extends Model
 	}
 	public function chaPinb()
 	{
-
 		 $data = $this->field('brand_id')
 		 ->where('goods_id<46')
 		->select();
-
+		return $data;
+	}
+	public function shangPinb($ming,$huohao,$pin,$pag,$guige,$kucun,$benjia,$shijia,$image,$xiang,$shu)
+	{
+		 $data = $this->insert(['goods_name'=>$ming, 'goods_sn'=>$huohao,'brand_id'=>$pin,'cat_id'=>$pag,'spec_type'=>$guige,'store_count'=>$kucun,'shop_price'=>$benjia,'market_price'=>$shijia,'original_img'=>$image,'goods_remark'=>$xiang,'goods_type'=>$shu,'is_new'=>1]);
 		return $data;
 	}
 

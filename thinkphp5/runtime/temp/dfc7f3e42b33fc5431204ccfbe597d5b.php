@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\index\index.html";i:1500877185;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
