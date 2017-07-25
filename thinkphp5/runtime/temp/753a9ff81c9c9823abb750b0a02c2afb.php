@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_detail.html";i:1500878025;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_detail.html";i:1500961702;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

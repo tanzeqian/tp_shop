@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_xiu.html";i:1500991938;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +64,8 @@
    <dl>
     <dt>订单信息</dt>
     <dd><a href="order_list.html">订单列表</a></dd>
-    <dd><a href="order_detail.html" class="active">订单详情</a></dd>
+    <dd><a href="order_detail.html">订单详情</a></dd>
+     <dd><a href="order_xiu.html" class="active">修改订单</a></dd>
    </dl>
   </li>
   <li>
@@ -105,75 +107,60 @@
  <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">订单详情示例</h2>
-       <a href="/admin/orderdin/order_list" class="fr top_rt_btn add_icon">返回列表</a>
       </div>
+     
       <table class="table">
-      {foreach $din as $vall}
+     <?php foreach($dii as $vall): ?>
+      <form action="xiuga?id=<?php echo $vall['order_id']; ?>" method="post">
        <tr>
-        <td>收件人：{$vall['consignee']}</td>
-        <td>联系电话：{$vall['mobile']}</td>
-        <td>收件地址：{$vall['address']}</td>
-        <td>发货时间：{$vall['shipping_time']|date="Y-m-d H:i",###}</td>
+        <td>收件人：<input type="text" name="name" value="<?php echo $vall['consignee']; ?>"></td>
+        <td>联系电话：<input type="text" name="model" value="<?php echo $vall['mobile']; ?>"></td>
+        <td>收件地址：<input type="text" name="dizhi" value="<?php echo $vall['address']; ?>"></td>
+        <td>发货时间：<?php echo date("Y-m-d H:i",$vall['shipping_time']); ?></td>
        </tr>
        <tr>
-        <td>下单时间：{$vall['add_time']|date="Y-m-d H:i",###}</td>
-        <td>付款时间：{$vall['pay_time']|date="Y-m-d H:i",###}</td>
-        <td>确认时间：{$vall['confirm_time']|date="Y-m-d H:i",###}</td>
+        <td>下单时间：<?php echo date("Y-m-d H:i",$vall['add_time']); ?></td>
+        <td>付款时间：<?php echo date("Y-m-d H:i",$vall['pay_time']); ?></td>
+        <td>确认时间：<?php echo date("Y-m-d H:i",$vall['confirm_time']); ?></td>
         <td>评价时间时间：---</td>
        </tr>
        <tr>
-        <td>订单状态：<a>{if $vall['pay_status'] == 0}待付款
-        {else}已付款,
-        {/if}
-        {if $vall['shipping_status'] == 0}未发货
-        {else}{if $vall['shipping_status'] == 1}已发货
-        {else}确认收货
-        {/if}
-        {/if}
+        <td>订单状态：<a><?php if($vall['pay_status'] == 0): ?>待付款
+        <?php else: ?>已付款,
+        <?php endif; if($vall['shipping_status'] == 0): ?>未发货
+        <?php else: if($vall['shipping_status'] == 1): ?>已发货
+        <?php else: ?>确认收货
+        <?php endif; endif; ?>
         </a></td>
-        <td colspan="3">订单备注：<mark>{$vall['user_note']}</mark></td>
+        <td colspan="3">订单备注：<mark><?php echo $vall['user_note']; ?></mark></td>
         </tr>
-        {/foreach}
+        <?php endforeach; ?>
       </table>
       <table class="table">
-       {foreach $dinnn as $valll}
+       <?php foreach($dina as $valll): ?>
        <tr>
-        <td>{$valll['goods_name']}</td>
-        <td class="center">{$valll['goods_sn']}</td>
-        <td class="center"><strong class="rmb_icon">{$valll['goods_price']}</strong></td>
+        <td><?php echo $valll['goods_name']; ?></td>
+        <td class="center"><?php echo $valll['goods_sn']; ?></td>
+        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price']; ?></strong></td>
         <td class="center">
-         <p>{$valll['spec_key_name']}</p>
+         <p><?php echo $valll['spec_key_name']; ?></p>
         </td>
-        <td class="center"><strong>{$valll['goods_num']}</strong></td>
-        <td class="center"><strong class="rmb_icon">{$valll['goods_price'] * $valll['goods_num']}</strong></td>
+        <td class="center"><strong><?php echo $valll['goods_num']; ?></strong></td>
+        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price'] * $valll['goods_num']; ?></strong></td>
         <td class="center">
-        {foreach $din as $valee}
-          {if $valee['shipping_status'] == 0}未发货
-        {else}已发货
-        {/if}
-        {/foreach}
+        <?php foreach($dii as $valee): if($valee['shipping_status'] == 0): ?>未发货
+        <?php else: ?>已发货
+        <?php endif; endforeach; ?>
         </td>
-       </tr>      
-       {/foreach}
+        </tr> 
+        <?php endforeach; ?>
       </table>
-      
-      {foreach $din as $valee}
-      <form action="wuliudan?id={$valee['order_id']}" method="post">
+ 
       <aside class="mtb" style="text-align:right;">
-      物流单号：<input type="text" value="{$valee['wuliu']}" name="wu" class="group_btn"/>
- <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
-      {if $valee['pay_status'] == 0}
-      <a href="order_xiu?id={$valee['order_id']}"><input type="button" value="修改订单"  class="group_btn"/>
-      <input type="button" value="等待付款"  class="group_btn"/>
-      {else}{if $valee['shipping_status'] == 0}
-        <input type="submit" value="确认发货" class="group_btn"/>
-      {else}
-      {/if}
-      {/if}
+       <input type="submit" value="修改订单" class="group_btn"/>
+        <input type="button" value="确认发货" class="group_btn"/>
       </aside>
       </form>
-      {/foreach}
-      
  </div>
 </section>
 </body>

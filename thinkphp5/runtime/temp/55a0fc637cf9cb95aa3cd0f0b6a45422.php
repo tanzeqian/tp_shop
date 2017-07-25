@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1500906610;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1500983420;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,7 @@
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/static/admin/css1/style.css">
+   <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <![endif]-->
@@ -57,7 +58,7 @@
     <dt>常用布局示例</dt>
     <!--当前链接则添加class:active-->
     <dd><a href="/admin/product/product_list" >商品列表示例</a></dd>
-    <dd><a href="product_detail.html">商品详情示例</a></dd>
+    <dd><a href="/admin/product/product_detail">添加商品</a></dd>
     <dd><a href="recycle_bin.html">商品回收站示例</a></dd>
    </dl>
   </li>
@@ -110,16 +111,15 @@
        <a class="fr top_rt_btn add_icon">添加商品</a>
       </div>
       <section class="mtb">
-       <select class="select">
-        <option>订单状态</option>
-        <option>待付款</option>
-        <option>待发货</option>
-        <option>待评价</option>
+       <select class="select" id="dai">
+        <option value="1">订单状态</option>
+        <option value="2">待付款</option>
+        <option value="3">待发货</option>
        </select>
        <input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
        <input type="button" value="查询" class="group_btn"/>
       </section>
-      <table class="table">
+      <table class="table" id="userInfo">
        <tr>
         <th>订单编号</th>
         <th>收件人</th>
@@ -129,8 +129,9 @@
         <th>配送方式</th>
         <th>操作</th>
        </tr>
-      <?php foreach($list as $va): ?>
-       <tr>
+
+      <?php foreach($data as $va): ?>
+       <tr >
         <td class="center" style="width: 500px;"><?php echo $va['order_sn']; ?></td>
         <td><?php echo $va['consignee']; ?></td>
         <td><?php echo $va['mobile']; ?></td>
@@ -141,24 +142,42 @@
         <td class="center"><?php echo $va['shipping_name']; ?></td>
         <td class="center">
          <a href="order_detail?id=<?php echo $va['order_id']; ?>" title="查看订单" class="link_icon" >&#118;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
+         <a href="deleDe?id=<?php echo $va['order_id']; ?>" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
        
        <?php endforeach; ?>
       </table>
-      <!-- <aside class="paging">
-       <a>第一页</a>
-       <a>1</a>
-       <a>2</a>
-       <a>3</a>
-       <a>…</a>
-       <a>1004</a>
-       <a>最后一页</a>
-   
-      </aside> -->
-       <?php echo $page; ?>
+      <div class='paging' id='indicator'>
+  <?php echo $page; ?>
+  </div>
+      
  </div>
 </section>
 </body>
+ <script src="/static/jquery.min.js"></script>
+   
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+  <script>
+  $('#dai').change(  
+  function(){
+    var id = $(this).val();
+    $.post(
+      'daiFu',
+      {id:id},
+      function success(data)
+      { 
+         $('#userInfo').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['pay_name'];
+           
+          $("#userInfo").append("<tr><td>"+data[i]['order_sn']+"</td><td>"+data[i]['consignee']+"</td><td>"+data[i]['mobile']+"</td><td>"+data[i]['address']+"</td><td>"+data[i]['goods_price']+"</td><td>"+data[i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data[i]['order_id']+" title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data[i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
+        }
+      }    
+    )
+  }
+);
+
+    </script>
 </html>

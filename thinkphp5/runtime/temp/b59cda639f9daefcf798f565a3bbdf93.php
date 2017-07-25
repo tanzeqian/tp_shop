@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_detail.html";i:1500903960;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_detail.html";i:1500990597;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,6 +106,7 @@
  <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">订单详情示例</h2>
+       <a href="/admin/orderdin/order_list" class="fr top_rt_btn add_icon">返回列表</a>
       </div>
       <table class="table">
       <?php foreach($din as $vall): ?>
@@ -143,17 +144,31 @@
          <p><?php echo $valll['spec_key_name']; ?></p>
         </td>
         <td class="center"><strong><?php echo $valll['goods_num']; ?></strong></td>
-        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price']; ?></strong></td>
-        <td class="center"><?php if($valll['is_send'] == 0): ?>未发货
+        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price'] * $valll['goods_num']; ?></strong></td>
+        <td class="center">
+        <?php foreach($din as $valee): if($valee['shipping_status'] == 0): ?>未发货
         <?php else: ?>已发货
-        <?php endif; ?>
+        <?php endif; endforeach; ?>
         </td>
        </tr>      
        <?php endforeach; ?>
       </table>
+      
+      <?php foreach($din as $valee): ?>
+      <form action="wuliudan?id=<?php echo $valee['order_id']; ?>" method="post">
       <aside class="mtb" style="text-align:right;">
-       <input type="button" value="修改订单" class="group_btn"/>
+      物流单号：<input type="text" value="<?php echo $valee['wuliu']; ?>" name="wu" class="group_btn"/>
+ <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
+      <?php if($valee['pay_status'] == 0): ?>
+      <a href="order_xiu?id=<?php echo $valee['order_id']; ?>"><input type="button" value="修改订单"  class="group_btn"/>
+      <input type="button" value="等待付款"  class="group_btn"/>
+      <?php else: if($valee['shipping_status'] == 0): ?>
+        <input type="submit" value="确认发货" class="group_btn"/>
+      <?php else: endif; endif; ?>
       </aside>
+      </form>
+      <?php endforeach; ?>
+      
  </div>
 </section>
 </body>
