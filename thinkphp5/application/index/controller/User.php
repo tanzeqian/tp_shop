@@ -193,9 +193,9 @@ class User extends Controller
 		$c = new TopClient;//大于客户端   
 		$c->format = 'json';//设置返回值得类型
 
-		$c->appkey = "24448875";//阿里大于注册应用的key
+		$c->appkey = "24554031";//阿里大于注册应用的key
 
-	    $c->secretKey = "dbb68f3ed9c6979a493da78628db9e36";//注册的secretkey
+	    $c->secretKey = "11be8a3a641cf1782ef6db4443e6e380";//注册的secretkey
 	                                                       
 	    //请求对象，需要配置请求的参数   
 		$req = new AlibabaAliqinFcSmsNumSendRequest;
@@ -203,7 +203,7 @@ class User extends Controller
 		$req->setSmsType("normal");//短信类型，传入值请填写normal
 		
 		//签名，阿里大于-控制中心-验证码--配置签名 中配置的签名，必须填
-		$req->setSmsFreeSignName("杂七杂八");
+		$req->setSmsFreeSignName("谭泽乾");
 		//你在短信中显示的验证码，这个要保存下来用于验证
 		$num = rand(100000,999999);
 		$_SESSION['smscode'] = $num;

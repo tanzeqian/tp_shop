@@ -34,5 +34,10 @@ class Goods extends Model
 		 $data = $this->insert(['goods_name'=>$ming, 'goods_sn'=>$huohao,'brand_id'=>$pin,'cat_id'=>$pag,'spec_type'=>$guige,'store_count'=>$kucun,'shop_price'=>$benjia,'market_price'=>$shijia,'original_img'=>$image,'goods_remark'=>$xiang,'goods_type'=>$shu,'is_new'=>1]);
 		return $data;
 	}
+	//分页数据
+	public function getThePage($page,$num)
+	{
+		return db('goods')->page($page,$num)->select();
+	}
 
 }

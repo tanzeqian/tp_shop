@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_list.html";i:1500877248;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_list.html";i:1500967203;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,7 @@
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/static/admin/css1/style.css">
+   <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <![endif]-->
@@ -56,16 +57,14 @@
    <dl>
     <dt>常用布局示例</dt>
     <!--当前链接则添加class:active-->
-    <dd><a href="product_list" class="active">商品列表示例</a></dd>
-    <dd><a href="product_detail">商品详情示例</a></dd>
-    <dd><a href="recycle_bin.html">商品回收站示例</a></dd>
+    <dd><a href="product_list" class="active">商品列表</a></dd>
+    <dd><a href="product_detail">添加商品</a></dd>
    </dl>
   </li>
   <li>
    <dl>
     <dt>订单信息</dt>
-    <dd><a href="order_list.html">订单列表示例</a></dd>
-    <dd><a href="order_detail.html">订单详情示例</a></dd>
+    <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
   <li>
@@ -155,22 +154,18 @@
         <td class="center"><?php echo $vall['store_count']; ?></td>
         <td class="center">
          <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="product_detail" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
+         <a href="" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
        <?php endforeach; ?>
       </table>
-      <aside class="paging">
-       <a>第一页</a>
-       <a>1</a>
-       <a>2</a>
-       <a>3</a>
-       <a>…</a>
-       <a>1004</a>
-       <a>最后一页</a>
-      </aside>
+       <div class='paging' id='indicator'>
+  <?php echo $page; ?>
+  </div>
  </div>
 </section>
 </body>
+<script src="/static/jquery.min.js"></script>
+   
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </html>

@@ -50,51 +50,36 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="/admin/index/index">起始页</a></h2>
+ <h2><a href="index.html">起始页</a></h2>
  <ul>
   <li>
    <dl>
     <dt>常用布局示例</dt>
     <!--当前链接则添加class:active-->
     <dd><a href="/admin/product/product_list" >商品列表示例</a></dd>
-    <dd><a href="/admin/product/product_detail">添加商品</a></dd>
+    <dd><a href="product_detail.html">商品详情示例</a></dd>
     <dd><a href="recycle_bin.html">商品回收站示例</a></dd>
    </dl>
   </li>
   <li>
    <dl>
     <dt>订单信息</dt>
-    <dd><a href="order_list.html" class="active">订单列表</a></dd>
-    <dd><a href="order_detail.html" >订单详情示例</a></dd>
+    <dd><a href="order_list.html">订单列表示例</a></dd>
+    <dd><a href="order_detail.html">订单详情示例</a></dd>
    </dl>
   </li>
   <li>
    <dl>
     <dt>会员管理</dt>
-    <dd><a href="user_list.html">会员列表示例</a></dd>
-    <dd><a href="user_detail.html">添加会员（详情）示例</a></dd>
+    <dd><a href="user_list.html" class="active">会员列表</a></dd>
     <dd><a href="user_rank.html">会员等级示例</a></dd>
     <dd><a href="adjust_funding.html">会员资金管理示例</a></dd>
    </dl>
   </li>
   <li>
    <dl>
-    <dt>基础设置</dt>
+    <dt>管理员设置</dt>
     <dd><a href="setting.html">站点基础设置示例</a></dd>
-   </dl>
-  </li>
-  <li>
-   <dl>
-    <dt>配送与支付设置</dt>
-    <dd><a href="express_list.html">配送方式</a></dd>
-    <dd><a href="pay_list.html">支付方式</a></dd>
-   </dl>
-  </li>
-  <li>
-   <dl>
-    <dt>在线统计</dt>
-    <dd><a href="discharge_statistic.html">流量统计</a></dd>
-    <dd><a href="sales_volume.html">销售额统计</a></dd>
    </dl>
   </li>
   <li>
@@ -106,77 +91,64 @@
 <section class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
       <div class="page_title">
-       <h2 class="fl">订单列表示例</h2>
-       <a class="fr top_rt_btn add_icon">添加商品</a>
+       <h2 class="fl">会员列表</h2>
+       <a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>
       </div>
       <section class="mtb">
-       <select class="select" id="dai">
-        <option value="1">订单状态</option>
-        <option value="2">待付款</option>
-        <option value="3">待发货</option>
-       </select>
-       <input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
+       <input type="text" class="textbox textbox_225" placeholder="输入会员号/手机/电子邮件查询..."/>
        <input type="button" value="查询" class="group_btn"/>
       </section>
-      <table class="table" id="userInfo">
+      <table class="table">
+
        <tr>
-        <th>订单编号</th>
-        <th>收件人</th>
-        <th>联系电话</th>
-        <th>收件人地址</th>
-        <th>订单金额</th>
-        <th>配送方式</th>
+        <th>Id</th>
+        <th>会员头像</th>
+        <th>是否被冻结</th>
+        <th>手机号码</th>
+        <th>电子邮件</th>
+        <th>验证</th>
+        <th>第三方登录</th>
+        <th>登录名称</th>
+        <th>最后登录时间</th>
         <th>操作</th>
        </tr>
-
-      {foreach $data as $va}
-       <tr >
-        <td class="center" style="width: 500px;">{$va['order_sn']}</td>
-        <td>{$va['consignee']}</td>
-        <td>{$va['mobile']}</td>
-        <td>
-         <address>{$va['address']}</address>
-        </td>
-        <td class="center"><strong class="rmb_icon">{$va['goods_price']}</strong></td>
-        <td class="center">{$va['shipping_name']}</td>
+       {foreach $data as $va}
+       <tr>
+        <td class="center">{$va['user_id']}</td>
         <td class="center">
-         <a href="order_detail?id={$va['order_id']}" title="查看订单" class="link_icon" >&#118;</a>
-         <a href="deleDe?id={$va['order_id']}" title="删除" class="link_icon">&#100;</a>
+        {if !empty ($va['head_prc'])}
+        <img src="{$va['head_prc']}" width="50" height="50"/>
+        {else}
+        <img src="/static/admin/upload/user_002.png" width="50" height="50"/>
+        {/if}
+        </td>
+        <td>{if $va['is_lock'] == 0}否
+        {else}是
+        {/if}</td>
+        <td class="center">{$va['mobile']}</td>
+        <td class="center">{$va['email']}</td>
+        <td class="center"><a title="已验证" class="link_icon">&#89;</a></td>
+        <td class="center">{$va['oauth']}</td>
+        <td class="center">
+         <strong>{$va['nickname']}</strong>
+        </td>
+        <td class="center">
+         <strong>{$va['reg_time']|date="Y-m-d H:i",###}</strong>
+        </td>
+        <td class="center">
+         <a href="user_detail?id={$va['user_id']}" title="编辑" class="link_icon">&#101;</a>
+         <a href="user_shan?id={$va['user_id']}" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
-       
        {/foreach}
       </table>
-      <div class='paging' id='indicator'>
+     <div class='paging' id='indicator'>
   {$page}
   </div>
-      
  </div>
 </section>
 </body>
  <script src="/static/jquery.min.js"></script>
    
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-
-  <script>
-  $('#dai').change(  
-  function(){
-    var id = $(this).val();
-    $.post(
-      'daiFu',
-      {id:id},
-      function success(data)
-      { 
-         $('#userInfo').empty();
-        for (var i = 0; i < data.length; i++) {
-            var $claa = data[i]['pay_name'];
-           
-          $("#userInfo").append("<tr><td>"+data[i]['order_sn']+"</td><td>"+data[i]['consignee']+"</td><td>"+data[i]['mobile']+"</td><td>"+data[i]['address']+"</td><td>"+data[i]['goods_price']+"</td><td>"+data[i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data[i]['order_id']+" title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data[i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
-        }
-      }    
-    )
-  }
-);
-
-    </script>
 </html>
