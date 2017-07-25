@@ -140,7 +140,7 @@ class ActivityLogic extends Model
             $order = array('l.send_time' => 'DESC', 'l.use_time');
         }
 
-        $query = M('coupon_list')->alias('l')
+        $query = Db('coupon_list')->alias('l')
             ->join('__COUPON__ c','l.cid = c.id')
             ->where($where);
         

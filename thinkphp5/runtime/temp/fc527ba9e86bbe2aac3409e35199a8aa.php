@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\wamp64\www\tp5\public/../application/index\view\goods\goodsinfo.html";i:1500688748;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:71:"D:\wamp64\www\tp5\public/../application/index\view\goods\goodsinfo.html";i:1500991404;s:69:"D:\wamp64\www\tp5\public/../application/index\view\public\header.html";i:1500987439;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +9,300 @@
     <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/layer/layer-min.js"></script>
     <script type="text/javascript" src="/static/index/js/jquery.jqzoom.js"></script>
-    <script src="/static/js/global.js"></script>
-    <script src="/static/js/pc_common.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/pc_common.js"></script>
     <link rel="stylesheet" href="/static/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
 </head>
 
 <body>
 <!--header-s-->
-include file="public/header" w="w1224"/}
+<div class="tpshop-tm-hander tp_h_alone p">
+        <!--导航栏-s-->
+        <div class="top-hander p">
+            <div class="w1224 pr p">
+                <div class="fl">
+                    <!-- 收货地址，物流运费 -start-->
+                    <link rel="stylesheet" href="static/index/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
+                    <div class="sendaddress pr fl">
+                        <span>送货至：</span>
+                        <span>
+                            <ul class="list1">
+                                <li class="summary-stock though-line">
+                                    <div class="dd" style="border-right:0px;width:200px;">
+                                        <div class="store-selector add_cj_p">
+                                            <div class="text"><div></div><b></b></div>
+                                            <div onclick="$(this).parent().removeClass('hover')" class="close"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                    <!-- 收货地址，物流运费 -end-->
+                        <div class="fl nologin">
+                            <a class="red" href="<?php echo url('Index/user/login'); ?>">Hi.请登录</a>
+                            <a href="<?php echo url('Index/user/reg'); ?>">免费注册</a>
+                        </div>
+                        <div class="fl islogin">
+                            <a class="red userinfo" href="<?php echo url('Home/user/index'); ?>" ></a>
+                            <a  href="<?php echo url('Index/user/logout'); ?>"  title="退出" target="_self">安全退出</a>
+                        </div>
+                </div>
+                <div class="top-ri-header fr">
+                    <ul>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/order_list'); ?>">我的订单</a></li>
+                        <li class="spacer"></li>
+                        <li><a target="_blank" href="<?php echo url('Home/User/visit_log'); ?>">我的浏览</a></li>
+                        <li class="spacer"></li>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/coupon'); ?>">我的优惠券</a></li>
+                        <li class="spacer"></li>
+                        <li><a target="_blank" href="<?php echo url('/Home/User/goods_collect'); ?>">我的收藏</a></li>
+                        <li class="spacer"></li>
+                        <li><a target="_blank" title="点击这里给我发消息" href="<?php echo url('Home/Article/detail',array('article_id'=>22)); ?>" target="_blank">在线客服</a></li>
+                        <li class="spacer"></li>
+                        <li class="hover-ba-navdh">
+                            <div class="nav-dh">
+                                <span>网站导航</span>
+                                <i class="share-a_a1"></i>
+                                <div class="conta-hv-nav">
+                                    <ul>
+                                        <li>
+                                            <a href="<?php echo url('Home/Activity/group_list'); ?>">团购</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo url('Home/Activity/flash_sale_list'); ?>">抢购</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--导航栏-e-->
+        <div class="nav-middan-z p">
+            <div class="header w1224 p">
+                <div class="ecsc-logo">
+                    <a href="<?php echo url('Index/index'); ?>" class="logo"> <img src="<?php echo $tpshop_config['store_logo']; ?>"></a>
+                </div>
+                <!--搜索-s-->
+                <div class="ecsc-search">
+                    <form id="searchForm" name="" method="get" action="<?php echo url('Home/Goods/search'); ?>" class="ecsc-search-form">
+                        <input autocomplete="off" name="q" id="q" type="text" value="<?php echo \think\Request::instance()->param('q'); ?>" placeholder="搜索关键字" class="ecsc-search-input">
+                        <button type="submit" class="ecsc-search-button" onclick="if($.trim($('#q').val()) != '') $('#searchForm').submit();"><i></i></button>
+                        <div class="candidate p">
+                            <ul id="search_list"></ul>
+                        </div>
+                        <script type="text/javascript">
+                            /*;(function($){
+                                $.fn.extend({
+                                    donetyping: function(callback,timeout){
+                                        timeout = timeout || 1e3;
+                                        var timeoutReference,
+                                                doneTyping = function(el){
+                                                    if (!timeoutReference) return;
+                                                    timeoutReference = null;
+                                                    callback.call(el);
+                                                };
+                                        return this.each(function(i,el){
+                                            var $el = $(el);
+                                            $el.is(':input') && $el.on('keyup keypress',function(e){
+                                                if (e.type=='keyup' && e.keyCode!=8) return;
+                                                if (timeoutReference) clearTimeout(timeoutReference);
+                                                timeoutReference = setTimeout(function(){
+                                                    doneTyping(el);
+                                                }, timeout);
+                                            }).on('blur',function(){
+                                                doneTyping(el);
+                                            });
+                                        });
+                                    }
+                                });
+                            })(jQuery);
+
+                            $('.ecsc-search-input').donetyping(function(){
+                                search_key();
+                            },500).focus(function(){
+                                var search_key = $.trim($('#q').val());
+                                if(search_key != ''){
+                                    $('.candidate').show();
+                                }
+                            });
+                            $('.candidate').mouseleave(function(){
+                                $(this).hide();
+                            });
+
+                            function searchWord(words){
+                                $('#q').val(words);
+                                $('#searchForm').submit();
+                            }
+                            function search_key(){
+                                var search_key = $.trim($('#q').val());
+                                if(search_key != ''){
+                                    $.ajax({
+                                        type:'post',
+                                        dataType:'json',
+                                        data: {key: search_key},
+                                        url:"<?php echo url('Home/Api/searchKey'); ?>",
+                                        success:function(data){
+                                            if(data.status == 1){
+                                                var html = '';
+                                                $.each(data.result, function (n, value) {
+                                                    html += '<li onclick="searchWord(\''+value.keywords+'\');"><div class="search-item">'+value.keywords+'</div><div class="search-count">约'+value.goods_num+'个商品</div></li>';
+                                                });
+                                                html += '<li class="close"><div class="search-count">关闭</div></li>';
+                                                $('#search_list').empty().append(html);
+                                                $('.candidate').show();
+                                            }else{
+                                                $('#search_list').empty();
+                                            }
+                                        }
+                                    });
+                                }
+                            }*/
+                        </script>
+                    </form>
+                    <div class="keyword">
+                        <ul>
+                            <foreach name="tpshop_config.hot_keywords" item="wd" key="k">
+                                <li>
+                                    <a href=":url('Home/Goods/search',array('q'=>$wd))}" target="_blank">$wd}</a>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+                <!--搜索-e-->
+                <!--购物车-s-->
+                
+                <div class="shopingcar-index fr">
+                    <div class="u-g-cart fr fixed" id="hd-my-cart">
+                        <a href="<?php echo url('Index/Cart/cart'); ?>">
+                            <div class="c-n fl" >
+                                <i class="share-shopcar-index"></i>
+                                <span>我的购物车<em class="sc_z" id="cart_quantity"></em></span>
+                            </div>
+                        </a>
+                        <div class="u-fn-cart u-mn-cart" id="show_minicart"></div>
+                    </div>
+                </div>
+                <!--购物车-e-->
+            </div>
+        </div>
+        <!--商品分类-s-->
+        <div class="nav p">
+            <div class="w1224 p">
+                <div class="categorys2 home_categorys">
+                    <div class="dt">
+                        <a href="<?php echo url('Index/Goods/all_category'); ?>" target="_blank"><i class="share-a_a2"></i>商品分类</a>
+                    </div>
+                    <!--全部商品分类-s-->
+                    <!-- <div class="dd">
+                        <div class="cata-nav">
+                            外层循环点
+                            <?php foreach($goods_category_tree as $k=>$v): ?>
+                                <div class="item fore1">
+                                <if condition="$v['level'] eq 1">
+                                <div class="item-left">
+                                    <div class="cata-nav-name">
+                                        <h3>
+                                            <div class="contiw-cer"><span class="share-icon-<?php echo $k; ?>"></span></div>
+                                            <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v['id'])); ?>" title="<?php echo $v['name']; ?>"><?php echo $v['name']; ?></a>
+                                        </h3>
+                                    </div>
+                                    <b>&gt;</b>
+                                </div>
+                                </if>
+                                <div class="cata-nav-layer">
+                                    <div class="cata-nav-left">
+                                        <div class="subitems">
+                                        <?php foreach($v['tmenu'] as $k2=>$v2): ?>
+                                           
+                                                <if condition="$v2[parent_id] eq $v['id']">
+                                                <dl>2级循环点
+                                                    <dt>
+                                                        <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v2['id'])); ?>" target="_blank"><?php echo $v2['name']; ?><i>&gt;</i></a>
+                                                    </dt>
+                                                    <dd>
+                                                        <?php foreach($v2['sub_menu'] as $k3=>$v3): ?>
+                                                        
+                                                            <if condition="$v3[parent_id] eq $v2['id']">
+                                                            <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v3['id'])); ?>" target="_blank"><?php echo $v3['name']; ?></a></if>
+                                                        
+                                                        <?php endforeach; ?>
+                                                    </dd>
+                                                </dl>
+                                                </if>
+                                            
+                                            <?php endforeach; ?>
+                                            商品分类底部广告-s
+                                            <div class="advertisement_down">
+                                                <ul>                              
+                                                    <?php foreach($ad14 as $adk=>$adv): ?>                  
+                                                    
+                                                        <li>
+                                                            <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                                                                <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$v3[style]}" width="129" height="45"/>
+                                                            </a>
+                                                        </li>
+                                                    <?php endforeach; ?>                                                
+                                                </ul>
+                                            </div>
+                                            商品分类底部广告-e
+                                        </div>
+                                    </div>
+                                    商品分类右侧广告-s
+                                    <div class="cata-nav-rigth">
+                                        <?php foreach($ad51 as $adk=>$adv): ?>
+                                        
+                                            <a href="<?php echo $adv['ad_link']; ?>" <?php if($adv['target'] == 1): ?>target="_blank"<?php endif; ?>>
+                                                <img src="<?php echo $adv['ad_code']; ?>" title="<?php echo $adv['ad_name']; ?>" style="$adv[style]}"/>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    商品分类右侧广告-e
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div> -->
+                    <!--全部商品分类-e-->
+                </div>
+                <!--导航栏-s-->
+                 <div class="navitems" id="nav">
+                    <ul>
+                        <li class="index_modify">
+                            <a href="<?php echo url('Index/index'); ?>" class="selected">首页</a>
+                        </li>
+                        导航栏
+                    </ul>
+                    <!-- <div class="wrap-line" style="width: 72px; left: 20px;">
+                        <span style="left:15px;"></span>
+                    </div> -->
+                </div>
+                <!--导航栏-e-->
+            </div>
+        </div>
+        <!--商品分类-e-->
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            
+                $('.dd').hide();
+                var uname= getCookie('uname');
+                //alert(uname);
+                if(uname == ''){
+                    $('.islogin').hide();
+                    $('.nologin').show();
+                }else{
+                    $('.nologin').hide();
+                    $('.islogin').show();
+                    //获取用户名
+                    $('.userinfo').html(decodeURIComponent(uname));
+                }
+        })
+    </script>
     <!--header-e-->
     <div class="search-box p">
         <div class="w1224">
@@ -173,17 +459,16 @@ include file="public/header" w="w1224"/}
                                 <li class="jaj"><span><?php echo $k; ?>：</span></li>
                                 <li class="lawir colo">
                                     
-                                    <?php foreach($v as $k2=>$v2): if($v2['src'] != ''): ?>
+                                    <?php foreach($v as $k2=>$v2): ?>
+                                    
 
-                                        <input type="radio" style="display: none" rel="<?php echo $v2['item']; ?>" name="goods_spec[<?php echo $k; ?>]" value="<?php echo $v2['item_id']; ?>"  <?php if($k2 == 0): ?>checked="checked"<?php endif; ?>/>
-                                        <a   onclick="switch_zooming('<?php echo $v2['src']; ?>');select_filter(this); <?php if(!empty($v2['src'])): ?> $('#zoomimg').attr('src','<?php echo $v2['src']; ?>')<?php endif; ?>" <?php if($k2 == 0): ?> class="red"<?php endif; ?>>
-                                        <img src="<?php echo $v2['src']; ?>" style="width: 40px;height: 40px;"/>
-                                        <span class="dis_alintro"><?php echo $v2['item']; ?></span>
-                                        </a>
-                                        <else/>
-                                        <input type="radio" style="display: none" rel="<?php echo $v2['item']; ?>" name="goods_spec[<?php echo $k; ?>]" value="<?php echo $v2['item_id']; ?>"  <?php if($k2 == 0): ?>checked="checked"<?php endif; ?>/>
-                                        <a   onclick="select_filter(this);" <?php if($k2 == 0): ?> class="red"<?php endif; ?>><?php echo $v2['item']; ?></a>
-                                    <?php endif; endforeach; ?>
+                                        <input type="radio" style="display: none" rel="<?php echo $v2['item']; ?>" name="goods_spec['<?php echo $k; ?>']" value="<?php echo $v2['item_id']; ?>"  <?php if($k2 == 0): ?>checked="checked"<?php endif; ?>/>
+                                        
+                                        
+                                        <input type="radio" style="display: none" rel="<?php echo $v2['item']; ?>" name="goods_spec['<?php echo $k; ?>']" value="<?php echo $v2['item_id']; ?>"  <?php if($k2 == 0): ?>checked="checked"<?php endif; ?>/>
+                                        <a   onclick="select_filter(this);" <?php if($k2 == 0): ?> class="red"<?php endif; ?>><?php echo $v2['item' ]; ?></a>
+                                    
+                                <?php endforeach; ?>
                                 </li>
                             </ul>
                         </div>
@@ -219,10 +504,106 @@ include file="public/header" w="w1224"/}
                         $('#number').val(1);
                     </script>
                 </div>
+                
                 <div class="standard p">
                     <input type="hidden" name="goods_id" value="<?php echo $goods['goods_id']; ?>" />
-                    <a class="paybybill" href="javascript:;" onclick="AjaxAddCart(<?php echo $goods['goods_id']; ?>,1,1);">立即购买</a>
-                    <a class="addcar" href="javascript:;" onclick="AjaxAddCart(<?php echo $goods['goods_id']; ?>,1,0);"><i class="sk"></i>加入购物车</a>
+                    <a class="paybybill" href="javascript:;" onclick="add2(<?php echo $goods['goods_id']; ?>,1,1);">立即购买</a>
+                    <a class="addcar" href="javascript:;" onclick="add2(<?php echo $goods['goods_id']; ?>,1,0);"><i class="sk"></i>加入购物车</a>
+             
+                    <script type="text/javascript">
+
+
+                            function add2(goods_id,num,to_catr)
+{
+
+    // console.log(I);
+        // 如果有商品规格 说明是商品详情页提交
+        if($("#buy_goods_form").length > 0){
+                $.ajax({
+                    // console.log('ffhh');
+                        type : "POST",
+                        url:"/index/Cart/ajaxAddCart",
+                        data : $('#buy_goods_form').serialize(),// 你的formid 搜索表单 序列化提交                        
+                        dataType:'json',
+                        success: function(data){    
+                        
+                                if(data.status < 0)
+                                {
+                                    layer.alert(data.msg, {icon: 2});
+                                    return false;
+                                }
+                               // 加入购物车后再跳转到 购物车页面
+                               if(to_catr == 1)  //直接购买
+                               {
+                                   location.href = "/index/Cart/cart";   
+                               }
+                               else
+                               {
+                                    cart_num = parseInt($('#cart_quantity').html())+parseInt($('input[name="goods_num"]').val());
+                                    $('#cart_quantity').html(cart_num)
+                                    layer.open({
+                                          type: 2,
+                                          title: '温馨提示',
+                                          skin: 'layui-layer-rim', //加上边框
+                                          area: ['490px', '386px'], //宽高
+                                          content:["/index/Goods/open_add_cart","no"],
+                                          success: function(layero, index) {
+                                                layer.iframeAuto(index);
+                                        }
+                                    });
+                                    
+                               }
+                        }
+                });     
+        }else{ // 否则可能是商品列表页 收藏页 等点击加入购物车的
+                $.ajax({
+                        type : "POST",
+                        url:"/index/Cart/ajaxAddCart",
+                        data :{goods_id:goods_id,goods_num:num} ,
+                        dataType:'json',
+                        success: function(data){
+                               if(data.status == -1)
+                               {
+                                    location.href = "/index/Goods/goodsInfo&id="+goods_id;   
+                               }
+                               else
+                               {
+                                    // 加入购物车有误
+                                    if(data.status < 0)
+                                    {
+                                        layer.alert(data.msg, {icon: 2});
+                                        return false;
+                                    }
+                                    cart_num = parseInt($('#cart_quantity').html())+parseInt(num);
+                                    $('#cart_quantity').html(cart_num)
+                                    layer.open({
+                                          type: 2,
+                                          title: '温馨提示',
+                                          skin: 'layui-layer-rim', //加上边框
+                                          area: ['490px', '386px'], //宽高
+                                          content:"/index/Goods/open_add_cart"
+                                    });                            
+                               }                                                           
+                        }
+                });            
+        }
+}
+
+// 点击收藏商品
+function collect_goods(goods_id){
+    $.ajax({
+        type : "GET",
+        dataType: "json",
+        url:"/index.php?m=Mobile&c=goods&a=collect_goods&goods_id="+goods_id,//+tab,
+        success: function(data){
+            alert(data.msg);
+        }
+    });
+}
+                    </script>
+
+
+
                 </div>
             </div>
             </form>
@@ -312,12 +693,14 @@ include file="public/header" w="w1224"/}
                             <p class="shopname_de"><span>如果您发现商品信息不准确，<a class="de_cb" href="">欢迎纠错</a></span></p>
                             -->
                             <h2 class="shopname_de">属性</h2>
-                            <foreach name="goods_attr_list" item="v" key="k">
+                            
+                            <?php foreach($goods_attr_list as $k=>$v): ?>
                                 <div class="twic_a_alon">
                                     <p class="gray_t"><?php echo $goods_attribute[$v['attr_id']]; ?></p>
                                     <p><?php echo $v['attr_value']; ?></p>
                                 </div>
-                            </foreach>
+                            <?php endforeach; ?>
+                            
                         </div>
                     </div>
                     <div class="shop-con-describe p" style="display: none;">
@@ -463,13 +846,27 @@ include file="public/header" w="w1224"/}
     <!--footer-s-->
     <div class="footer p">
 
-        <include file="public/footer_index" />
-        <include file="public/sidebar_cart" />
+        include file="public/footer_index" /}
+        include file="public/sidebar_cart" /}
     </div>
 <!--看了又看-s-->
 <div style="display: none" id="look_see">
     
-    看了又看
+    <?php foreach($look_see as $k=>$look): ?>
+    <div class="tjhot-shoplist type-bot">
+        <div class="alone-shop">
+            <a href="<?php echo url('Index/Goods/goodsInfo',array('id'=>$look['goods_id'])); ?>"><img class="wiahides" src="<?php echo goods_thum_images($look['goods_id'],206,206); ?>" style="display: inline;"></a>
+            <p class="shop_name2">
+                <a href="<?php echo url('Index/Goods/goodsInfo',array('id'=>$look['goods_id'])); ?>"><?php echo $look['goods_name']; ?></a>
+            </p>
+            <p class="price-tag">
+                <span class="li_xfo">￥</span><span><?php echo $look['shop_price']; ?></span>
+            </p>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    
+    
 <!--看了又看-s-->
 </div>
     <!--footer-e-->
@@ -643,6 +1040,7 @@ include file="public/header" w="w1224"/}
         }
 
         /***收藏商品**/
+        
         $('#collectLink').click(function(){
             if(getCookie('user_id') == ''){
                 layer.msg('请先登录！', {icon: 1});
@@ -667,13 +1065,14 @@ include file="public/header" w="w1224"/}
         function ajaxComment(commentType,page){
             $.ajax({
                 type : "GET",
-                url:"/index.php?m=Home&c=goods&a=ajaxComment&goods_id=<?php echo $goods['goods_id']; ?>&commentType="+commentType+"&p="+page,//+tab,
+                url:"/index.php?m=Index&c=goods&a=ajaxComment&goods_id=<?php echo $goods['goods_id']; ?>&commentType="+commentType+"&p="+page,//+tab,
                 success: function(data){
                     $("#ajax_comment_return").html('');
                     $("#ajax_comment_return").append(data);
                 }
             });
         }
+        //ajaxComment(1,1);
         /**
          * 切换图片
          */

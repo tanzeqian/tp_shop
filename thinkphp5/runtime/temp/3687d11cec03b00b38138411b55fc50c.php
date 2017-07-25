@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\wamp64\www\tp5\public/../application/index\view\index\index.html";i:1500642740;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\wamp64\www\tp5\public/../application/index\view\index\index.html";i:1500981462;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,12 +37,12 @@
                     </div>
                     <!-- 收货地址，物流运费 -end-->
                         <div class="fl nologin">
-                            <a class="red" href="<?php echo url('Home/user/login'); ?>">Hi.请登录</a>
-                            <a href="<?php echo url('Home/user/reg'); ?>">免费注册</a>
+                            <a class="red" href="<?php echo url('Index/user/login'); ?>">Hi.请登录</a>
+                            <a href="<?php echo url('Index/user/reg'); ?>">免费注册</a>
                         </div>
                         <div class="fl islogin">
-                            <a class="red userinfo" href="<?php echo url('Home/user/index'); ?>" ></a>
-                            <a  href="<?php echo url('Home/user/logout'); ?>"  title="退出" target="_self">安全退出</a>
+                            <a class="red userinfo" href="<?php echo url('Index/user/index'); ?>" ></a>
+                            <a  href="<?php echo url('Index/user/logout'); ?>"  title="退出" target="_self">安全退出</a>
                         </div>
                 </div>
                 <div class="top-ri-header fr">
@@ -495,6 +495,7 @@
         $(function() {
             //首页商品分类显示
             $('.categorys2 .dd').show();
+            //alert(getCookie('uname'));
 
                 var uname= getCookie('uname');
                 //alert(uname);
@@ -533,21 +534,20 @@
             if(header_cart_list_over == 1)
                 return false;
             header_cart_list_over = 1;
-            $.ajax({
-                type : "GET",
-                url:"/index.php?m=Index&c=Cart&a=header_cart_list",//+tab,
-                success: function(data){
-                    console.log(data);
-                    $("#show_minicart").html(data);
-                }
-            });
-        }).mouseout(function(){
 
-            (typeof(t) == "undefined") || clearTimeout(t);
-            t = setTimeout(function () {
-                header_cart_list_over = 0; /// 标识鼠标已经离开
-            }, 1000);
-        });
+             $.ajax({
+                        type : "GET",
+                        url:"/index/cart/header_cart_list",
+                        //data : $('#buy_goods_form').serialize(),// 你的formid 搜索表单 序列化提交                        
+                        dataType:'json',
+                        success: function(data){    
+                                $("#show_minicart").html(data);
+                            }
+              });
+                     
+
+
+        })
     //楼层按钮
         //楼层添加data-mid
     $(function(){

@@ -15,7 +15,7 @@
 
 namespace app\home\logic;
 use think\Model;
-use app\home\logic\CartLogic;
+use app\index\logic\CartLogic;
 use think\Db;
 /**
  * 订单逻辑定义

@@ -15,7 +15,7 @@
  
 namespace app\index\controller; 
 use app\index\logic\CartLogic;
-use app\index\logic\CartLogic2;
+//use app\index\logic\CartLogic2;
 use app\index\logic\OrderLogic;
 use app\index\logic\UsersLogic;
 use app\index\model\Pickup;
@@ -37,7 +37,7 @@ class Cart extends Base {
         $this->cartLogic = new CartLogic();
         if (session('?user')) {
             $user = session('user');
-            $user = M('users')->where("user_id", $user['user_id'])->find();
+            $user = Db('users')->where("user_id", $user['user_id'])->find();
             session('user', $user);  //覆盖session 中的 user
             $this->user = $user;
             $this->user_id = $user['user_id'];
@@ -67,11 +67,14 @@ class Cart extends Base {
     }
 
     function ajaxAddCart(){
-        $goods_id = I("goods_id/d"); // 商品id
-        $goods_num = I("goods_num/d");// 商品数量
-        $goods_spec = I("goods_spec/a",array()); // 商品规格
+        $goods_id = input("goods_id"); // 商品id
+        $goods_num = input("goods_num");// 商品数量
+        $goods_spec = input("goods_spec/a"); // 商品规格
+        
         if(empty($goods_id)){
-            $this->ajaxReturn(['status'=>0,'msg'=>'请选择要购买的商品','result'=>'']);
+           $a = $this->ajaxReturn(['status'=>0,'msg'=>'请选择要购买的商品','result'=>'']);
+           //dump($a);die;
+           //dump($a);die;
         }
         if(empty($goods_num)){
             $this->ajaxReturn(['status'=>0,'msg'=>'购买商品数量不能为0','result'=>'']);
@@ -87,6 +90,7 @@ class Cart extends Base {
         $cartLogic->setGoodsModel($goods_id);
         $cartLogic->setUserId($this->user_id);
         $result = $cartLogic->addGoodsToCart($goods_num,$goods_spec_key);
+        //dump($result);die;
         $this->ajaxReturn($result);
     }
     
@@ -107,8 +111,8 @@ class Cart extends Base {
      */
     public function ajaxCartList()
     {
-        $post_goods_num = I("goods_num/a", array()); // goods_num 购物车商品数量
-        $post_cart_select = I("cart_select/a", array()); // 购物车选中状态
+        $post_goods_num = input("goods_num/a", array()); // goods_num 购物车商品数量
+        $post_cart_select = input("cart_select/a", array()); // 购物车选中状态
         $goodsLogic = new GoodsLogic();
         $cartLogic = new CartLogic();
         $where['session_id'] = $this->session_id; // 默认按照 session_id 查询
@@ -117,7 +121,7 @@ class Cart extends Base {
             unset($where);
             $where['user_id'] = $this->user_id;
         }
-        $cartList = M('Cart')->where($where)->getField("id,goods_num,selected,prom_type,prom_id,goods_id,goods_price,spec_key");
+        $cartList = Db('Cart')->where($where)->getField("id,goods_num,selected,prom_type,prom_id,goods_id,goods_price,spec_key");
         if ($post_goods_num) {
             // 修改购物车数量 和勾选状态
             foreach ($post_goods_num as $key => $val) {
@@ -146,7 +150,7 @@ class Cart extends Base {
                     }
                 }
                 if ($cartList[$key]['goods_num'] != $data['goods_num'] || $cartList[$key]['selected'] != $data['selected']) {
-                    M('Cart')->where("id", $key)->save($data);
+                    Db('Cart')->where("id", $key)->save($data);
                 }
             }
             $this->assign('select_all', input('post.select_all')); // 全选框
@@ -443,7 +447,8 @@ class Cart extends Base {
     	
     	$this->assign('cartList', $cart_result['cartList']); // 购物车的商品
     	$this->assign('cart_total_price', $cart_result['total_price']); // 总计
-        $template = I('template','header_cart_list');    	 
+        //dump($cart_result['total_price']);die;
+        $template = input('template','header_cart_list');    	 
         return $this->fetch($template);		 
     }
 

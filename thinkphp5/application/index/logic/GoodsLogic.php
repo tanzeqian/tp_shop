@@ -197,6 +197,8 @@ class GoodsLogic extends Model
     {
         //商品规格 价钱 库存表 找出 所有 规格项id
         $keys = Db('SpecGoodsPrice')->where("goods_id", $goods_id)->getField("GROUP_CONCAT(`key` SEPARATOR '_') ");
+        //dump($goods_id);
+       // dump($keys);
         $filter_spec = array();
         if ($keys) {
             $specImage = Db('SpecImage')->where(['goods_id'=>$goods_id,'src'=>['<>','']])->getField("spec_image_id,src");// 规格对应的 图片表， 例如颜色
@@ -207,7 +209,7 @@ class GoodsLogic extends Model
                 $filter_spec[$val['name']][] = array(
                     'item_id' => $val['id'],
                     'item' => $val['item'],
-                    'src' => $specImage[$val['id']],
+                    //'src' => $specImage[$val['id']],
                 );
             }
         }
@@ -233,7 +235,7 @@ class GoodsLogic extends Model
      */
     public function get_look_see($goods)
     {
-        return M('goods')->where(['goods_id'=>['<>',$goods['goods_id']],'cat_id'=>['<>',$goods['cat_id']],'is_on_sale'=>1])->limit(12)->select();
+        return Db('goods')->where(['goods_id'=>['<>',$goods['goods_id']],'cat_id'=>['<>',$goods['cat_id']],'is_on_sale'=>1])->limit(12)->select();
     }
 
 
@@ -583,8 +585,8 @@ class GoodsLogic extends Model
             }
         }
         //匹配到就返回物流信息和运费
-        $goods_shipping = M('')
-            ->table(C('DB_PREFIX').'area_region ar')
+        $goods_shipping = Db('')
+            ->table(config('DB_PREFIX').'area_region ar')
             ->join('__SHIPPING_AREA__ sa','sa.shipping_area_id = ar.shipping_area_id','INNER')
             ->where(array('ar.shipping_area_id'=>array('in',$shipping_area_id_array)))
             ->group('sa.shipping_code')
@@ -597,7 +599,7 @@ class GoodsLogic extends Model
         }
         foreach($goods_shipping as $k=>$v){
             $goods_shipping[$k]['freight'] = $goodsLogic->getFreight($goods_shipping[$k]['shipping_code'],0,0,$goods_shipping[$k]['region_id'],$goods['weight']);
-            $goods_shipping[$k]['shipping_name'] = M('plugin')->where(array('type'=>'shipping','code'=>$goods_shipping[$k]['shipping_code']))->getField('name');
+            $goods_shipping[$k]['shipping_name'] = Db('plugin')->where(array('type'=>'shipping','code'=>$goods_shipping[$k]['shipping_code']))->getField('name');
         }
         $return_data = array(
             'status'=>1,
@@ -648,12 +650,12 @@ class GoodsLogic extends Model
      * @time  17-4-20
      */
     public function add_visit_log($user_id,$goods){
-        $record = M('goods_visit')->where(array('user_id'=>$user_id,'goods_id'=>$goods['goods_id']))->find();
+        $record = Db('goods_visit')->where(array('user_id'=>$user_id,'goods_id'=>$goods['goods_id']))->find();
         if($record){
-            M('goods_visit')->where(array('user_id'=>$user_id,'goods_id'=>$goods['goods_id']))->save(array('visittime'=>time()));
+            Db('goods_visit')->where(array('user_id'=>$user_id,'goods_id'=>$goods['goods_id']))->save(array('visittime'=>time()));
         }else{
             $visit = array('user_id'=>$user_id,'goods_id'=>$goods['goods_id'],'visittime'=>time(),'cat_id'=>$goods['cat_id'],'extend_cat_id'=>$goods['extend_cat_id']);
-            M('goods_visit')->add($visit);
+            Db('goods_visit')->add($visit);
         }
     }
 

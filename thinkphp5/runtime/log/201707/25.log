@@ -1,0 +1,2344 @@
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /index.php?m=Home&c=Goods&a=getRegion
+[ log ] www.shop.com/index.php?m=Home&c=Goods&a=getRegion [运行时间：0.427024s][吞吐率：2.34req/s] [内存消耗：4,614.13kb] [文件加载：48]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'Home',
+  'c' => 'Goods',
+  'a' => 'getRegion',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\wamp64\www\tp5\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\public/../application/index\view\index\index.html [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad2',
+  4 => 'ad14',
+  5 => 'ad51',
+  6 => 'ad52',
+  7 => 'ad53',
+  8 => 'ad3',
+  9 => 'cateList',
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=2 ) ORDER BY `start_time`  desc LIMIT 5 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=52 ) ORDER BY `start_time`  desc LIMIT 2 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=53 ) ORDER BY `start_time`  desc LIMIT 3 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=3 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] select a.goods_name,a.goods_id,a.shop_price,a.market_price,a.cat_id,b.parent_id_path,b.name from tp_goods as a left join tp_goods_category as b on a.cat_id=b.id where a.is_hot=1 and a.is_on_sale=1 order by a.sort [ RunTime:0.002000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods_category` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods_category` WHERE  (  is_hot=1 and level=3 and is_show=1 ) [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/5698627f769f7.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/5698627f769f7.jpg [运行时间：0.441026s][吞吐率：2.27req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-15',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/56985a8e560b9.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/56985a8e560b9.jpg [运行时间：0.627036s][吞吐率：1.59req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-15',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /index.php?m=Home&c=Api&a=getProvince
+[ log ] www.shop.com/index.php?m=Home&c=Api&a=getProvince [运行时间：0.675039s][吞吐率：1.48req/s] [内存消耗：4,328.16kb] [文件加载：48]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'Home',
+  'c' => 'Api',
+  'a' => 'getProvince',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\wamp64\www\tp5\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\public/../application/index\view\index\index.html [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad2',
+  4 => 'ad14',
+  5 => 'ad51',
+  6 => 'ad52',
+  7 => 'ad53',
+  8 => 'ad3',
+  9 => 'cateList',
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=3 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods_category` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods_category` WHERE  (  is_hot=1 and level=3 and is_show=1 ) [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-22/57199141d9c05.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-22/57199141d9c05.jpg [运行时间：0.988057s][吞吐率：1.01req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-22',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:40+08:00 ] ::1 ::1 GET /index.php?m=Index&c=goods&a=ajaxComment&goods_id=49&commentType=1&p=1
+[ log ] www.shop.com/index.php?m=Index&c=goods&a=ajaxComment&goods_id=49&commentType=1&p=1 [运行时间：0.944054s][吞吐率：1.06req/s] [内存消耗：4,534.18kb] [文件加载：48]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'Index',
+  'c' => 'goods',
+  'a' => 'ajaxComment',
+  'goods_id' => '49',
+  'commentType' => '1',
+  'p' => '1',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\wamp64\www\tp5\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\public/../application/index\view\index\index.html [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad2',
+  4 => 'ad14',
+  5 => 'ad51',
+  6 => 'ad52',
+  7 => 'ad53',
+  8 => 'ad3',
+  9 => 'cateList',
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=14 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=51 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=3 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods_category` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods_category` WHERE  (  is_hot=1 and level=3 and is_show=1 ) [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-20/57175059527f4.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-20/57175059527f4.jpg [运行时间：0.790046s][吞吐率：1.27req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.036002s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.002000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-20/57175203bd715.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-20/57175203bd715.jpg [运行时间：0.809047s][吞吐率：1.24req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-20',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048003s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/57182dd9c365c.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/57182dd9c365c.jpg [运行时间：0.894051s][吞吐率：1.12req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-21',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.106006s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.003000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571835c77b583.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571835c77b583.jpg [运行时间：0.769044s][吞吐率：1.30req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-21',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/5718365665d97.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/5718365665d97.jpg [运行时间：0.765044s][吞吐率：1.31req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-21',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.002001s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571836e30aaba.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571836e30aaba.jpg [运行时间：0.531030s][吞吐率：1.88req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-21',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571837b30942a.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/04-21/571837b30942a.jpg [运行时间：0.476027s][吞吐率：2.10req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '04-21',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /index.php?m=Home&c=Goods&a=getRegion
+[ log ] www.shop.com/index.php?m=Home&c=Goods&a=getRegion [运行时间：0.531030s][吞吐率：1.88req/s] [内存消耗：4,328.20kb] [文件加载：48]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'Home',
+  'c' => 'Goods',
+  'a' => 'getRegion',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\wamp64\www\tp5\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\public/../application/index\view\index\index.html [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad2',
+  4 => 'ad14',
+  5 => 'ad51',
+  6 => 'ad52',
+  7 => 'ad53',
+  8 => 'ad3',
+  9 => 'cateList',
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=3 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods_category` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods_category` WHERE  (  is_hot=1 and level=3 and is_show=1 ) [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5696034e703e1.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5696034e703e1.jpg [运行时间：0.508029s][吞吐率：1.97req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.003000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:41+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/56960907f26d1.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/56960907f26d1.jpg [运行时间：0.503028s][吞吐率：1.99req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/03-12/56e3eb73912ff.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/03-12/56e3eb73912ff.jpg [运行时间：0.511029s][吞吐率：1.96req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '03-12',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/569856c42e7b7.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-15/569856c42e7b7.jpg [运行时间：0.498029s][吞吐率：2.01req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-15',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56970fc50a9f3.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56970fc50a9f3.jpg [运行时间：0.522030s][吞吐率：1.92req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001001s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569710f50e7d8.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569710f50e7d8.jpg [运行时间：0.285016s][吞吐率：3.51req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.002000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56971493d2f2d.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56971493d2f2d.jpg [运行时间：0.278016s][吞吐率：3.60req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569749040dcd0.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569749040dcd0.jpg [运行时间：0.296017s][吞吐率：3.38req/s] [内存消耗：4,536.55kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_config` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=14 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=51 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001001s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/5697523793096.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/5697523793096.jpg [运行时间：0.311018s][吞吐率：3.22req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56975c82a764a.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/56975c82a764a.jpg [运行时间：0.287016s][吞吐率：3.48req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569769cf6527b.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-14/569769cf6527b.jpg [运行时间：0.283016s][吞吐率：3.53req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-14',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695b2f14616a.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695b2f14616a.jpg [运行时间：0.286016s][吞吐率：3.50req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695bd0ba3d1d.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695bd0ba3d1d.jpg [运行时间：0.258014s][吞吐率：3.88req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695bf6426994.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695bf6426994.jpg [运行时间：0.280016s][吞吐率：3.57req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c0873d865.png
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c0873d865.png [运行时间：0.277016s][吞吐率：3.61req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c0d15fc5f.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c0d15fc5f.jpg [运行时间：0.291017s][吞吐率：3.44req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.015001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c1e0549fc.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/5695c1e0549fc.jpg [运行时间：0.291017s][吞吐率：3.44req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.000000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/56960d7bec88e.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/56960d7bec88e.jpg [运行时间：0.292017s][吞吐率：3.42req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:42+08:00 ] ::1 ::1 POST /index/Cart/ajaxAddCart
+[ log ] www.shop.com/index/Cart/ajaxAddCart [运行时间：0.347020s][吞吐率：2.88req/s] [内存消耗：4,524.74kb] [文件加载：50]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'Cart',
+    2 => 'ajaxAddCart',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'content-length' => '143',
+  'origin' => 'http://www.shop.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'goods_spec' => 
+  array (
+    '\'网络\'' => '11',
+    '\'内存\'' => '13',
+    '\'屏幕\'' => '21',
+  ),
+  'goods_num' => '1',
+  'goods_id' => '49',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Cart->ajaxAddCart[ D:\wamp64\www\tp5\application\index\controller\Cart.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_users` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_users` WHERE  `user_id` = 2613 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 49 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_cart` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_cart` WHERE  `user_id` = 2613  AND `session_id` = '21i2unumeiogg2k4olikb57o06' LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [0]致命错误: Call to undefined function app\index\logic\M()[D:\wamp64\www\tp5\application\index\logic\CartLogic.php:111]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:43+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569611334359e.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569611334359e.jpg [运行时间：0.338020s][吞吐率：2.96req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:44+08:00 ] ::1 ::1 GET /index.php?m=Home&c=Cart&a=header_cart_list
+[ log ] www.shop.com/index.php?m=Home&c=Cart&a=header_cart_list [运行时间：0.297017s][吞吐率：3.37req/s] [内存消耗：4,614.13kb] [文件加载：48]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'accept' => '*/*',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'm' => 'Home',
+  'c' => 'Cart',
+  'a' => 'header_cart_list',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\wamp64\www\tp5\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\public/../application/index\view\index\index.html [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad2',
+  4 => 'ad14',
+  5 => 'ad51',
+  6 => 'ad52',
+  7 => 'ad53',
+  8 => 'ad3',
+  9 => 'cateList',
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=2 ) ORDER BY `start_time`  desc LIMIT 5 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=52 ) ORDER BY `start_time`  desc LIMIT 2 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=53 ) ORDER BY `start_time`  desc LIMIT 3 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=3 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] select a.goods_name,a.goods_id,a.shop_price,a.market_price,a.cat_id,b.parent_id_path,b.name from tp_goods as a left join tp_goods_category as b on a.cat_id=b.id where a.is_hot=1 and a.is_on_sale=1 order by a.sort [ RunTime:0.002000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods_category` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods_category` WHERE  (  is_hot=1 and level=3 and is_show=1 ) [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:44+08:00 ] ::1 ::1 POST /index/Cart/ajaxAddCart
+[ log ] www.shop.com/index/Cart/ajaxAddCart [运行时间：0.347019s][吞吐率：2.88req/s] [内存消耗：4,524.74kb] [文件加载：50]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'Cart',
+    2 => 'ajaxAddCart',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'content-length' => '143',
+  'origin' => 'http://www.shop.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'goods_spec' => 
+  array (
+    '\'网络\'' => '11',
+    '\'内存\'' => '13',
+    '\'屏幕\'' => '21',
+  ),
+  'goods_num' => '1',
+  'goods_id' => '49',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Cart->ajaxAddCart[ D:\wamp64\www\tp5\application\index\controller\Cart.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_users` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_users` WHERE  `user_id` = 2613 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 49 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_cart` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_cart` WHERE  `user_id` = 2613  AND `session_id` = '21i2unumeiogg2k4olikb57o06' LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [0]致命错误: Call to undefined function app\index\logic\M()[D:\wamp64\www\tp5\application\index\logic\CartLogic.php:111]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:23:45+08:00 ] ::1 ::1 POST /index/Cart/ajaxAddCart
+[ log ] www.shop.com/index/Cart/ajaxAddCart [运行时间：0.104006s][吞吐率：9.61req/s] [内存消耗：4,591.17kb] [文件加载：50]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'Cart',
+    2 => 'ajaxAddCart',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'content-length' => '143',
+  'origin' => 'http://www.shop.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'goods_spec' => 
+  array (
+    '\'网络\'' => '11',
+    '\'内存\'' => '13',
+    '\'屏幕\'' => '21',
+  ),
+  'goods_num' => '1',
+  'goods_id' => '49',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Cart->ajaxAddCart[ D:\wamp64\www\tp5\application\index\controller\Cart.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_config` [ RunTime:0.000000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_users` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_users` WHERE  `user_id` = 2613 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 49 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_cart` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_cart` WHERE  `user_id` = 2613  AND `session_id` = '21i2unumeiogg2k4olikb57o06' LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [0]致命错误: Call to undefined function app\index\logic\M()[D:\wamp64\www\tp5\application\index\logic\CartLogic.php:111]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:25:11+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569600e533b20.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569600e533b20.jpg [运行时间：0.136008s][吞吐率：7.35req/s] [内存消耗：4,536.55kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_config` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_ad` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=14 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM `tp_ad` WHERE  (  pid=51 ) ORDER BY `start_time`  desc LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:25:12+08:00 ] ::1 ::1 GET /Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569600e533b20.jpg
+[ log ] www.shop.com/Index/goods/goodsinfo/id/public/upload/goods/2016/01-13/569600e533b20.jpg [运行时间：0.098005s][吞吐率：10.20req/s] [内存消耗：4,326.92kb] [文件加载：47]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Index',
+    1 => 'goods',
+    2 => 'goodsinfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'id' => 'public',
+  'upload' => 'goods',
+  0 => '01-13',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Goods->goodsInfo[ D:\wamp64\www\tp5\application\index\controller\Goods.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp64\www\tp5\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'goods_category_tree',
+  1 => 'brand_list',
+  2 => 'tpshop_config',
+  3 => 'ad14',
+  4 => 'ad51',
+  5 => 'code',
+  6 => 'msg',
+  7 => 'data',
+  8 => 'url',
+  9 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+
+---------------------------------------------------------------
+[ 2017-07-25T22:25:14+08:00 ] ::1 ::1 POST /index/Cart/ajaxAddCart
+[ log ] www.shop.com/index/Cart/ajaxAddCart [运行时间：0.102005s][吞吐率：9.80req/s] [内存消耗：4,591.17kb] [文件加载：50]
+[ info ] [ LANG ] D:\wamp64\www\tp5\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'Cart',
+    2 => 'ajaxAddCart',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.shop.com',
+  'connection' => 'keep-alive',
+  'content-length' => '143',
+  'origin' => 'http://www.shop.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'referer' => 'http://www.shop.com/Index/goods/goodsinfo/id/49.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=21i2unumeiogg2k4olikb57o06; user_id=2613; is_distribut=0; uname=18999999999',
+)
+[ info ] [ PARAM ] array (
+  'goods_spec' => 
+  array (
+    '\'网络\'' => '11',
+    '\'内存\'' => '13',
+    '\'屏幕\'' => '21',
+  ),
+  'goods_num' => '1',
+  'goods_id' => '49',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Cart->ajaxAddCart[ D:\wamp64\www\tp5\application\index\controller\Cart.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_config` [ RunTime:0.000000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_users` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_users` WHERE  `user_id` = 2613 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=tpshop2.0;host=localhost;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_goods` WHERE  `goods_id` = 49 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_cart` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_cart` WHERE  `user_id` = 2613  AND `session_id` = '21i2unumeiogg2k4olikb57o06' LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [0]致命错误: Call to undefined function app\index\logic\M()[D:\wamp64\www\tp5\application\index\logic\CartLogic.php:111]
+
+---------------------------------------------------------------

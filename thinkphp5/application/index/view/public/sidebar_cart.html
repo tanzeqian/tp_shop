@@ -3,16 +3,16 @@
     <div class="sidertabs tab-lis-1">
         <div class="sider-top-stra sider-midd-1">
             <div class="icon-tabe-chan">
-                <a href="{:U('Home/User/index')}">
+                <a href="{:url('Index/User/index')}">
                     <i class="share-side share-side1"></i>
                     <i class="share-side tab-icon-tip triangleshow"></i>
                 </a>
 
                 <div class="dl_login">
                     <div class="hinihdk">
-                        <img src="__STATIC__/images/dl.png"/>
+                        <img src="/static/index/images/dl.png"/>
 
-                        <p class="loginafter nologin"><span>你好，请先</span><a href="{:U('Home/user/login')}">登录！</a></p>
+                        <p class="loginafter nologin"><span>你好，请先</span><a href="{:url('Index/user/login')}">登录！</a></p>
                         <!--未登录-e--->
                         <!--登录后-s--->
                         <p class="loginafter islogin">
@@ -45,14 +45,14 @@
         </div>
         <div class="sider-top-stra sider-midd-2">
             <div class="icon-tabe-chan mmm">
-                <a href="{:U('Home/User/goods_collect')}" target="_blank">
+                <a href="{:url('Index/User/goods_collect')}" target="_blank">
                     <i class="share-side share-side1"></i>
                     <!--<i class="share-side tab-icon-tip"></i>-->
                     <span class="tab-tip">收藏</span>
                 </a>
             </div>
             <div class="icon-tabe-chan hostry">
-                <a href="{:U('Home/User/visit_log')}" target="_blank">
+                <a href="{:url('Index/User/visit_log')}" target="_blank">
                     <i class="share-side share-side1"></i>
                     <!--<i class="share-side tab-icon-tip"></i>-->
                     <span class="tab-tip">足迹</span>
@@ -69,7 +69,7 @@
     </div>
     <div class="sidertabs tab-lis-2">
         <div class="icon-tabe-chan advice">
-            <a title="点击这里给我发消息" href="tencent://message/?uin={$tpshop_config['shop_info_qq2']}&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">
+            <a title="点击这里给我发消息" href="tencent://message/?uin=$tpshop_config['shop_info_qq2']}&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">
                 <i class="share-side share-side1"></i>
                 <!--<i class="share-side tab-icon-tip"></i>-->
                 <span class="tab-tip">在线咨询</span>
@@ -104,4 +104,4 @@
 
     </div>
 </div>
-<script src="__STATIC__/js/common.js"></script>
+<script src="/static/index/js/common.js"></script>

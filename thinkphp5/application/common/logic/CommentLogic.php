@@ -248,7 +248,7 @@ class CommentLogic extends Model
      */
     public function getHadCommentNum($user_id)
     {
-        $num = M('comment')->alias('c')
+        $num = Db('comment')->alias('c')
                 ->join('__ORDER__ o', 'o.order_id = c.order_id')
                 ->join('__ORDER_GOODS__ g','c.goods_id = g.goods_id AND c.order_id = g.order_id AND g.is_comment=1')
                 ->where('c.user_id', $user_id)
@@ -263,7 +263,7 @@ class CommentLogic extends Model
     {
         (!$user_id) && $user_id = 0;
         
-        $num = M('order_goods')->alias('og')
+        $num = Db('order_goods')->alias('og')
             ->join('__ORDER__ o',"o.order_id = og.order_id AND o.user_id=$user_id AND o.order_status IN (2,4)",'inner')
             ->where(['og.is_send' => 1, 'og.is_comment' => 0])
             ->count();

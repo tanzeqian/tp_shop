@@ -410,6 +410,18 @@ class Query
         }
     }
 
+    public function add($data = [])
+    {  
+       $this->insert($data);      
+       return $this->getLastInsID();
+    }
+
+    /*public function save($data = [])
+    {  
+       $this->insert($data);      
+       return $this->getLastInsID();
+    }*/
+
     /**
      * 得到某个字段的值
      * @access public

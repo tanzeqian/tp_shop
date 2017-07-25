@@ -59,9 +59,9 @@ class Goods extends Base {
         if(empty($goods) || ($goods['is_on_sale'] == 0)){
         	$this->error('该商品已经下架',url('Index/index'));
         }
-        if (cookie('user_id')) {
-            $goodsLogic->add_visit_log(cookie('user_id'), $goods);
-        }
+        //if (cookie('user_id')) {
+         //   $goodsLogic->add_visit_log(cookie('user_id'), $goods);
+        //}
         if($goods['brand_id']){
             $brnad = Db('brand')->where("id",$goods['brand_id'])->find();
             $goods['brand_name'] = $brnad['name'];
@@ -85,7 +85,7 @@ class Goods extends Base {
         $this->assign('goods_images_list',$goods_images_list);//商品缩略图
         //dump($goods_images_list);
         //$this->assign('siblings_cate',$goodsLogic->get_siblings_cate($goods['cat_id']));//相关分类
-        //$this->assign('look_see',$goodsLogic->get_look_see($goods));//看了又看      
+        $this->assign('look_see',$goodsLogic->get_look_see($goods));//看了又看      
         $this->assign('goods',$goods);
         //dump($goods);
         //$this->assign('point_rate',$point_rate);
@@ -339,8 +339,8 @@ class Goods extends Base {
      * 商品评论ajax分页
      */
     public function ajaxComment(){        
-        $goods_id = I("goods_id/d",'0');        
-        $commentType = I('commentType','1'); // 1 全部 2好评 3 中评 4差评
+        $goods_id = input("goods_id/d",'0');        
+        $commentType = input('commentType','1'); // 1 全部 2好评 3 中评 4差评
         $where = ['is_show'=>1,'goods_id'=>$goods_id,'parent_id'=>0];
         if($commentType==5){
             $where['img'] = ['<>',''];
@@ -348,14 +348,14 @@ class Goods extends Base {
         	$typeArr = array('1'=>'0,1,2,3,4,5','2'=>'4,5','3'=>'3','4'=>'0,1,2');
             $where['ceil((deliver_rank + goods_rank + service_rank) / 3)'] = ['in',$typeArr[$commentType]];
         }
-        $count = M('Comment')->where($where)->count();                
+        $count = Db('Comment')->where($where)->count();                
         
         $page = new AjaxPage($count,10);
         $show = $page->show();   
        
-        $list = M('Comment')->alias('c')->join('__USERS__ u','u.user_id = c.user_id','LEFT')->where($where)->order("add_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+        $list = Db('Comment')->alias('c')->join('__USERS__ u','u.user_id = c.user_id','LEFT')->where($where)->order("add_time desc")->limit($page->firstRow.','.$page->listRows)->select();
          
-//        $replyList = M('Comment')->where(['is_show'=>1,'goods_id'=>$goods_id,'parent_id'=>['>',0]])->order("add_time desc")->select();
+        $replyList = Db('Comment')->where(['is_show'=>1,'goods_id'=>$goods_id,'parent_id'=>['>',0]])->order("add_time desc")->select();
         
         foreach($list as $k => $v){
             $list[$k]['img'] = unserialize($v['img']); // 晒单图片

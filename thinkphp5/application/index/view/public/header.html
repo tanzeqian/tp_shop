@@ -22,12 +22,12 @@
                     </div>
                     <!-- 收货地址，物流运费 -end-->
                         <div class="fl nologin">
-                            <a class="red" href="{:url('Home/user/login')}">Hi.请登录</a>
-                            <a href="{:url('Home/user/reg')}">免费注册</a>
+                            <a class="red" href="{:url('Index/user/login')}">Hi.请登录</a>
+                            <a href="{:url('Index/user/reg')}">免费注册</a>
                         </div>
                         <div class="fl islogin">
                             <a class="red userinfo" href="{:url('Home/user/index')}" ></a>
-                            <a  href="{:url('Home/user/logout')}"  title="退出" target="_self">安全退出</a>
+                            <a  href="{:url('Index/user/logout')}"  title="退出" target="_self">安全退出</a>
                         </div>
                 </div>
                 <div class="top-ri-header fr">
@@ -160,7 +160,7 @@
                 
                 <div class="shopingcar-index fr">
                     <div class="u-g-cart fr fixed" id="hd-my-cart">
-                        <a href="{:url('Home/Cart/cart')}">
+                        <a href="{:url('Index/Cart/cart')}">
                             <div class="c-n fl" >
                                 <i class="share-shopcar-index"></i>
                                 <span>我的购物车<em class="sc_z" id="cart_quantity"></em></span>
@@ -177,12 +177,12 @@
             <div class="w1224 p">
                 <div class="categorys2 home_categorys">
                     <div class="dt">
-                        <a href="{:url('Home/Goods/all_category')}" target="_blank"><i class="share-a_a2"></i>商品分类</a>
+                        <a href="{:url('Index/Goods/all_category')}" target="_blank"><i class="share-a_a2"></i>商品分类</a>
                     </div>
                     <!--全部商品分类-s-->
-                    <div class="dd">
+                    <!-- <div class="dd">
                         <div class="cata-nav">
-                            <!-- 外层循环点-->
+                            外层循环点
                             {foreach $goods_category_tree as $k=>$v}
                                 <div class="item fore1">
                                 <if condition="$v['level'] eq 1">
@@ -202,7 +202,7 @@
                                         {foreach $v['tmenu'] as $k2=>$v2}
                                            
                                                 <if condition="$v2[parent_id] eq $v['id']">
-                                                <dl><!-- 2级循环点-->
+                                                <dl>2级循环点
                                                     <dt>
                                                         <a href="{:url('Home/Goods/goodsList',array('id'=>$v2['id']))}" target="_blank">{$v2['name']}<i>&gt;</i></a>
                                                     </dt>
@@ -218,7 +218,7 @@
                                                 </if>
                                             
                                             {/foreach}
-                                            <!--商品分类底部广告-s-->
+                                            商品分类底部广告-s
                                             <div class="advertisement_down">
                                                 <ul>                              
                                                     {foreach $ad14 as $adk=>$adv}                  
@@ -231,10 +231,10 @@
                                                     {/foreach}                                                
                                                 </ul>
                                             </div>
-                                            <!--商品分类底部广告-e-->
+                                            商品分类底部广告-e
                                         </div>
                                     </div>
-                                    <!--商品分类右侧广告-s-->
+                                    商品分类右侧广告-s
                                     <div class="cata-nav-rigth">
                                         {foreach $ad51 as $adk=>$adv}
                                         
@@ -243,12 +243,12 @@
                                             </a>
                                         {/foreach}
                                     </div>
-                                    <!--商品分类右侧广告-e-->
+                                    商品分类右侧广告-e
                                 </div>
                             </div>
                             {/foreach}
                         </div>
-                    </div>
+                    </div> -->
                     <!--全部商品分类-e-->
                 </div>
                 <!--导航栏-s-->
@@ -268,3 +268,20 @@
         </div>
         <!--商品分类-e-->
     </div>
+    <script type="text/javascript">
+        $(function() {
+            
+                $('.dd').hide();
+                var uname= getCookie('uname');
+                //alert(uname);
+                if(uname == ''){
+                    $('.islogin').hide();
+                    $('.nologin').show();
+                }else{
+                    $('.nologin').hide();
+                    $('.islogin').show();
+                    //获取用户名
+                    $('.userinfo').html(decodeURIComponent(uname));
+                }
+        })
+    </script>

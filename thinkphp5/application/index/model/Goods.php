@@ -23,7 +23,7 @@ use think\Db;
  */
 class Goods extends Model
 {
-	protected $autoCheckFields =false;
+
     public function getDiscountAttr($value, $data)
     {
         if ($data['market_price'] == 0) {

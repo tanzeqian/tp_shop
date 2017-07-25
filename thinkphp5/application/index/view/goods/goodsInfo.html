@@ -8,14 +8,14 @@
     <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/layer/layer-min.js"></script>
     <script type="text/javascript" src="/static/index/js/jquery.jqzoom.js"></script>
-    <script src="/static/js/global.js"></script>
-    <script src="/static/js/pc_common.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/pc_common.js"></script>
     <link rel="stylesheet" href="/static/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
 </head>
 
 <body>
 <!--header-s-->
-include file="public/header" w="w1224"/}
+{include file="public/header" w="w1224"/}
     <!--header-e-->
     <div class="search-box p">
         <div class="w1224">
@@ -173,17 +173,14 @@ include file="public/header" w="w1224"/}
                                 <li class="lawir colo">
                                     
                                     {foreach $v as $k2=>$v2}
-                                    {if condition="$v2['src'] neq ''"}
+                                    
 
-                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec[{$k}]" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
-                                        <a   onclick="switch_zooming('{$v2['src']}');select_filter(this); {if condition="!empty($v2['src'])" } $('#zoomimg').attr('src','{$v2['src']}'){/if}" {if condition="$k2 eq 0 "} class="red"{/if}>
-                                        <img src="{$v2['src']}" style="width: 40px;height: 40px;"/>
-                                        <span class="dis_alintro">{$v2['item']}</span>
-                                        </a>
-                                        <else/>
-                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec[{$k}]" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
-                                        <a   onclick="select_filter(this);" {if condition="$k2 eq 0 "} class="red"{/if}>{$v2['item']}</a>
-                                    {/if}
+                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec['{$k}']" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
+                                        
+                                        
+                                        <input type="radio" style="display: none" rel="{$v2['item']}" name="goods_spec['{$k}']" value="{$v2['item_id']}"  {if condition="$k2 eq 0 "}checked="checked"{/if}/>
+                                        <a   onclick="select_filter(this);" {if condition="$k2 eq 0 "} class="red"{/if}>{$v2['item' ]}</a>
+                                    
                                 {/foreach}
                                 </li>
                             </ul>
@@ -220,10 +217,106 @@ include file="public/header" w="w1224"/}
                         $('#number').val(1);
                     </script>
                 </div>
+                
                 <div class="standard p">
                     <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
-                    <a class="paybybill" href="javascript:;" onclick="AjaxAddCart({$goods.goods_id},1,1);">立即购买</a>
-                    <a class="addcar" href="javascript:;" onclick="AjaxAddCart({$goods.goods_id},1,0);"><i class="sk"></i>加入购物车</a>
+                    <a class="paybybill" href="javascript:;" onclick="add2({$goods.goods_id},1,1);">立即购买</a>
+                    <a class="addcar" href="javascript:;" onclick="add2({$goods.goods_id},1,0);"><i class="sk"></i>加入购物车</a>
+             
+                    <script type="text/javascript">
+
+
+                            function add2(goods_id,num,to_catr)
+{
+
+    // console.log(I);
+        // 如果有商品规格 说明是商品详情页提交
+        if($("#buy_goods_form").length > 0){
+                $.ajax({
+                    // console.log('ffhh');
+                        type : "POST",
+                        url:"/index/Cart/ajaxAddCart",
+                        data : $('#buy_goods_form').serialize(),// 你的formid 搜索表单 序列化提交                        
+                        dataType:'json',
+                        success: function(data){    
+                        
+                                if(data.status < 0)
+                                {
+                                    layer.alert(data.msg, {icon: 2});
+                                    return false;
+                                }
+                               // 加入购物车后再跳转到 购物车页面
+                               if(to_catr == 1)  //直接购买
+                               {
+                                   location.href = "/index/Cart/cart";   
+                               }
+                               else
+                               {
+                                    cart_num = parseInt($('#cart_quantity').html())+parseInt($('input[name="goods_num"]').val());
+                                    $('#cart_quantity').html(cart_num)
+                                    layer.open({
+                                          type: 2,
+                                          title: '温馨提示',
+                                          skin: 'layui-layer-rim', //加上边框
+                                          area: ['490px', '386px'], //宽高
+                                          content:["/index/Goods/open_add_cart","no"],
+                                          success: function(layero, index) {
+                                                layer.iframeAuto(index);
+                                        }
+                                    });
+                                    
+                               }
+                        }
+                });     
+        }else{ // 否则可能是商品列表页 收藏页 等点击加入购物车的
+                $.ajax({
+                        type : "POST",
+                        url:"/index/Cart/ajaxAddCart",
+                        data :{goods_id:goods_id,goods_num:num} ,
+                        dataType:'json',
+                        success: function(data){
+                               if(data.status == -1)
+                               {
+                                    location.href = "/index/Goods/goodsInfo&id="+goods_id;   
+                               }
+                               else
+                               {
+                                    // 加入购物车有误
+                                    if(data.status < 0)
+                                    {
+                                        layer.alert(data.msg, {icon: 2});
+                                        return false;
+                                    }
+                                    cart_num = parseInt($('#cart_quantity').html())+parseInt(num);
+                                    $('#cart_quantity').html(cart_num)
+                                    layer.open({
+                                          type: 2,
+                                          title: '温馨提示',
+                                          skin: 'layui-layer-rim', //加上边框
+                                          area: ['490px', '386px'], //宽高
+                                          content:"/index/Goods/open_add_cart"
+                                    });                            
+                               }                                                           
+                        }
+                });            
+        }
+}
+
+// 点击收藏商品
+function collect_goods(goods_id){
+    $.ajax({
+        type : "GET",
+        dataType: "json",
+        url:"/index.php?m=Mobile&c=goods&a=collect_goods&goods_id="+goods_id,//+tab,
+        success: function(data){
+            alert(data.msg);
+        }
+    });
+}
+                    </script>
+
+
+
                 </div>
             </div>
             </form>
@@ -313,12 +406,14 @@ include file="public/header" w="w1224"/}
                             <p class="shopname_de"><span>如果您发现商品信息不准确，<a class="de_cb" href="">欢迎纠错</a></span></p>
                             -->
                             <h2 class="shopname_de">属性</h2>
-                            <foreach name="goods_attr_list" item="v" key="k">
+                            
+                            {foreach $goods_attr_list as $k=>$v}
                                 <div class="twic_a_alon">
                                     <p class="gray_t">{$goods_attribute[$v['attr_id']]}</p>
                                     <p>{$v['attr_value']}</p>
                                 </div>
-                            </foreach>
+                            {/foreach}
+                            
                         </div>
                     </div>
                     <div class="shop-con-describe p" style="display: none;">
@@ -464,13 +559,27 @@ include file="public/header" w="w1224"/}
     <!--footer-s-->
     <div class="footer p">
 
-        <include file="public/footer_index" />
-        <include file="public/sidebar_cart" />
+        include file="public/footer_index" /}
+        include file="public/sidebar_cart" /}
     </div>
 <!--看了又看-s-->
 <div style="display: none" id="look_see">
     
-    看了又看
+    {foreach $look_see as $k=>$look}
+    <div class="tjhot-shoplist type-bot">
+        <div class="alone-shop">
+            <a href="{:url('Index/Goods/goodsInfo',array('id'=>$look['goods_id']))}"><img class="wiahides" src="{$look.goods_id|goods_thum_images=206,206}" style="display: inline;"></a>
+            <p class="shop_name2">
+                <a href="{:url('Index/Goods/goodsInfo',array('id'=>$look['goods_id']))}">{$look.goods_name}</a>
+            </p>
+            <p class="price-tag">
+                <span class="li_xfo">￥</span><span>{$look.shop_price}</span>
+            </p>
+        </div>
+    </div>
+    {/foreach}
+    
+    
 <!--看了又看-s-->
 </div>
     <!--footer-e-->
@@ -644,6 +753,7 @@ include file="public/header" w="w1224"/}
         }
 
         /***收藏商品**/
+        
         $('#collectLink').click(function(){
             if(getCookie('user_id') == ''){
                 layer.msg('请先登录！', {icon: 1});
@@ -668,13 +778,14 @@ include file="public/header" w="w1224"/}
         function ajaxComment(commentType,page){
             $.ajax({
                 type : "GET",
-                url:"/index.php?m=Home&c=goods&a=ajaxComment&goods_id={$goods['goods_id']}&commentType="+commentType+"&p="+page,//+tab,
+                url:"/index.php?m=Index&c=goods&a=ajaxComment&goods_id={$goods['goods_id']}&commentType="+commentType+"&p="+page,//+tab,
                 success: function(data){
                     $("#ajax_comment_return").html('');
                     $("#ajax_comment_return").append(data);
                 }
             });
         }
+        //ajaxComment(1,1);
         /**
          * 切换图片
          */

@@ -13,12 +13,12 @@
  * Date: 2015-09-09
  */
 
-namespace app\home\logic;
+namespace app\index\logic;
 
 use think\Model;
 use think\Page;
 use think\db;
-use app\home\model\UserAddress;
+use app\index\model\UserAddress;
 use app\common\logic\CommentLogic;
 
 /**
@@ -35,17 +35,17 @@ class UsersLogic extends Model
     	$result = array();
         if(!$username || !$password)
            $result= array('status'=>0,'msg'=>'请填写账号或密码');
-        $user = M('users')->where("mobile",$username)->whereOr('email',$username)->find();
+        $user = Db('users')->where("mobile",$username)->whereOr('email',$username)->find();
         if(!$user){
            $result = array('status'=>-1,'msg'=>'账号不存在!');
-        }elseif(encrypt($password) != $user['password']){
+        }elseif(md5($password) != $user['password']){
            $result = array('status'=>-2,'msg'=>'密码错误!');
         }elseif($user['is_lock'] == 1){
            $result = array('status'=>-3,'msg'=>'账号异常已被锁定！！！');
         }else{
             //查询用户信息之后, 查询用户的登记昵称
             $levelId = $user['level'];
-            $levelName = M("user_level")->where("level_id", $levelId)->getField("level_name");
+            $levelName = Db("user_level")->where("level_id", $levelId)->getField("level_name");
             $user['level_name'] = $levelName;
           
            $result = array('status'=>1,'msg'=>'登陆成功','result'=>$user);
@@ -53,52 +53,7 @@ class UsersLogic extends Model
         return $result;
     }
 
-    /*
-     * app端登陆
-     */
-    public function app_login($username, $password, $capache, $push_id=0)
-    {
-    	$result = array();
-        if(!$username || !$password)
-           $result= array('status'=>0,'msg'=>'请填写账号或密码');
-        $user = M('users')->where("mobile|email","=",$username)->find();
-        if(!$user){
-           $result = array('status'=>-1,'msg'=>'账号不存在!');
-        }elseif($password != $user['password']){
-           $result = array('status'=>-2,'msg'=>'密码错误!');
-        }elseif($user['is_lock'] == 1){
-           $result = array('status'=>-3,'msg'=>'账号异常已被锁定！！！');
-        }else{
-            //查询用户信息之后, 查询用户的登记昵称
-            $levelId = $user['level'];
-            $levelName = M("user_level")->where("level_id", $levelId)->getField("level_name");
-            $user['level_name'] = $levelName;            
-            $user['token'] = md5(time().mt_rand(1,999999999));
-            M('users')->where("user_id", $user['user_id'])->save(array('token'=>$user['token'],'last_login'=>time(), 'push_id' => $push_id));
-            $result = array('status'=>1,'msg'=>'登陆成功','result'=>$user);
-        }
-        return $result;
-    }    
-
-    /*
-     * app端登出
-     */
-    public function app_logout($token = '')
-    {
-        if (empty($token)){
-            ajaxReturn(['status'=>-100, 'msg'=>'已经退出账户']);
-        }
-
-        $user = M('users')->where("token", $token)->find();
-        if (empty($user)) {
-            ajaxReturn(['status'=>-101, 'msg'=>'用户不在登录状态']);
-        }
-
-        M('users')->where(["user_id" => $user['user_id']])->save(['last_login' => 0, 'token' => '']);
-        session(null);
-
-        return ['status'=>1, 'msg'=>'退出账户成功'];;
-    }
+ /**/
     
     //绑定账号
     public function oauth_bind($data = array()){
@@ -188,67 +143,38 @@ class UsersLogic extends Model
      * @return array
      */
     public function reg($username,$password,$password2, $push_id=0){
-    	$is_validated = 0 ;
-        if(check_email($username)){
-            $is_validated = 1;
-            $map['email_validated'] = 1;
-            $map['nickname'] = $map['email'] = $username; //邮箱注册
-        }
+    	//$is_validated = 0 ;
+        //if(check_email($username)){
+        //    $is_validated = 1;
+        //    $map['email_validated'] = 1;
+         //   $map['nickname'] = $map['email'] = $username; //邮箱注册
+        //}
 
-        if(check_mobile($username)){
-            $is_validated = 1;
+        //if(check_mobile($username)){
+        //    $is_validated = 1;
             $map['mobile_validated'] = 1;
-            $map['nickname'] = $map['mobile'] = $username; //手机注册
-        }
-
-        if($is_validated != 1)
-            return array('status'=>-1,'msg'=>'请用手机号或邮箱注册');
-
-        if(!$username || !$password)
+            $map['nickname'] = $map['mobile'] = $username;
+            if(!$username || !$password)
             return array('status'=>-1,'msg'=>'请输入用户名或密码');
 
-        //验证两次密码是否匹配
-        if($password2 != $password)
-            return array('status'=>-1,'msg'=>'两次输入密码不一致');
-        //验证是否存在用户名
-        if(get_user_info($username,1)||get_user_info($username,2))
-            return array('status'=>-1,'msg'=>'账号已存在');
+            //验证两次密码是否匹配
+            if($password2 != $password)
+                return array('status'=>-1,'msg'=>'两次输入密码不一致');
+            //验证是否存在用户名
+            //if(get_user_info($username,1)||get_user_info($username,2))
+            //    return array('status'=>-1,'msg'=>'账号已存在');
 
-        $map['password'] = encrypt($password);
-        $map['reg_time'] = time();
-        $map['first_leader'] = cookie('first_leader'); // 推荐人id
-        // 如果找到他老爸还要找他爷爷他祖父等
-        if($map['first_leader'])
-        {
-            $first_leader = M('users')->where("user_id", $map['first_leader'])->find();
-            $map['second_leader'] = $first_leader['first_leader'];
-            $map['third_leader'] = $first_leader['second_leader'];
-            //他上线分销的下线人数要加1
-            M('users')->where(array('user_id' => $map['first_leader']))->setInc('underling_number');
-            M('users')->where(array('user_id' => $map['second_leader']))->setInc('underling_number');
-            M('users')->where(array('user_id' => $map['third_leader']))->setInc('underling_number');
-        }else
-		{
-			$map['first_leader'] = 0;
-		}
+            $map['password'] = md5($password);
+            $map['reg_time'] = time();
+            
+            $map['first_leader'] = 0;
+            $map['push_id'] = 0;
 
-        // 成为分销商条件  
-        $distribut_condition = tpCache('distribut.condition'); 
-        if($distribut_condition == 0)  // 直接成为分销商, 每个人都可以做分销        
-            $map['is_distribut']  = 1;        
-        
-        $map['push_id'] = $push_id; //推送id
-        //$map['token'] = md5(time().mt_rand(1,99999));
-        
-        $user_id = M('users')->insertGetId($map);
-        if($user_id === false)
+            $user_id = Db('users')->insertGetId($map);
+            if($user_id === false)
             return array('status'=>-1,'msg'=>'注册失败');
-        
-        $pay_points = tpCache('basic.reg_integral'); // 会员注册赠送积分
-        if($pay_points > 0){
-            accountLog($user_id, 0,$pay_points, '会员注册赠送积分'); // 记录日志流水
-        }
-        $user = M('users')->where("user_id", $user_id)->find();
+            $user = Db('users')->where("user_id", $user_id)->find();
+            //return array('status'=>1,'msg'=>'注册成功');
         return array('status'=>1,'msg'=>'注册成功','result'=>$user);
     }
 
@@ -261,7 +187,7 @@ class UsersLogic extends Model
             return array('status'=>-1, 'msg'=>'缺少参数');
         }
 
-        $user = M('users')->where('user_id', $user_id)->find();
+        $user = Db('users')->where('user_id', $user_id)->find();
         if (!$user) {
             return false;
         }
@@ -270,11 +196,11 @@ class UsersLogic extends Model
         $user['coupon_count'] = $activityLogic->getUserCouponNum($user_id, 0);
         
         $user['collect_count'] = $this->getGoodsCollectNum($user_id);; //获取收藏数量
-        $user['return_count'] = M('return_goods')->where("user_id=$user_id and status<2")->count();   //退换货数量
+        $user['return_count'] = Db('return_goods')->where("user_id=$user_id and status<2")->count();   //退换货数量
         
-        $user['waitPay']     = M('order')->where("user_id = :user_id ".C('WAITPAY'))->bind(['user_id'=>$user_id])->count(); //待付款数量
-        $user['waitSend']    = M('order')->where("user_id = :user_id ".C('WAITSEND'))->bind(['user_id'=>$user_id])->count(); //待发货数量
-        $user['waitReceive'] = M('order')->where("user_id = :user_id ".C('WAITRECEIVE'))->bind(['user_id'=>$user_id])->count(); //待收货数量
+        $user['waitPay']     = Db('order')->where("user_id = :user_id ".config('WAITPAY'))->bind(['user_id'=>$user_id])->count(); //待付款数量
+        $user['waitSend']    = Db('order')->where("user_id = :user_id ".config('WAITSEND'))->bind(['user_id'=>$user_id])->count(); //待发货数量
+        $user['waitReceive'] = Db('order')->where("user_id = :user_id ".config('WAITRECEIVE'))->bind(['user_id'=>$user_id])->count(); //待收货数量
         $user['order_count'] = $user['waitPay'] + $user['waitSend'] + $user['waitReceive'];
         
         $commentLogic = new CommentLogic;
@@ -447,7 +373,7 @@ class UsersLogic extends Model
 
     public function getGoodsCollectNum($user_id)
     {
-        $count = M('goods_collect')->alias('c')
+        $count = Db('goods_collect')->alias('c')
                 ->join('goods g','g.goods_id = c.goods_id','INNER')
                 ->where('user_id', $user_id)
                 ->count();

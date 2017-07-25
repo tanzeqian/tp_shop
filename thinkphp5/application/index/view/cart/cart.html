@@ -110,7 +110,7 @@
 
             $.ajax({
                 type : "POST",
-                url:"{:url('Index/Cart/ajaxCartList')}",//+tab,
+                url:"/Index/Cart/ajaxCartList",//+tab,
                 data : $('#cart_form').serialize(),// 你的formid
                 success: function(data){
                     $("#ajax_return").empty().append(data);

@@ -1,13 +1,13 @@
-<if condition="count($cartList) eq 0">
+{if condition="count($cartList) eq 0"}
     <!--为空时-s-->
     <div class="empty-c">
         <span class="ma"><i class="c-i oh"></i>亲，购物车中没有商品哟~</span>
     </div>
     <!--为空时-e-->
-<else />
+{else}
     <!--有商品时-s-->
     <div class="mn-c-m oh">
-        <foreach name="cartList" item="v" key="k">
+        {foreach $cartList as $k=>$v}
             <div class="mn-c-box J-sdb-cb js_cart_top" style="height: 240px;">
                 <dl class="c-store mb15">
                     <dt class="c-store-tt fixed"><a href="#" class="n fl">{$v.add_time|date="Y-m-d H:i:s",###}</a></dt>
@@ -37,19 +37,19 @@
                     </dd>
                 </dl>
             </div>
-        </foreach>
+        {/foreach}
         <div class="mn-c-total">
             <div class="c-t fixed">
-                <p class="t-n fl"><span id="total_qty">{$cart_total_price[num]}</span>件</p>
-                <p class="t-p fr"><em>￥</em><span id="total_pay">{$cart_total_price[total_fee]}</span></p>
+                <p class="t-n fl"><span id="total_qty">{$cart_total_price['num']}</span>件</p>
+                <p class="t-p fr"><em>￥</em><span id="total_pay">{$cart_total_price['total_fee']}</span></p>
             </div>
             <div class="c-btn">
-                <a href="{:U('Home/Cart/cart')}">去购物车结算 &gt;&gt;</a>
+                <a href="{:url('Index/Cart/cart')}">去购物车结算 &gt;&gt;</a>
             </div>
         </div>
     </div>
     <!--有商品时-e-->
-</if>
+{/if}
 <script>
-   $(".cart_quantity").text('{$cart_total_price[anum]}'); // 购物车的总数量
+   
 </script>
