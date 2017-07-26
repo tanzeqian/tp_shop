@@ -91,7 +91,7 @@ class Cart extends Base {
         $cartLogic->setUserId($this->user_id);
         $result = $cartLogic->addGoodsToCart($goods_num,$goods_spec_key);
         //dump($result);die;
-        $this->ajaxReturn($result);
+        $this->ajaxReturn($result);/**/
     }
     
     /**
@@ -99,8 +99,8 @@ class Cart extends Base {
      */
     public function ajaxDelCart()
     {       
-        $ids = I("ids"); // 商品 ids        
-        $result = M("Cart")->where("id", "in", $ids)->delete(); // 删除id为5的用户数据
+        $ids = input("ids"); // 商品 ids        
+        $result = Db("Cart")->where("id","in",$ids)->delete(); // 删除id为5的用户数据
         $return_arr = array('status'=>1,'msg'=>'删除成功','result'=>''); // 返回结果状态       
         exit(json_encode($return_arr));
     }
@@ -111,8 +111,8 @@ class Cart extends Base {
      */
     public function ajaxCartList()
     {
-        $post_goods_num = input("goods_num/a", array()); // goods_num 购物车商品数量
-        $post_cart_select = input("cart_select/a", array()); // 购物车选中状态
+        $post_goods_num = input("goods_num/a"); // goods_num 购物车商品数量
+        $post_cart_select = input("cart_select/a"); // 购物车选中状态
         $goodsLogic = new GoodsLogic();
         $cartLogic = new CartLogic();
         $where['session_id'] = $this->session_id; // 默认按照 session_id 查询
@@ -162,7 +162,7 @@ class Cart extends Base {
         }
         $this->assign('cartList', $result['cartList']); // 购物车的商品
         $this->assign('total_price', $result['total_price']); // 总计
-        return $this->fetch('ajax_cart_list');
+        return $this->fetch('ajax_cart_list');/**/
     }
     /**
      * 购物车第二步确定页面
@@ -170,7 +170,7 @@ class Cart extends Base {
     public function cart2()
     {
         if($this->user_id == 0){
-            $this->error('请先登陆',U('Home/User/login'));
+            $this->error('请先登陆',url('Index/User/login'));
         }
         $cartLogic = new CartLogic();
         $cartLogic->setUserId($this->user_id);
@@ -178,7 +178,7 @@ class Cart extends Base {
             $this->error ('你的购物车没有选中商品','Cart/cart');
         }
         $result =  $cartLogic->getUserCartList(1); // 获取购物车商品
-        $shippingList = M('Plugin')->where("`type` = 'shipping' and status = 1")->cache(true,TPSHOP_CACHE_TIME)->select();// 物流公司                
+        $shippingList = Db('Plugin')->where("`type` = 'shipping' and status = 1")->cache(true,1)->select();// 物流公司                
         // 找出这个用户的优惠券 没过期的  并且 订单金额达到 condition 优惠券指定标准的
         $couponWhere = [
             'c2.uid' => $this->user_id,
@@ -194,7 +194,7 @@ class Cart extends Base {
         $this->assign('couponList', $couponList); // 优惠券列表
         $this->assign('shippingList', $shippingList); // 物流公司
         $this->assign('cartList', $result['cartList']); // 购物车的商品                
-        $this->assign('total_price', $result['total_price']); // 总计                               
+        $this->assign('total_price', $result['total_price']); // 总计                           
         return $this->fetch();
     }
    
@@ -202,7 +202,7 @@ class Cart extends Base {
      * ajax 获取用户收货地址 用于购物车确认订单页面
      */
     public function ajaxAddress(){
-        $address_list = M('UserAddress')->where(['user_id'=>$this->user_id,'is_pickup'=>0])->select();
+        $address_list = Db('UserAddress')->where(['user_id'=>$this->user_id,'is_pickup'=>0])->select();
         if($address_list){
         	$area_id = array();
         	foreach ($address_list as $val){
@@ -213,11 +213,11 @@ class Cart extends Base {
         	}    
                 $area_id = array_filter($area_id);
         	$area_id = implode(',', $area_id);
-        	$regionList = M('region')->where("id", "in", $area_id)->getField('id,name');
+        	$regionList = Db('region')->where("id", "in", $area_id)->getField('id,name');
         	$this->assign('regionList', $regionList);
         }
         $address_where['is_default'] = 1;
-        $c = M('UserAddress')->where(['user_id'=>$this->user_id,'is_default'=>1,'is_pickup'=>0])->count(); // 看看有没默认收货地址
+        $c = Db('UserAddress')->where(['user_id'=>$this->user_id,'is_default'=>1,'is_pickup'=>0])->count(); // 看看有没默认收货地址
         if((count($address_list) > 0) && ($c == 0)) // 如果没有设置默认收货地址, 则第一条设置为默认收货地址
             $address_list[0]['is_default'] = 1;
         $this->assign('address_list', $address_list);
@@ -230,9 +230,9 @@ class Cart extends Base {
      */
     public function ajaxPickup()
     {
-        $province_id = I('province_id/d');
-        $city_id = I('city_id/d');
-        $district_id = I('district_id/d');
+        $province_id = input('province_id/d');
+        $city_id = input('city_id/d');
+        $district_id = input('district_id/d');
         if (empty($province_id) || empty($city_id) || empty($district_id)) {
             exit("<script>alert('参数错误');</script>");
         }

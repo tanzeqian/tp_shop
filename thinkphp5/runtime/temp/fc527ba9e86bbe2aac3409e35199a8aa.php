@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:71:"D:\wamp64\www\tp5\public/../application/index\view\goods\goodsinfo.html";i:1500991404;s:69:"D:\wamp64\www\tp5\public/../application/index\view\public\header.html";i:1500987439;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:71:"D:\wamp64\www\tp5\public/../application/index\view\goods\goodsinfo.html";i:1501031495;s:69:"D:\wamp64\www\tp5\public/../application/index\view\public\header.html";i:1500987439;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -378,23 +378,7 @@
             <form id="buy_goods_form" name="buy_goods_form" method="post" >
                 <div class="detail-ggsl">
                 <h1><?php echo $goods['goods_name']; ?></h1>
-                <!--商品抢购 start-->
-                <!-- <notempty name="goods['flash_sale']">
-                    <div class="presale-time">
-                        <div class="pre-icon fl">
-                            <span class="ys"><i class="detai-ico"></i>抢购活动</span>
-                        </div>
-                        <div class="pre-icon fr">
-                            <span class="per"><i class="detai-ico"></i><em>0</em>人预定</span>
-                            <span class="ti"><i class="detai-ico"></i>剩余时间：<span id="surplus_text"></span></span>
-                        </div>
-                        <script>
-                            // 倒计时
-                           /**/
-                        </script>
-                    </div>
-                </notempty> -->
-                <!--商品抢购  end-->
+                
                 <div class="shop-price-cou">
                     <div class="shop-price-le">
                         <ul>
@@ -442,13 +426,7 @@
                         <li class="lawir"><span class="service">由<a >本商城</a>发货并提供售后服务</span></li>
                     </ul>
                 </div>
-                <if condition="$goods['exchange_integral'] gt 0">
-                    <div class="standard p">
-                        <ul>
-                            
-                        </ul>
-                    </div>
-                </if>
+                
 
                 <!-- 规格 start [[-->
                 

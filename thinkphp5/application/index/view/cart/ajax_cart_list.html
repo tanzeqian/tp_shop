@@ -1,9 +1,9 @@
- <if condition="empty($cartList)">         
-     <p style="text-align:center"><a href="/"><img src="__STATIC__/images/null_cart2.jpg"  /></a></p>
+ {if condition="empty($cartList)"}         
+     <p style="text-align:center"><a href="/"><img src="/static/index/images/null_cart2.jpg"  /></a></p>
      <script>
 	    $(".sc-acti-list,.sc-pro-list").hide();
      </script>
- </if> 
+ {/if} 
 
 <div class="sc-pro-list">
   <table width="100%" border="0" cellspacing="0" cellpadding="1">
@@ -12,9 +12,9 @@
         <th align="center" valign="middle" colspan="2">商品</th>
         <th align="center" valign="middle">市场价（元）</th>                        
         <th align="center" valign="middle">单价（元）</th>
-        <if condition="($user[discount] neq 1) and ($user[discount] neq null)">
+        {if condition="($user['discount'] neq 1) and ($user[discount] neq null)"}
 	        <th align="center" valign="middle">会员折扣价</th>        
-        </if>
+        {/if}
         <th align="center" valign="middle">数量</th>
         <th align="center" valign="middle">小计（元）</th>
         <th align="center" valign="middle">操作</th>
@@ -23,26 +23,26 @@
      {foreach $cartList as $k=>$v}
       <tr>
         <td class="pa-le-9" style="border-right:0" align="center" valign="middle">    
-            <input type="checkbox"  name="cart_select[{$v.id}]" <if condition="$v[selected] eq 1" >checked="checked"</if> value="1" onclick="ajax_cart_list();" />
+            <input type="checkbox"  name="cart_select[{$v.id}]" {if condition="$v['selected'] eq 1" }checked="checked"{/if} value="1" onclick="ajax_cart_list();" />
         </td>
         <td style="border-left:0px;;border-right:0px" class="pa-to-20 pa-bo-20 bo-ri-0" width="80px" align="center" valign="top" valign="middle">
-            <a class="gwc-wp-list di-bl wi63 hi63" href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+            <a class="gwc-wp-list di-bl wi63 hi63" href="{:url('Index/Goods/goodsInfo',array('id'=>$v['goods_id']))}">
                 <img class="wi63 hi63" src="{$v.goods_id|goods_thum_images=78,78}">
             </a>
         </td>
         <td style="border-left:0px; border-right:0px"  class="pa-to-20 wi516"align="left"  valign="top" valign="middle">
             <p class="gwc-ys-pp">
-            	<a href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" style="vertical-align:middle">{$v.goods_name}</a>                
-                <!--团购--><if condition="$v[activity_type] eq 2"><img  width="80" height="60" src="/public/images/groupby2.jpg" style="vertical-align:middle"></if>
-                <!--抢购--><if condition="$v[activity_type] eq 1"><img  width="40" height="40" src="/public/images/qianggou2.jpg" style="vertical-align:middle"></if>
+                <a href="{:url('Index/Goods/goodsInfo',array('id'=>$v['goods_id']))}" style="vertical-align:middle">{$v.goods_name}</a>                
+                <!-- 团购<if condition="$v[activity_type] eq 2"><img  width="80" height="60" src="/public/images/groupby2.jpg" style="vertical-align:middle"></if>
+                抢购<if condition="$v[activity_type] eq 1"><img  width="40" height="40" src="/public/images/qianggou2.jpg" style="vertical-align:middle"></if> -->
             </p>
             <p class="ggwc-ys-hs">{$v.spec_key_name}</p>
         </td>
         <td style="border-left:0px" align="center" valign="middle"><span>￥{$v.market_price}</span></td>                        
         <td style="border-left:0px" align="center" valign="middle"><span>￥{$v.goods_price}</span></td>
-        <if condition="($user[discount] neq 1) and ($user[discount] neq null)">
+        {if condition="($user['discount'] neq 1) and ($user['discount'] neq null)"}
         <td style="border-left:0px" align="center" valign="middle"><span>￥{$v.member_goods_price}</span></td>        
-        </if>        
+        {/if}        
         <td align="center" valign="middle">
             <div class="sc-stock-area">
                 <div class="stock-area">                            
@@ -63,7 +63,7 @@
       <tr>
         <td class="pa-le-28 gwx-xm-dwz">
             <label >
-            <input type="checkbox" name="select_all" id="select_all" <if condition="$select_all eq 1" >checked="checked"</if> onchange="check_all();" value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;全选
+            
             </label>
             <a href="javascript:void(0);" onclick="del_cart_more();">删除选中商品</a>
         </td>
@@ -73,8 +73,8 @@
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td id="bo-to-dedede" width="190" align="right">共节省：</td>
-        <td id="bo-to-dedede" width="69" align="right">￥{$total_price.cut_fee}</td>
+        <!-- <td id="bo-to-dedede" width="190" align="right">共节省：</td>
+        <td id="bo-to-dedede" width="69" align="right">￥{$total_price.cut_fee}</td> -->
         <td>&nbsp;</td>
       </tr>
       <tr>

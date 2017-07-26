@@ -105,7 +105,6 @@
  <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">订单详情示例</h2>
-       <a href="/admin/orderdin/order_list" class="fr top_rt_btn add_icon">返回列表</a>
       </div>
       <table class="table">
       {foreach $din as $vall}
@@ -145,35 +144,17 @@
          <p>{$valll['spec_key_name']}</p>
         </td>
         <td class="center"><strong>{$valll['goods_num']}</strong></td>
-        <td class="center"><strong class="rmb_icon">{$valll['goods_price'] * $valll['goods_num']}</strong></td>
-        <td class="center">
-        {foreach $din as $valee}
-          {if $valee['shipping_status'] == 0}未发货
+        <td class="center"><strong class="rmb_icon">{$valll['goods_price']}</strong></td>
+        <td class="center">{if $valll['is_send'] == 0}未发货
         {else}已发货
         {/if}
-        {/foreach}
         </td>
        </tr>      
        {/foreach}
       </table>
-      
-      {foreach $din as $valee}
-      <form action="wuliudan?id={$valee['order_id']}" method="post">
       <aside class="mtb" style="text-align:right;">
-      物流单号：<input type="text" value="{$valee['wuliu']}" name="wu" class="group_btn"/>
- <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
-      {if $valee['pay_status'] == 0}
-      <a href="order_xiu?id={$valee['order_id']}"><input type="button" value="修改订单"  class="group_btn"/>
-      <input type="button" value="等待付款"  class="group_btn"/>
-      {else}{if $valee['shipping_status'] == 0}
-        <input type="submit" value="确认发货" class="group_btn"/>
-      {else}
-      {/if}
-      {/if}
+       <input type="button" value="修改订单" class="group_btn"/>
       </aside>
-      </form>
-      {/foreach}
-      
  </div>
 </section>
 </body>

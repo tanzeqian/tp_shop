@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\wamp64\www\tp5\public/../application/index\view\user\reg.html";i:1500980013;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\wamp64\www\tp5\public/../application/index\view\user\reg.html";i:1501069283;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +18,7 @@
         <a class="m-fnlogoa fn-fl" href=""><img src="<?php echo $tpshop_config['store_logo']; ?>"/></a><span class="m-fntit">欢迎注册</span>
         <div class="ui_tab">
             <ul class="ui_tab_nav regnav">
-                <li class="uli <?php if(input('get.t') == ''): ?>active<?php endif; ?> "><a href="<?php echo url('Index/User/reg'); ?>" >手机注册</a></li>
-                <li class="uli <?php if(input('get.t') == 'email'): ?>active<?php endif; ?> "><a href="<?php echo url('Index/User/reg',array('t'=>'email')); ?>">邮箱注册</a></li>
+                
                 <li class="no fn-fr loginbtn">我已注册，马上<a href="<?php echo url('Index/User/login'); ?>">登录></a></li>
             </ul>
             
@@ -46,7 +45,14 @@
                             </div>
                             <div id="show-voice" class="show-voice"></div>
                         </div>
-                   
+                        <div class="line">
+                            <label class="linel"><span class="dt">手机验证码：</span></label>
+                            <div class="liner">
+                                <input type="text" class="inp imgcode J_imgcode" placeholder="手机验证码" id="code" name="code" required=""/>                                
+                                <button class="fn-fl icode" onclick="send_sms_reg_code()" type="button" id="count_down">发送</button>
+                            </div>
+                            <div id="show-voice" class="show-voice"></div>
+                        </div>
                         <div class="line">
                             <label class="linel"><span class="dt">设置密码：</span></label>
                             <div class="liner">
@@ -134,6 +140,7 @@
 	// 发送手机短信
     function send_sms_reg_code(){
         var mobile = $('input[name="username"]').val();
+        //console.log(mobile);
         var verify_code = $('input[name="verify_code"]').val();
         if(!checkMobile(mobile)){
             layer.alert('请输入正确的手机号码', {icon: 2});//alert('请输入正确的手机号码');
@@ -143,12 +150,15 @@
             layer.alert('请输入图像验证码', {icon: 2});//alert('请输入正确的手机号码');
             return;
         }
-        var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=1&type=mobile&mobile="+mobile+"&verify_code="+verify_code;
+        //var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=1&type=mobile&mobile="+mobile+"&verify_code="+verify_code;
+        //var username = $('username').val();
         $.ajax({
-            url:url,
+            type : "POST",
+            url:"<?php echo url('Index/User/sendSMS'); ?>",
             dataType: "json",
+            data:{'username':mobile},
             success: function(res){
-            	if(res.status == 1)
+            	/*if(res.status == 1)
     			{
     				$('#count_down').attr("disabled","disabled");
     				intAs = 10; // 手机短信超时时间
@@ -157,7 +167,7 @@
     			}else{
                     layer.alert(res.msg, {icon: 2});
                     verify('reflsh_code2')
-                }
+                }*/
             }
         });
     }

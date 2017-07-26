@@ -497,9 +497,9 @@ function cart_goods_num($user_id = 0,$session_id = '')
 function getGoodNum($goods_id,$key)
 {
     if(!empty($key))
-        return model("SpecGoodsPrice")->where(['goods_id' => $goods_id, 'key' => $key])->getField('store_count');
+        return Db("SpecGoodsPrice")->where(['goods_id' => $goods_id, 'key' => $key])->getField('store_count');
     else
-        return  model("Goods")->where("goods_id", $goods_id)->getField('store_count');
+        return  Db("Goods")->where("goods_id", $goods_id)->getField('store_count');
 }
 
 /**
@@ -707,7 +707,7 @@ function orderStatusDesc($order_id = 0, $order = array())
 function orderBtn($order_id = 0, $order = array())
 {
     if(empty($order))
-        $order = M('Order')->where("order_id", $order_id)->find();
+        $order = Db('Order')->where("order_id", $order_id)->find();
     /**
      *  订单用户端显示按钮
     去支付     AND pay_status=0 AND order_status=0 AND pay_code ! ="cod"
@@ -771,7 +771,7 @@ function orderBtn($order_id = 0, $order = array())
     {
         $btn_arr['return_btn'] = 1; // 退货按钮 (联系客服)
     }
-    if($data['order_status'] == 3 && ($data['pay_status'] == 1 || $data['pay_status'] == 4)){
+    if($order['order_status'] == 3 && ($order['pay_status'] == 1 || $order['pay_status'] == 4)){
     	$btn_arr['cancel_info'] = 1; // 取消订单详情
     }
 
@@ -784,7 +784,7 @@ function orderBtn($order_id = 0, $order = array())
  */
 function set_btn_order_status($order)
 {
-    $order_status_arr = C('ORDER_STATUS_DESC');
+    $order_status_arr = config('ORDER_STATUS_DESC');
     $order['order_status_code'] = $order_status_code = orderStatusDesc(0, $order); // 订单状态显示给用户看的
     $order['order_status_desc'] = $order_status_arr[$order_status_code];
     $orderBtnArr = orderBtn(0, $order);

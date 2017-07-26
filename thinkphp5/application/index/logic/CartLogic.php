@@ -94,7 +94,7 @@ class CartLogic extends Model
         }
         $result['result'] = $UserCartGoodsNum = $this->getUserCartGoodsNum(); // 查找购物车数量
         setcookie('cn', $UserCartGoodsNum, null, '/');
-        return $result;
+        return $result;/**/
     }
 
 
@@ -108,7 +108,7 @@ class CartLogic extends Model
         $CartModel = new Cart();
         $goodsLogic = new GoodsLogic();
         // 获取商品对应的规格价钱 库存 条码
-        $specGoodsPriceList = M('SpecGoodsPrice')->where("goods_id", $this->goods['goods_id'])->cache(true, TPSHOP_CACHE_TIME)->getField("key,key_name,price,store_count,sku");
+        $specGoodsPriceList = Db('SpecGoodsPrice')->where("goods_id", $this->goods['goods_id'])->cache(true, 1)->getField("key,key_name,price,store_count,sku");
         if(!empty($specGoodsPriceList)){
             if(empty($goods_spec_key)){
                 return array('status' => -1, 'msg' => '必须传递商品规格', 'result' => '');
@@ -368,7 +368,7 @@ class CartLogic extends Model
                 continue;
             }
             $cut_fee += $val['goods_num'] * $val['market_price'] - $val['goods_num'] * $val['member_goods_price'];
-            $total_price += $val['goods_num'] * $val['member_goods_price'];
+            $total_price += $val['goods_num'] * $val['member_goods_price'];/**/
         }
 
         $total_price = array('total_fee' => $total_price, 'cut_fee' => $cut_fee, 'num' => $total_goods_num,); // 总计

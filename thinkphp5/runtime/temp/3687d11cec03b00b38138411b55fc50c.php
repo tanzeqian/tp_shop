@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\wamp64\www\tp5\public/../application/index\view\index\index.html";i:1500981462;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\wamp64\www\tp5\public/../application/index\view\index\index.html";i:1501075674;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,12 +37,12 @@
                     </div>
                     <!-- 收货地址，物流运费 -end-->
                         <div class="fl nologin">
-                            <a class="red" href="<?php echo url('Index/user/login'); ?>">Hi.请登录</a>
-                            <a href="<?php echo url('Index/user/reg'); ?>">免费注册</a>
+                            <a class="red" href="Index/user/login">Hi.请登录</a>
+                            <a href="Index/user/reg">免费注册</a>
                         </div>
                         <div class="fl islogin">
                             <a class="red userinfo" href="<?php echo url('Index/user/index'); ?>" ></a>
-                            <a  href="<?php echo url('Index/user/logout'); ?>"  title="退出" target="_self">安全退出</a>
+                            <a  href="Index/user/logout"  title="退出" target="_self">安全退出</a>
                         </div>
                 </div>
                 <div class="top-ri-header fr">
@@ -175,7 +175,7 @@
                 
                 <div class="shopingcar-index fr">
                     <div class="u-g-cart fr fixed" id="hd-my-cart">
-                        <a href="<?php echo url('Index/Cart/cart'); ?>">
+                        <a href="Index/Cart/cart">
                             <div class="c-n fl" >
                                 <i class="share-shopcar-index"></i>
                                 <span>我的购物车<em class="sc_z" id="cart_quantity"></em></span>
@@ -214,9 +214,7 @@
                                 <div class="cata-nav-layer">
                                     <div class="cata-nav-left">
                                         <div class="subitems">
-                                        <?php foreach($v['tmenu'] as $k2=>$v2): ?>
-                                           
-                                                <if condition="$v2[parent_id] eq $v['id']">
+                                        <?php foreach($v['tmenu'] as $k2=>$v2): if($v2['parent_id'] == $v['id']): ?>
                                                 <dl><!-- 2级循环点-->
                                                     <dt>
                                                         <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v2['id'])); ?>" target="_blank"><?php echo $v2['name']; ?><i>&gt;</i></a>
@@ -224,15 +222,13 @@
                                                     <dd>
                                                         <?php foreach($v2['sub_menu'] as $k3=>$v3): ?>
                                                         
-                                                            <if condition="$v3[parent_id] eq $v2['id']">
+                                                            <if condition="$v3['parent_id'] eq $v2['id']">
                                                             <a href="<?php echo url('Home/Goods/goodsList',array('id'=>$v3['id'])); ?>" target="_blank"><?php echo $v3['name']; ?></a></if>
                                                         
                                                         <?php endforeach; ?>
                                                     </dd>
                                                 </dl>
-                                                </if>
-                                            
-                                            <?php endforeach; ?>
+                                                <?php endif; endforeach; ?>
                                             <!--商品分类底部广告-s-->
                                             <div class="advertisement_down">
                                                 <ul>                              

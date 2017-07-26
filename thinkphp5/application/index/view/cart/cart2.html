@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>购物车-{$tpshop_config['shop_info_store_title']}</title>
-    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}"/>
-    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}"/>
-    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
-    <script src="__PUBLIC__/js/global.js"></script>
-    <script src="__PUBLIC__/js/pc_common.js"></script>
-    <script src="__PUBLIC__/js/layer/layer.js"></script>
-    <link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="__STATIC__/css/jh.css">
+    <title>购物车</title>
+    <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="/static/index/css/tpshop.css" />
+    <script src="/static/js/global.js"></script>
+    <script src="/static/js/pc_common.js"></script>
+    <script src="/static/js/layer/layer.js"></script>
+    <link href="/static/css/common.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/index/css/jh.css">
 </head>
 <body>
-<include file="public/sign-header"/>
+include file="public/sign-header"/}
 <div class="fn-cart-confirm">
     <!-- cart-title -->
     <div class="wrapper1190">
@@ -22,7 +20,7 @@
             <div class="layout after">
                 <div class="fl">
                     <div class="logo pa-to-36 wi345">
-                        <a href="/"><img src="__PUBLIC__/images/newLogo.png" alt=""></a>
+                        <a href="/"><img src="/static/images/newLogo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="fr">
@@ -42,27 +40,9 @@
                     <div class="con-y-info ma-bo-35">
                         <h3>收货人信息<b>[<a href="javascript:void(0);" onClick="add_edit_address(0);">使用新地址</a>]</b></h3>
 
-                        <div id="ajax_address"><!--ajax 返回收货地址--></div>
-                        <h3 style="margin-top:30px">自提点</h3>
-                        <div id="ajax_pickup"><!--ajax 返回自提点--></div>
+                        
                     </div>
-                    <div class="con-y-info ma-bo-35 con-h">
-                        <h3>发票信息<em>(请谨慎选择发票抬头，订单出库后不能修改)</em></h3>
-
-                        <div class="order-invoice-list">
-                            <ul>
-                                <li>
-                                    <div class="invoice-main fl"><label for="dw">发票抬头:</label></div>
-                                    <div class="invoice-sub fl">
-                                        <label class="inv-label">
-                                            <input class="officdw" type="text" name="invoice_title" placeholder="XXX单位 或 XX个人"/>
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <p class="tips"><em>注意：</em>如果商品由第三方卖家销售，发票内容由其卖家决定，发票由卖家开具并寄出</p>
-                    </div>
+                    
                 </div>
                 <div class="sc-area">
                     <div class="dt-order-area">
@@ -70,7 +50,7 @@
                             <!--商品列表-->
                                 <div class="order-pro-list">
                                     <div class="yxspy">
-                                        <div class="hv">{$v[store_name]}</div>
+                                        <div class="hv">$v['store_name']}</div>
                                         <div class="bv">
                                             <table border="0" cellpadding="0" cellspacing="0">
                                                 <thead>
@@ -91,29 +71,30 @@
                                     <div class="leiliste">
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                             <tbody>
-                                            <foreach name="cartList" item="v2" key="k">
-                                                <if condition="($v2[selected] eq '1') and ($v2[store_id] eq $v[store_id])">
+                                        
+                                            {foreach $cartList as $k=>$v2}
+                                                if condition="($v2['selected'] eq '1') and ($v2['store_id'] eq $v['store_id'])"}
                                                     <tr>
                                                         <td class="tr-pro">
                                                             <ul class="pro-area-2">
                                                                 <li>
-                                                                    <a title="{$v2.goods_name}" target="_blank" href="{:U('Home/Goods/goodsInfo',array('id'=>$v2[goods_id]))}" seed="item-name">{$v2.goods_name}</a>{$v2.spec_key_name}
+                                                                    <a title="{$v2.goods_name}" target="_blank" href="{:url('Index/Goods/goodsInfo',array('id'=>$v2['goods_id']))}" seed="item-name">{$v2.goods_name}</a>{$v2.spec_key_name}
                                                                 </li>
                                                             </ul>
                                                         </td>
                                                         <!-- 预付订金商品的价格为空 -->
                                                         <td class="tr-price te-al">¥{$v2.goods_price}</td>
-                                                        <!--<//if condition="($user[discount] neq 1)">-->
-                                                            <!--<td class="tr-price te-al">¥{$v2.member_goods_price}</td>-->
+                                                        
                                                             <td class="tr-price te-al"></td>
-                                                        <!--<///if>-->
+                                                        
                                                         <td class="tr-quantity te-al">{$v2.goods_num}</td>
                                                         <td rowspan="1" class="tr-subtotal te-al">
                                                             <p><b>￥{$v2.goods_fee}</b></p>
                                                         </td>
                                                     </tr>
-                                                </if>
-                                            </foreach>
+                                                {/if}
+                                            
+                                            {/foreach}
                                             <tr>
                                                 <td colspan="4"><span class="span_ored">优惠券:</span>
                                                     <input type="radio" onclick="ajax_order_price();" value="1" checked="" name="couponTypeSelect"
@@ -121,9 +102,12 @@
 
                                                     <select onchange="ajax_order_price();" class="vam ou-no" id="coupon_id" name="coupon_id">
                                                         <option value="0">选择优惠券</option>
-                                                        <foreach name="couponList" item="v3">
+                                                        
+                                                        {foreach $couponList as $v3}
+
                                                             <option value="{$v3['id']}">{$v3['name']}</option>
-                                                        </foreach>
+                                                        
+                                                        {/foreach}
                                                     </select>
                                                     &nbsp;&nbsp;&nbsp;
                                                     <input type="radio" onclick="ajax_order_price();" value="2" name="couponTypeSelect" class="radio vam ma-ri-10">
@@ -139,39 +123,18 @@
                                                 <td colspan="4">
                                                     <span class="span_ored">选择物流:</span>
                                                     <select onchange="ajax_order_price();" class="vam ou-no" name="shipping_code">
-                                                        <foreach name="shippingList" item="v4" key="k4">
+                                                        
+                                                        {foreach $shippingList as $k4=>$v4}
+
                                                             <option value="{$v4.code}"  >{$v4.name}</option>
-                                                        </foreach>
+                                                        {/foreach}
                                                     </select>
                                                 </td>
                                                 <td rowspan="1" class="tr-subtotal te-al">
                                                     <p>￥<b id="shipping_price">0</b></p>
                                                 </td>
                                             </tr>
-                                            <!--<tr>-->
-                                                <!--<td colspan="4"><span class="span_ored">商家活动：</span></td>-->
-                                                <!--<td rowspan="1" class="tr-subtotal te-al">-->
-                                                    <!--<p>-￥<b id="store_order_prom_amount_{$v[store_id]}">0</b></p>-->
-                                                <!--</td>-->
-                                            <!--</tr>-->
-                                            <!--<tr>-->
-                                                <!--<td colspan="4"><span class="span_ored">积分抵扣：</span></td>-->
-                                                <!--<td rowspan="1" class="tr-subtotal te-al">-->
-                                                    <!--<p>-￥<b id="store_point_count_{$v[store_id]}">0</b></p>-->
-                                                <!--</td>-->
-                                            <!--</tr>-->
-                                            <!--<tr>-->
-                                                <!--<td colspan="4"><span class="span_ored">余额抵扣：</span></td>-->
-                                                <!--<td rowspan="1" class="tr-subtotal te-al">-->
-                                                    <!--<p>-￥<b id="store_balance_{$v[store_id]}">0</b></p>-->
-                                                <!--</td>-->
-                                            <!--</tr>-->
-                                            <!--<tr>-->
-                                                <!--<td colspan="4"><span class="span_ored">店铺合计(含运费)：</span></td>-->
-                                                <!--<td rowspan="1" class="tr-subtotal te-al">-->
-                                                    <!--<p>￥<b id="store_order_amount_{$v[store_id]}">0</b></p>-->
-                                                <!--</td>-->
-                                            <!--</tr>-->
+                                            
                                                 <tr>
                                                     <td colspan="5">
                                                     <span class="span_ored">给卖家留言:</span>
@@ -209,7 +172,7 @@
                                                         <input type="text" id="pay_points" name="pay_points" class="texter vam span-150 ma-ri-10 he18 li-he-18" placeholder="请输入使用积分" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
 
                                                         <input type="button" class="button-style-disabled-4 button-action-use-disabled te-al ou-no vam" value="使用" onClick="wield(this);"/>
-                                                        <?php echo tpCache('shopping.point_rate');?>
+                                                        php echo tpCache('shopping.point_rate');?>
                                                         积分抵 1元 &nbsp;&nbsp; 您的可用积分 {$user['pay_points']} 分
                                                     </td>
                                                 </tr>
@@ -354,7 +317,7 @@
      */
     function add_edit_address(id) {
         if (id > 0)
-            var url = "/index.php?m=Home&c=User&a=edit_address&scene=1&call_back=call_back_fun&id=" + id; // 修改地址  '{:U('Home/User/add_address',array('scene'=>'1','call_back'=>'call_back_fun','id'=>id))}' //iframe的url /index.php/Home/User/add_address
+            var url = "/index.php?m=Home&c=User&a=edit_address&scene=1&call_back=call_back_fun&id=" + id; 
         else
             var url = "/index.php?m=Home&c=User&a=add_address&scene=1&call_back=call_back_fun";	// 新增地址
         layer.open({
@@ -399,7 +362,7 @@
      */
     function ajax_address() {
         $.ajax({
-            url: "{:U('Home/Cart/ajaxAddress')}",//+tab,
+            url: "{:url('Index/Cart/ajaxAddress')}",//+tab,
             success: function (data) {
                 $("#ajax_address").html('');
                 $("#ajax_address").append(data);
@@ -431,7 +394,7 @@
     function ajax_pickup(province_id, city_id, district_id,show) {
         $.ajax({
             type: 'GET',
-            url: "{:U('Home/Cart/ajaxPickup')}",//+tab,
+            url: "{:url('Index/Cart/ajaxPickup')}",//+tab,
             data: {province_id: province_id, city_id: city_id, district_id: district_id,show:show},
             success: function (data) {
                 $("#ajax_pickup").html('');
@@ -463,7 +426,7 @@
 
         $.ajax({
             type : "POST",
-            url:"{:U('Home/Cart/cart3')}",//+tab,g
+            url:"{:url('Index/Cart/cart3')}",//+tab,g
             data : $('#cart2_form').serialize()+"&act=order_price",// 你的formid
             dataType: "json",
             success: function(data){
@@ -473,7 +436,7 @@
                     layer.alert(data.msg, {icon: 2});
                     // 登录超时g
                     if(data.status == -100)
-                        location.hrgef ="{:U('Home/User/login')}";
+                        location.hrgef ="{:url('Index/User/login')}";
                     return false;
                 }
                 // console.log(data);
@@ -505,7 +468,7 @@
         ajax_return_status = 0;
         $.ajax({
             type : "POST",
-            url:"{:U('Home/Cart/cart3')}",//+tab,
+            url:"{:url('Index/Cart/cart3')}",//+tab,
             data : $('#cart2_form').serialize()+"&act=submit_order",// 你的formid
             dataType: "json",
             success: function(data){
@@ -516,7 +479,7 @@
                     layer.alert(data.msg, {icon: 2});
                     // 登录超时
                     if(data.status == -100)
-                        location.href ="{:U('Home/User/login')}";
+                        location.href ="{:url('Index/User/login')}";
 
                     ajax_return_status = 1; // 上一次ajax 已经返回, 可以进行下一次 ajax请求
 

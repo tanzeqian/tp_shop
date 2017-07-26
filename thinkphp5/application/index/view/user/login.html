@@ -177,7 +177,7 @@
             dataType : 'json',
             success : function(res){
                 if(res.status == 1){
-                    window.location.href = "{:url('Index/index/index')}";
+                    window.location.href = "/";
                 }else{
                     showErrorMsg(res.msg);
                     verify();

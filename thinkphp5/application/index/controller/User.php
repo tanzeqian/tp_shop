@@ -16,13 +16,13 @@ use app\index\logic\UsersLogic;
 use app\index\logic\CartLogic;
 use app\index\model\Message;
 use think\Controller;
-<<<<<<< HEAD
 use think\Url;
 use think\Page;
 use think\Config;
 use think\Verify;
 use think\Db;
 use app\common\logic\CommentLogic;
+use my\Ucpaas;
 class User extends Base{
 
 	public $user_id = 0;
@@ -65,11 +65,39 @@ class User extends Base{
         $logic = new UsersLogic();
         $user = $logic->get_info($this->user_id);
         $user = $user['result'];
-        $level = Db('user_level')->select();
-        $level = convert_arr_key($level,'level_id');
-        $this->assign('level',$level);
+        $order_list = Db('order')->where("user_id",1)->select();
+        $this->assign('order_list',$order_list);
+        //dump($order_list);
+        //sql="select * from `__PREFIX__order` where user_id = $user[user_id] order by order_id desc limit 1" result_name="order_list"
+        $limitorder = Db('order')->where("user_id",1)->order('order_id desc')->limit(1)->select();
+        $this->assign('limitorder',$limitorder);
+        
+
+        //$data = Db("order_goods g,tp_order o")
+          //      ->where("g.order_id = o.order_id")
+            //    ->select();
+        $data = db('order')->alias('o')
+                          ->join('tp_order_goods g',"o.order_id=g.order_id")
+                          ->where("user_id",1)
+                          ->select();
+        $this->assign('data',$data);
+        //dump($data);
+        //$data = db("blog b,php_category c,php_user u")
+        //      ->where("b.uid = u.uid and b.cid = c.cid")
+        //      ->select();
+        //$level = Db('user_level')->select();
+        //$level = convert_arr_key($level,'level_id');
+        //$this->assign('level',$level);
         $this->assign('user',$user);
+        
         return $this->fetch();
+
+        //select * from `__PREFIX__order_goods` where order_id = $list[order_id]
+        //$result = Db('order_goods')->where("order_id","")
+
+
+
+
     }
 
 
@@ -81,7 +109,7 @@ class User extends Base{
         session_unset();
         session_destroy();
         //$this->success("退出成功",url('Index/Index/index'));
-        $this->redirect('index/Index/index');
+        $this->redirect('/');
         exit;
     }
 
@@ -130,9 +158,9 @@ class User extends Base{
 
     public function pop_login(){
     	if($this->user_id > 0){
-            $this->redirect('Home/User/index');
+            $this->redirect('Index/User/index');
     	}
-        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : U("Home/User/index");
+        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : url("Index/User/index");
         $this->assign('referurl',$referurl);
     	return $this->fetch();
     }
@@ -167,6 +195,37 @@ class User extends Base{
         //$this->ajaxReturn($res);
     	exit(json_encode($res));
     }
+
+    public function sendSMS()
+    {
+        //验证码
+        $phone = input('username');
+        file_put_contents('1.txt',$phone);
+
+        $num = rand(1000,9999);
+        session('yzm',$num);
+        //$_SESSION['smscode'] = $num;
+        //var_dump($_SESSION['smscode']);
+
+        $options['accountsid']='5fa15d09dd9f945aaf01de467f9d31ff';
+        $options['token']='32bfab25958d63a961a5cae083283193';
+        //初始化 $options必填
+        $ucpass = new Ucpaas($options);
+        //开发者账号信息查询默认为json或xml
+        $ucpass->getDevinfo('json');
+        $appId = "3ebb77de815446008053cc8e539a68b2";
+        $to = $phone;
+        file_put_contents('2.txt',$to);
+        $templateId = "107978";//短信模版ID
+        $param= $num;//参数
+
+        echo $ucpass->templateSMS($appId,$to,$templateId,$param);/**/
+        //file_put_contents('3.txt',$ucpass->templateSMS($appId,$to,$templateId,$param));die;
+
+    }
+
+
+
     /**
      *  注册
      */
@@ -183,11 +242,11 @@ class User extends Base{
             $username = input('post.username','');
             $password = input('post.password','');
             $password2 = input('post.password2','');
-            $code = input('post.code','');
+            
             $scene = input('post.scene', 1);
             $session_id = session_id();
             
-            
+            $code = input('post.code','');
             $data = $logic->reg($username,$password,$password2);
             if($data['status'] != 1){
                 $this->ajaxReturn($data);
@@ -1235,225 +1294,4 @@ class User extends Base{
         }
         $this->error("操作失败");
     }
-=======
-use extend\alidayu\TopClient;
-use extend\alidayu\AlibabaAliqinFcSmsNumSendRequest;
-use app\index\model\User as UserModel;
-class User extends Controller
-{
-	protected $user;
-	public function _initialize(){
-		$this->user = new UserModel();
-	}
-	//登录页面
-	public function login()
-	{
-		return $this->fetch();
-	}
-	//判断用户是否存在
-	public function goLogin(UserModel $user)
-	{
-
-		//查询数据库
-		$username = input('username');
-		if ($user->loginUser($username)) {	
-			$this->success('');
-		}else {
-			$this->error('用户名不存在');
-		}
-	}
-	public function pwdLogin(UserModel $user)
-	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
-		//查询数据库
-		$username = input('username');
-		$password = input('password');
-		if ($user->checkUser($username,$password)) {
-			//session('user',$username);
-			$this->success('');
-		} else {
-			$this->error('密码错误请重新输入');
-		}
-	}
-	//判断邮箱
-	public function goEmail(UserModel $user)
-	{
-
-		//查询数据库
-		$email = input('email');
-		if ($user->loginEmail($email)) {	
-			$this->success('邮箱格式不正确或者该邮箱已被注册');
-		}else {
-			$this->error('');
-		}
-	}
-	//判断密码格式
-	public function pwdEmail(UserModel $user)
-	{
-
-		//查询数据库
-		$password = input('password');
-
-		if ($user->passEmail($password)) {	
-			$this->success('密码不能少于6位');
-		}else {
-			$this->error('');
-		}
-	}
-	//确认密码
-	public function passwordRepeat(UserModel $user)
-	{
-
-		//查询数据库
-		$passwordRepeat = input('passwordRepeat');
-		$password = input('password');
-		if ($user->passRepeat($password,$passwordRepeat)) {	
-			$this->success('两次密码不一样');
-		}else {
-			$this->error('');
-		}
-	}
-	//用户登录
-	public function doLogin(UserModel $user)
-	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
-		//查询数据库
-		$username = input('username');
-		$password = input('password');
-		if ($user->checkUser($username,$password)) {
-			session('user',$username);
-			$this->success('登陆成功','index/index');
-		} else {
-			$this->error('登录失败');
-		}
-	}
-	//注册页面
-	public function register()
-	{
-		return $this->fetch();
-	}
-	//用户注册
-	public function zhuLogin(UserModel $user)
-	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
-		//查询数据库
-		$email = input('email');
-		$password = input('password');
-		if ($user->zhuceUser($email,$password)) {
-			session('email',$email);
-			$this->success('注册成功','index/index/index');
-		} else {
-			$this->error('注册失败');
-		}
-	}
-	//判断手机号是否合法
-	public function phoneRepeat(UserModel $user)
-	{
-		//echo "string";die;
-		//查询数据库
-		$phone = input('phone');
-
-		if ($user->loginPhone($phone)) {	
-			$this->success('手机号不合法或已被注册');
-		}else {
-			$this->error('');
-		}
-	}
-	//判断密码格式
-	public function pwdDuan(UserModel $user)
-	{
-
-		//查询数据库
-		$pwd = input('pwd');
-
-		if ($user->passDuanxin($pwd)) {	
-			$this->success('密码不能少于6位');
-		}else {
-			$this->error('');
-		}
-	}
-	//确认密码
-	public function pwwdRepeat(UserModel $user)
-	{
-
-		//查询数据库
-		$pwdRepeat = input('pwdRepeat');
-		$pwd = input('pwd');
-		if ($user->psdRepeat($pwd,$pwdRepeat)) {	
-			$this->success('两次密码不一样');
-		}else {
-			$this->error('');
-		}
-	}
-	//手机用户注册
-	public function phoneLogin(UserModel $user)
-	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
-		//查询数据库
-		$phone = input('phone');
-		$pwd = input('pwd');
-		if ($user->phoneUser($phone,$pwd)) {
-			session('phone',$phone);
-			$this->success('注册成功','index/index/index');
-		} else {
-			$this->error('注册失败');
-		}
-	}
-	//短信验证
-	public function sendSMS()
-	{
-		//echo "string";die;
-		$tel = input('phone');//手机号  
-		//dump($tel);die;        
-		$c = new TopClient;//大于客户端   
-		$c->format = 'json';//设置返回值得类型
-
-		$c->appkey = "24554031";//阿里大于注册应用的key
-
-	    $c->secretKey = "11be8a3a641cf1782ef6db4443e6e380";//注册的secretkey
-	                                                       
-	    //请求对象，需要配置请求的参数   
-		$req = new AlibabaAliqinFcSmsNumSendRequest;
-		$req->setExtend("123456");//公共回传参数，可以不传
-		$req->setSmsType("normal");//短信类型，传入值请填写normal
-		
-		//签名，阿里大于-控制中心-验证码--配置签名 中配置的签名，必须填
-		$req->setSmsFreeSignName("谭泽乾");
-		//你在短信中显示的验证码，这个要保存下来用于验证
-		$num = rand(100000,999999);
-		$_SESSION['smscode'] = $num;
-
-		//短信模板变量，传参规则{"key":"value"}，key的名字须和申请模板中的变量名一致，传参时需传入{"code":"1234","product":"alidayu"}
-		$req->setSmsParam("{\"number\":\"$num\"}");//模板参数
-		                                           
-		//短信接收号码。
-	     $req->setRecNum($tel);
-
-		//短信模板。阿里大于-控制中心-验证码--配置短信模板 必须填
-		$req->setSmsTemplateCode("SMS_71335933");
-		$resp = $c->execute($req);//发送请求
-		return $resp;
-		
-	}
->>>>>>> a881a2b884f9d962ec3fceadbe321d19860436d1
 }

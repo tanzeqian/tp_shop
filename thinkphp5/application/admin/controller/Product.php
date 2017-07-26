@@ -9,17 +9,8 @@ use app\admin\model\Goods_attribute;
 use app\admin\model\Spec;
 use app\admin\model\Goods_attr;
 use app\admin\model\Spec_item;
-use think\Db;
-use think\Request;
-use vendor\csl\Page as MyPage;
 class Product extends Controller
 {
-	protected $goods;
-	public function _initialize()
-	{
-		$this->goods = new Goods();
-
-	}
 	public function product_detail(Goods_category $goods_category,Goods_type $goods_type)
 	{
 		$data = $goods_category->chaPage();
@@ -29,27 +20,12 @@ class Product extends Controller
 		$this->assign('dat',$dat);	 
 		return $this->fetch();
 	}
-	public function product_list(Request $request)
+	public function product_list(Goods $goods)
 	{
-
-		if ($request->isAjax()) {
-			$data = $this->goods->paginate(10);
-			$page = $data->render();
-			echo json_encode(['data'=>$data,'page'=>$page]);
-		} else {
-			$data = $this->goods->paginate(10);
-			$page = $data->render();
-			return $this->fetch('',['data'=>$data,'page'=>$page]);
-		}
-
-	}
-	public function doPage()
-	{
-		$page = 10;//input('page');
-		$data = $this->order->getThePage($page,10);
-
-		echo json_encode($data);
-
+		$data = $goods->adminGood();
+		//var_dump($data);die;
+		$this->assign('data',$data);
+		return $this->fetch();
 	}
 	public function product_cha(Goods $goods)
 	{
@@ -141,9 +117,9 @@ class Product extends Controller
 		$xiang = input('xiang');
 		$shu = input('shu');
 		if ($goods->shangPinb($ming,$huohao,$pin,$pag,$guige,$kucun,$benjia,$shijia,$image,$xiang,$shu)) {
-			$this->success('上传成功','admin/index/index');
+			$this->success('注册成功','admin/index/index');
 		} else {
-			$this->error('上传失败');
+			$this->error('注册失败');
 		}
 	}
 

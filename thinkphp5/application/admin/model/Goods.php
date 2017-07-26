@@ -13,7 +13,6 @@
  */
 namespace app\admin\model;
 use think\Model;
-<<<<<<< HEAD
 class Goods extends Model {
    
     /**
@@ -105,45 +104,3 @@ class Goods extends Model {
          refresh_stock($goods_id); // 刷新商品库存
     }
 }
-=======
-
-class Goods extends Model
-{
-	public function adminGood()
-	{
-
-		 $data = $this->field('goods_name,goods_sn,store_count,original_img,shop_price,is_new,is_hot,is_recommend,is_on_sale')
-		->where('goods_id<46')
-		->select();
-
-		return $data;
-	}
-	public function chaGood($inp)
-	{
-
-		 $data = $this->field('goods_name,goods_sn,store_count,original_img,shop_price,is_new,is_hot,is_recommend,is_on_sale')
-		->where("goods_sn='{$inp}' OR email='{$username}' OR phone='{$username}'")
-		->select();
-
-		return $data;
-	}
-	public function chaPinb()
-	{
-		 $data = $this->field('brand_id')
-		 ->where('goods_id<46')
-		->select();
-		return $data;
-	}
-	public function shangPinb($ming,$huohao,$pin,$pag,$guige,$kucun,$benjia,$shijia,$image,$xiang,$shu)
-	{
-		 $data = $this->insert(['goods_name'=>$ming, 'goods_sn'=>$huohao,'brand_id'=>$pin,'cat_id'=>$pag,'spec_type'=>$guige,'store_count'=>$kucun,'shop_price'=>$benjia,'market_price'=>$shijia,'original_img'=>$image,'goods_remark'=>$xiang,'goods_type'=>$shu,'is_new'=>1]);
-		return $data;
-	}
-	//分页数据
-	public function getThePage($page,$num)
-	{
-		return db('goods')->page($page,$num)->select();
-	}
-
-}
->>>>>>> a881a2b884f9d962ec3fceadbe321d19860436d1

@@ -157,6 +157,13 @@ class UsersLogic extends Model
             if(!$username || !$password)
             return array('status'=>-1,'msg'=>'请输入用户名或密码');
 
+            //if(!session('?yzm'))
+            //return array('status'=>-1,'msg'=>'请先获取验证码');
+            
+            //if($code != session('?yzm'))
+            //return array('status'=>-1,'msg'=>'验证码不正确,请重新获取');
+            
+
             //验证两次密码是否匹配
             if($password2 != $password)
                 return array('status'=>-1,'msg'=>'两次输入密码不一致');

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"D:\wamp64\www\tp5\public/../application/index\view\user\login.html";i:1500984000;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"D:\wamp64\www\tp5\public/../application/index\view\user\login.html";i:1501074178;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -178,7 +178,7 @@
             dataType : 'json',
             success : function(res){
                 if(res.status == 1){
-                    window.location.href = "<?php echo url('Index/index/index'); ?>";
+                    window.location.href = "/";
                 }else{
                     showErrorMsg(res.msg);
                     verify();
