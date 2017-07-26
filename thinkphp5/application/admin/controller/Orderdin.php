@@ -97,8 +97,8 @@ class Orderdin extends Controller
 		
 		$wul = input('wu');
 		$id = $_GET['id'];
-
-		if ($this->order->orderwuliu($id,$wul)) {
+		$addtime = time();
+		if ($this->order->orderwuliu($id,$wul,$addtime)) {
 			$this->success('发货成功');
 		} else {
 			$this->error('删除失败');

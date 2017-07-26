@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 use think\Controller;
+use think\Session;
 use app\admin\model\Users;
 use app\admin\model\Admin;
 use think\Db;
@@ -57,7 +58,7 @@ class User extends Controller
 		//var_dump($user->adminUser($username,$password));die;
 		//dump($password);die;
 		if ($user->adminUser($username,$password)) {
-			//session('username',$username);
+			session('user_name',$username);
 			$this->success('登陆成功','admin/index/index');
 		} else {
 			$this->error('登录失败');
