@@ -81,6 +81,7 @@ class Orderdin extends Controller
 		return $dinn;
 	}
 
+<<<<<<< HEAD
 	// public function detail()
 	// {
 	// 	$id = ['order_id'=>input('id')];
@@ -91,5 +92,44 @@ class Orderdin extends Controller
 
 	
 	
+=======
+		$id = input('id');
+		if($id == 2){
+			$dinn = $order->daifukuan();
+			return $dinn;
+		}else if($id == 3){
+			$dinn = $order->daikuan();
+			return $dinn;
+		}
+		
+	}	
+	public function wuliudan(Order $order)
+	{
+		
+		$wul = input('wu');
+		$id = $_GET['id'];
+		$addtime = time();
+		if ($this->order->orderwuliu($id,$wul,$addtime)) {
+			$this->success('发货成功');
+		} else {
+			$this->error('删除失败');
+		}
+		
+	}
+	public function xiuga(Order $order)
+	{
+		
+		$name = input('name');
+		$model = input('model');
+		$dizhi = input('dizhi');
+		$id = $_GET['id'];
+		if ($this->order->xiugai($id,$name,$model,$dizhi)) {
+			$this->success('修改成功');
+		} else {
+			$this->error('删除失败');
+		}
+		
+	}
+>>>>>>> 5da2eae904d6e5d6d68c4996c4bccc5ca43580c5
 }
 

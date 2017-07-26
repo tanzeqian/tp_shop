@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
+use think\Session;
 use app\admin\model\Goods;
 use app\admin\model\Brand;
 use app\admin\model\Goods_category;
@@ -9,11 +10,13 @@ use app\admin\model\Goods_attribute;
 use app\admin\model\Spec;
 use app\admin\model\Goods_attr;
 use app\admin\model\Spec_item;
-class Index extends Controller
+class Index extends Base
 {
-	
+
 	public function index()
 	{
+		$data = Session::get('user_name');
+		$this->assign('data',$data);
 		return $this->fetch();
 	}
 	public function product_detail(Goods_category $goods_category,Goods_type $goods_type)
@@ -103,12 +106,6 @@ class Index extends Controller
 	//上传商品
 	public function shangchuan(Goods $goods)
 	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
 		//查询数据库
 		$ming = input('ming');
 		$huohao = input('huohao');
