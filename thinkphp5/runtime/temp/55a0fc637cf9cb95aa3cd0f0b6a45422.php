@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1501119322;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">{$dat}</a></li>
+  <li><a href="#" class="admin_icon"><?php echo $dat; ?></a></li>
   <li><a href="login.html" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
@@ -49,7 +50,7 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
-   {if $role == 1 || $role == 0}
+   <?php if($role == 1 || $role == 0): ?>
   <li>
    <dl>
     <dt>商品信息</dt>
@@ -58,18 +59,14 @@
     <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 2 || $role == 0}
+  <?php else: endif; if($role == 2 || $role == 0): ?>
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 0}
+  <?php else: endif; if($role == 0): ?>
   <li>
    <dl>
     <dt>会员管理</dt>
@@ -83,8 +80,7 @@
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
+  <?php else: endif; ?>
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>
@@ -116,26 +112,26 @@
         <th>操作</th>
        </tr>
 
-      {foreach $data as $va}
+      <?php foreach($data as $va): ?>
        <tr >
-        <td class="center" style="width: 500px;">{$va['order_sn']}</td>
-        <td>{$va['consignee']}</td>
-        <td>{$va['mobile']}</td>
+        <td class="center" style="width: 500px;"><?php echo $va['order_sn']; ?></td>
+        <td><?php echo $va['consignee']; ?></td>
+        <td><?php echo $va['mobile']; ?></td>
         <td>
-         <address>{$va['address']}</address>
+         <address><?php echo $va['address']; ?></address>
         </td>
-        <td class="center"><strong class="rmb_icon">{$va['goods_price']}</strong></td>
-        <td class="center">{$va['shipping_name']}</td>
+        <td class="center"><strong class="rmb_icon"><?php echo $va['goods_price']; ?></strong></td>
+        <td class="center"><?php echo $va['shipping_name']; ?></td>
         <td class="center">
-         <a href="order_detail?id={$va['order_id']}" id="loading" title="查看订单" class="link_icon" >&#118;</a>
-         <a href="deleDe?id={$va['order_id']}" title="删除" class="link_icon">&#100;</a>
+         <a href="order_detail?id=<?php echo $va['order_id']; ?>" id="loading" title="查看订单" class="link_icon" >&#118;</a>
+         <a href="deleDe?id=<?php echo $va['order_id']; ?>" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
        
-       {/foreach}
+       <?php endforeach; ?>
       </table>
       <div class='paging' id='indicator'>
-  {$page}
+  <?php echo $page; ?>
   </div>
       
  </div>

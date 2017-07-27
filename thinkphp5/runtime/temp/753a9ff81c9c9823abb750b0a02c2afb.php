@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_detail.html";i:1501119107;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">{$daa}</a></li>
+  <li><a href="#" class="admin_icon"><?php echo $daa; ?></a></li>
   <li><a href="http://www.tpshop.com/admin/user/login" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
@@ -48,7 +49,7 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="index.html">起始页</a></h2>
  <ul>
-   {if $role == 1 || $role == 0}
+   <?php if($role == 1 || $role == 0): ?>
   <li>
    <dl>
     <dt>商品信息</dt>
@@ -57,18 +58,14 @@
     <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 2 || $role == 0}
+  <?php else: endif; if($role == 2 || $role == 0): ?>
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 0}
+  <?php else: endif; if($role == 0): ?>
   <li>
    <dl>
     <dt>会员管理</dt>
@@ -82,8 +79,7 @@
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
+  <?php else: endif; ?>
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>
@@ -120,9 +116,9 @@
         <span class="item_name" style="width:120px;" >分类：</span>
         <select class="select" id="pagg">
         <option>选择产品分类</option>
-        {foreach $data as $vall}
-         <option value="{$vall['id']}">{$vall['name']}</option>
-        {/foreach}
+        <?php foreach($data as $vall): ?>
+         <option value="<?php echo $vall['id']; ?>"><?php echo $vall['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="pa">
          <option>选择产品分类</option>
@@ -136,9 +132,9 @@
         <span class="item_name" style="width:120px;" >商品属性：</span>
         <select class="select" id="shu" name="shu">
          <option>选择商品属性</option>
-         {foreach $dat as $val}
-         <option value="{$val['id']}">{$val['name']}</option>
-        {/foreach}
+         <?php foreach($dat as $val): ?>
+         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="shu1">
          <option>选择商品属性</option>
@@ -152,9 +148,9 @@
         <span class="item_name" style="width:120px;" >商品规格：</span>
         <select class="select" id="guige" name="guige">
          <option>选择商品规格</option>
-         {foreach $dat as $val}
-         <option value="{$val['id']}">{$val['name']}</option>
-        {/foreach}
+         <?php foreach($dat as $val): ?>
+         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
+        <?php endforeach; ?>
         </select>
         <select class="select" id="guige1">
          <option>选择商品规格</option>

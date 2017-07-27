@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
+use think\Session;
 use app\admin\model\Goods;
 use app\admin\model\Brand;
 use app\admin\model\Goods_category;
@@ -9,23 +10,63 @@ use app\admin\model\Goods_attribute;
 use app\admin\model\Spec;
 use app\admin\model\Goods_attr;
 use app\admin\model\Spec_item;
-class Product extends Controller
+use think\Db;
+use think\Request;
+use vendor\csl\Page as MyPage;
+class Product extends Base
 {
-	public function product_detail(Goods_category $goods_category,Goods_type $goods_type)
+	protected $goods;
+	protected $goods_category;
+	protected $goods_type;
+	public function _initialize()
 	{
-		$data = $goods_category->chaPage();
-		$dat = $goods_type->shuPage();
-		//var_dump($data);die;
+		
+	
+      $this->goods = new Goods();
+      $this->goods_category = new Goods_category();
+      $this->goods_type = new Goods_type();
+      if (!session('?user_name')){
+      $this->error("请先登录","/admin/adminlog/login");
+ 	 }
+
+	}
+	public function product_detail()
+	{
+		$data = $this->goods_category->chaPage();
+		$dat = $this->goods_type->shuPage();
+		$daa = Session::get('user_name');
+		$role = Session::get('role_id');
 		$this->assign('data',$data);
-		$this->assign('dat',$dat);	 
+		$this->assign('dat',$dat);
+		$this->assign('daa',$daa);
+		$this->assign('role',$role);		 
 		return $this->fetch();
 	}
-	public function product_list(Goods $goods)
+	public function product_list(Request $request)
 	{
-		$data = $goods->adminGood();
-		//var_dump($data);die;
-		$this->assign('data',$data);
-		return $this->fetch();
+
+		if ($request->isAjax()) {
+			$data = $this->goods->paginate(10);
+			$dat = Session::get('user_name');
+			$role = Session::get('role_id');
+			$page = $data->render();
+			echo json_encode(['data'=>$data,'page'=>$page]);
+		} else {
+			$data = $this->goods->paginate(10);
+			$dat = Session::get('user_name');
+			$role = Session::get('role_id');
+			$page = $data->render();
+			return $this->fetch('',['data'=>$data,'dat'=>$dat,'role'=>$role,'page'=>$page]);
+		}
+
+	}
+	public function doPage()
+	{
+		$page = 10;//input('page');
+		$data = $this->order->getThePage($page,10);
+
+		echo json_encode($data);
+
 	}
 	public function product_cha(Goods $goods)
 	{
@@ -117,9 +158,9 @@ class Product extends Controller
 		$xiang = input('xiang');
 		$shu = input('shu');
 		if ($goods->shangPinb($ming,$huohao,$pin,$pag,$guige,$kucun,$benjia,$shijia,$image,$xiang,$shu)) {
-			$this->success('注册成功','admin/index/index');
+			$this->success('上传成功','admin/index/index');
 		} else {
-			$this->error('注册失败');
+			$this->error('上传失败');
 		}
 	}
 

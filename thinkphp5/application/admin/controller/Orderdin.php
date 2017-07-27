@@ -1,52 +1,61 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
+use think\Session;
 use app\admin\model\Order;
 use app\admin\model\Order_goods;
 use app\admin\model\Goods;
 use app\admin\model\Region2;
-class Orderdin extends Controller
+use think\Db;
+use think\Request;
+use vendor\csl\Page as MyPage;
+class Orderdin extends Base
 {
 	protected $order;
 	public function _initialize()
 	{
 		$this->order_goods = new Order_goods();
 		$this->order = new Order();
-		$this->city = new Region2();
+		if (!session('?user_name')){
+      $this->error("请先登录","/admin/adminlog/login");
+    }
 	}
 	//订单列表
-	public function order_list(Order $order)
+	public function order_list(Request $request)
 	{
-		// $oder = $order->din();
-		// $arr = [];
-		// foreach ($oder as $key => $value) {
-		// 	$arr[] =  $value->toArray();
-		// }
-		// foreach ($arr as $key => $value) {
-		// 	$district = $value['district'];
-		// 	$city = $value['city'];
-			
-		// }
 		
-		//$pro = $this->orderlistb($district,$city);
-		// $prr = $this->orderlistbb($city);
-		// $arrr = [];
-		// foreach ($prr as $key => $value) {
-		// 	$arrrr[] =  $value->toArray();
-		// }
-		// $arrr = [];
-		// foreach ($pro as $key => $value) {
-		// 	$arrr[] =  $value->toArray();
-		// }
-		// $proo = $arrr;
-		// //$pron = $arrrr;
-		$list= $this->order->orderpage();
-		
-		//dump($page);die;
-		$this->assign('list',$list);
-		//$this->assign('oder',$oder);
-		$page = $list->render();
-		return $this->fetch('',['page'=>$page]);
+		if ($request->isAjax()) {
+			$data = $this->order->paginate(10);
+			$dat = Session::get('user_name');
+			$role = Session::get('role_id');
+			$page = $data->render();
+			echo json_encode(['data'=>$data,'page'=>$page]);
+		} else {
+			$data = $this->order->paginate(10);
+			$dat = Session::get('user_name');
+			$role = Session::get('role_id');
+			$page = $data->render();
+			return $this->fetch('',['data'=>$data,'dat'=>$dat,'role'=>$role,'page'=>$page]);
+		}
+
+	}
+	public function doPage()
+	{
+		$page = 10;//input('page');
+		$data = $this->order->getThePage($page,10);
+
+		echo json_encode($data);
+
+	}
+	public function deleDe()
+	{
+		$idd = $_GET['id'];
+		//$dele= $this->order->orderdele($idd);
+		if ($this->order->orderdele($idd)) {
+			$this->success('删除成功');
+		} else {
+			$this->error('删除失败');
+		}
 	}
 	public function orderlistbianli()
 	{
@@ -54,24 +63,29 @@ class Orderdin extends Controller
 		$hate = $this->order->orderlissel($id);
 		return $hate;
 	}
-	// public function orderlistb($city)
-	// {
-	// 	$ha = $this->city->province($city);
-	// 	return $ha;
-	// }
-	// public function orderlistbb($district)
-	// {
-	// 	$ha = $this->city->provincee($district);
-	// 	return $ha;
-	// }
 	public function order_detail()
 	{
 		$din = $this->orderlistbianli();
 		$dinnn = $this->detail();
-
+		$data = Session::get('user_name');
+		$role = Session::get('role_id');
+		$this->assign('data',$data);
 		$this->assign('din',$din);
 		$this->assign('dinnn',$dinnn);
-
+		$this->assign('role',$role);
+		return $this->fetch();
+	}
+	public function order_xiu()
+	{
+		$id = $_GET['id'];
+		$dii = $this->order->xiu($id);
+		$dina = $this->detail();
+		$data = Session::get('user_name');
+		$role = Session::get('role_id');
+		$this->assign('data',$data);
+		$this->assign('dii',$dii);
+		$this->assign('dina',$dina);
+		$this->assign('role',$role);
 		return $this->fetch();
 	}
 	public function detail()
@@ -79,20 +93,10 @@ class Orderdin extends Controller
 		$id = ['order_id'=>input('id')];
 		$dinn = $this->order_goods->dinxinn($id);
 		return $dinn;
-	}
+	}	
+	public function daiFu(Order $order)
+	{
 
-<<<<<<< HEAD
-	// public function detail()
-	// {
-	// 	$id = ['order_id'=>input('id')];
-	// 	$dinn = $this->order_goods->dinxinn($id);
-	// 	return $dinn;
-	// }
-
-
-	
-	
-=======
 		$id = input('id');
 		if($id == 2){
 			$dinn = $order->daifukuan();
@@ -130,6 +134,5 @@ class Orderdin extends Controller
 		}
 		
 	}
->>>>>>> 5da2eae904d6e5d6d68c4996c4bccc5ca43580c5
 }
 

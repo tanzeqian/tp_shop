@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\adminlog\login.html";i:1500686065;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

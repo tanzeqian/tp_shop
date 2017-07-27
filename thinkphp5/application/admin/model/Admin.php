@@ -7,18 +7,19 @@ class Admin extends Model
 	public function adminUser($username,$password)
 	{
 
-		$data = $this->where('user_name',$username)
+		return $this->field('role_id')->where('user_name',$username)
 					 ->where('password',md5($password))
 					 ->select();
-
-		return $data?true:false;
 	}
 
-	//返回用户列表
-	public function getUserList()
+	public function xiuUser($id)
 	{
-		$res = $this->paginate(3);
-		$render = $res->render();
-		return ['data'=>$res,'render'=>$render];
+		return $this->where('admin_id',$id)
+					 ->select();	
+	}
+	public function xiuXiu($id,$username,$password,$role,$email)
+	{
+		$password = md5($password);
+		return $this->where('admin_id',$id)->update(['user_name' => $username,'password'=>$password,'role_id'=>$role,'email'=>$email]);
 	}
 }

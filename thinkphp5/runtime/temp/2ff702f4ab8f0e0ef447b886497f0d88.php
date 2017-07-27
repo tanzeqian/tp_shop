@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_list.html";i:1501119148;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">{$dat}</a></li>
+  <li><a href="#" class="admin_icon"><?php echo $dat; ?></a></li>
   <li><a href="http://www.tpshop.com/admin/user/login" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
@@ -49,7 +50,7 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="index.html">起始页</a></h2>
  <ul>
-   {if $role == 1 || $role == 0}
+   <?php if($role == 1 || $role == 0): ?>
   <li>
    <dl>
     <dt>商品信息</dt>
@@ -58,18 +59,14 @@
     <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 2 || $role == 0}
+  <?php else: endif; if($role == 2 || $role == 0): ?>
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 0}
+  <?php else: endif; if($role == 0): ?>
   <li>
    <dl>
     <dt>会员管理</dt>
@@ -83,8 +80,7 @@
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
+  <?php else: endif; ?>
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>
@@ -120,38 +116,36 @@
         <th>库存</th>
         <th>操作</th>
        </tr>
-       {foreach $data as $vall}
+       <?php foreach($data as $vall): ?>
        <tr>
-        <td class="center"><img src="{$vall['original_img']}" width="50" height="50"/></td>
-        <td>{$vall['goods_name']}</td>
-        <td class="center">{$vall['goods_sn']}</td>
-        <td class="center"><strong class="rmb_icon">{$vall['shop_price']}</strong></td>
+        <td class="center"><img src="<?php echo $vall['original_img']; ?>" width="50" height="50"/></td>
+        <td><?php echo $vall['goods_name']; ?></td>
+        <td class="center"><?php echo $vall['goods_sn']; ?></td>
+        <td class="center"><strong class="rmb_icon"><?php echo $vall['shop_price']; ?></strong></td>
         <td class="center">件</td>
-        {if $vall['is_recommend'] == 1}
+        <?php if($vall['is_recommend'] == 1): ?>
         <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        {else}
+        <?php else: ?>
         <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        {/if}
-        {if $vall['is_new'] == 1}
+        <?php endif; if($vall['is_new'] == 1): ?>
         <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        {else}
+        <?php else: ?>
          <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-         {/if}
-         {if $vall['is_hot'] == 1}
+         <?php endif; if($vall['is_hot'] == 1): ?>
         <td class="center"><a title="是" class="link_icon">&#89;</td>
-        {else}
+        <?php else: ?>
         <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        {/if}
-        <td class="center">{$vall['store_count']}</td>
+        <?php endif; ?>
+        <td class="center"><?php echo $vall['store_count']; ?></td>
         <td class="center">
          <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
          <a href="" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
-       {/foreach}
+       <?php endforeach; ?>
       </table>
        <div class='paging' id='indicator'>
-  {$page}
+  <?php echo $page; ?>
   </div>
  </div>
 </section>

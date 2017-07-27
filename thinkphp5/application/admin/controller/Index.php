@@ -16,7 +16,9 @@ class Index extends Base
 	public function index()
 	{
 		$data = Session::get('user_name');
+		$role = Session::get('role_id');
 		$this->assign('data',$data);
+		$this->assign('role',$role);
 		return $this->fetch();
 	}
 	public function product_detail(Goods_category $goods_category,Goods_type $goods_type)

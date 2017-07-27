@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_detail.html";i:1501074640;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">{$data}</a></li>
+  <li><a href="#" class="admin_icon"><?php echo $data; ?></a></li>
   <li><a href="login.html" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
@@ -48,7 +49,7 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
-   {if $role == 1 || $role == 0}
+   <?php if($role == 1 || $role == 0): ?>
   <li>
    <dl>
     <dt>商品信息</dt>
@@ -57,18 +58,14 @@
     <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 2 || $role == 0}
+  <?php else: endif; if($role == 2 || $role == 0): ?>
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 0}
+  <?php else: endif; if($role == 0): ?>
   <li>
    <dl>
     <dt>会员管理</dt>
@@ -78,12 +75,11 @@
   <li>
    <dl>
     <dt>管理员管理</dt>
-    <dd><a href="/admin/adminuser/user_rank">管理员列表</a></dd>
+    <dd><a href="/admin/user/user_list">管理员列表</a></dd>
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
+  <?php else: endif; ?>
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>
@@ -97,85 +93,76 @@
        <a href="/admin/orderdin/order_list" class="fr top_rt_btn add_icon">返回列表</a>
       </div>
       <table class="table">
-      {foreach $din as $vall}
+      <?php foreach($din as $vall): ?>
        <tr>
-        <td>收件人：{$vall['consignee']}</td>
-        <td>联系电话：{$vall['mobile']}</td>
-        <td>收件地址：{$vall['address']}</td>
-        <td>{if !empty ($vall['shipping_time'])}
-        发货时间：{$vall['shipping_time']|date="Y-m-d H:i",###}
-        {else}
+        <td>收件人：<?php echo $vall['consignee']; ?></td>
+        <td>联系电话：<?php echo $vall['mobile']; ?></td>
+        <td>收件地址：<?php echo $vall['address']; ?></td>
+        <td><?php if(!empty ($vall['shipping_time'])): ?>
+        发货时间：<?php echo date("Y-m-d H:i",$vall['shipping_time']); else: ?>
         发货时间：---
-        {/if}
+        <?php endif; ?>
         </td>
        </tr>
        <tr>
-        <td>下单时间：{$vall['add_time']|date="Y-m-d H:i",###}</td>
-        <td>{if !empty ($vall['pay_time'])}
-        付款时间：{$vall['pay_time']|date="Y-m-d H:i",###}
-        {else}
+        <td>下单时间：<?php echo date("Y-m-d H:i",$vall['add_time']); ?></td>
+        <td><?php if(!empty ($vall['pay_time'])): ?>
+        付款时间：<?php echo date("Y-m-d H:i",$vall['pay_time']); else: ?>
         付款时间：---
-        {/if}
+        <?php endif; ?>
         </td>
-        <td>{if !empty ($vall['confirm_time'])}
-         确认时间：{$vall['confirm_time']|date="Y-m-d H:i",###}
-        {else}
+        <td><?php if(!empty ($vall['confirm_time'])): ?>
+         确认时间：<?php echo date("Y-m-d H:i",$vall['confirm_time']); else: ?>
         确认时间：---</td>
-        {/if}
+        <?php endif; ?>
         <td>评价时间时间：---</td>
        </tr>
        <tr>
-        <td>订单状态：<a>{if $vall['pay_status'] == 0}待付款
-        {else}已付款,
-        {/if}
-        {if $vall['shipping_status'] == 0}未发货
-        {else}{if $vall['shipping_status'] == 1}已发货
-        {else}确认收货
-        {/if}
-        {/if}
+        <td>订单状态：<a><?php if($vall['pay_status'] == 0): ?>待付款
+        <?php else: ?>已付款,
+        <?php endif; if($vall['shipping_status'] == 0): ?>未发货
+        <?php else: if($vall['shipping_status'] == 1): ?>已发货
+        <?php else: ?>确认收货
+        <?php endif; endif; ?>
         </a></td>
-        <td colspan="3">订单备注：<mark>{$vall['user_note']}</mark></td>
+        <td colspan="3">订单备注：<mark><?php echo $vall['user_note']; ?></mark></td>
         </tr>
-        {/foreach}
+        <?php endforeach; ?>
       </table>
       <table class="table">
-       {foreach $dinnn as $valll}
+       <?php foreach($dinnn as $valll): ?>
        <tr>
-        <td>{$valll['goods_name']}</td>
-        <td class="center">{$valll['goods_sn']}</td>
-        <td class="center"><strong class="rmb_icon">{$valll['goods_price']}</strong></td>
+        <td><?php echo $valll['goods_name']; ?></td>
+        <td class="center"><?php echo $valll['goods_sn']; ?></td>
+        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price']; ?></strong></td>
         <td class="center">
-         <p>{$valll['spec_key_name']}</p>
+         <p><?php echo $valll['spec_key_name']; ?></p>
         </td>
-        <td class="center"><strong>{$valll['goods_num']}</strong></td>
-        <td class="center"><strong class="rmb_icon">{$valll['goods_price'] * $valll['goods_num']}</strong></td>
+        <td class="center"><strong><?php echo $valll['goods_num']; ?></strong></td>
+        <td class="center"><strong class="rmb_icon"><?php echo $valll['goods_price'] * $valll['goods_num']; ?></strong></td>
         <td class="center">
-        {foreach $din as $valee}
-          {if $valee['shipping_status'] == 0}未发货
-        {else}已发货
-        {/if}
-        {/foreach}
+        <?php foreach($din as $valee): if($valee['shipping_status'] == 0): ?>未发货
+        <?php else: ?>已发货
+        <?php endif; endforeach; ?>
         </td>
        </tr>      
-       {/foreach}
+       <?php endforeach; ?>
       </table>
       
-      {foreach $din as $valee}
-      <form action="wuliudan?id={$valee['order_id']}" method="post">
+      <?php foreach($din as $valee): ?>
+      <form action="wuliudan?id=<?php echo $valee['order_id']; ?>" method="post">
       <aside class="mtb" style="text-align:right;">
-      物流单号：<input type="text" value="{$valee['wuliu']}" name="wu" class="group_btn"/>
+      物流单号：<input type="text" value="<?php echo $valee['wuliu']; ?>" name="wu" class="group_btn"/>
  <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
-      {if $valee['pay_status'] == 0}
-      <a href="order_xiu?id={$valee['order_id']}"><input type="button" value="修改订单"  class="group_btn"/>
+      <?php if($valee['pay_status'] == 0): ?>
+      <a href="order_xiu?id=<?php echo $valee['order_id']; ?>"><input type="button" value="修改订单"  class="group_btn"/>
       <input type="button" value="等待付款"  class="group_btn"/>
-      {else}{if $valee['shipping_status'] == 0}
+      <?php else: if($valee['shipping_status'] == 0): ?>
         <input type="submit" value="确认发货" class="group_btn"/>
-      {else}
-      {/if}
-      {/if}
+      <?php else: endif; endif; ?>
       </aside>
       </form>
-      {/foreach}
+      <?php endforeach; ?>
       
  </div>
 </section>

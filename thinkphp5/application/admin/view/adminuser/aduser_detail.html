@@ -39,7 +39,7 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">DeathGhost</a></li>
+  <li><a href="#" class="admin_icon">{$daa}</a></li>
   <li><a href="login.html" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
@@ -48,32 +48,42 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="index.html">起始页</a></h2>
  <ul>
+   {if $role == 1 || $role == 0}
   <li>
    <dl>
-    <dt>商品详情</dt>
+    <dt>商品信息</dt>
     <!--当前链接则添加class:active-->
     <dd><a href="/admin/product/product_list" >商品列表</a></dd>
+    <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
+  {else}
+  {/if}
+  {if $role == 2 || $role == 0}
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
+  {else}
+  {/if}
+  {if $role == 0}
   <li>
    <dl>
     <dt>会员管理</dt>
     <dd><a href="/admin/user/user_list">会员列表</a></dd>
    </dl>
   </li>
- <dl>
+  <li>
+   <dl>
     <dt>管理员管理</dt>
     <dd><a href="/admin/adminuser/user_rank">管理员列表</a></dd>
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
-    <dd><a class="active">修改管理员信息</a></dd>
    </dl>
   </li>
+  {else}
+  {/if}
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>

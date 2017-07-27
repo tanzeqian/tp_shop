@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\index\index.html";i:1501119623;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,6 @@
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/static/admin/css1/style.css">
-<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <![endif]-->
@@ -40,8 +40,8 @@
 <header>
  <h1><img src="/static/admin/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="#" class="admin_icon">{$dat}</a></li>
-  <li><a href="login.html" class="quit_icon">安全退出</a></li>
+  <li><a href="#" class="admin_icon"><?php echo $data; ?></a></li>
+  <li><a href="/admin/adminlog/login" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 <!--aside nav-->
@@ -49,7 +49,7 @@
 <aside class="lt_aside_nav content mCustomScrollbar">
  <h2><a href="index.html">起始页</a></h2>
  <ul>
-   {if $role == 1 || $role == 0}
+ <?php if($role == 1 || $role == 0): ?>
   <li>
    <dl>
     <dt>商品信息</dt>
@@ -58,18 +58,14 @@
     <dd><a href="/admin/product/product_detail">添加商品</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 2 || $role == 0}
+  <?php else: endif; if($role == 2 || $role == 0): ?>
   <li>
    <dl>
     <dt>订单信息</dt>
     <dd><a href="/admin/orderdin/order_list">订单列表</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
-  {if $role == 0}
+  <?php else: endif; if($role == 0): ?>
   <li>
    <dl>
     <dt>会员管理</dt>
@@ -83,53 +79,20 @@
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
-  {else}
-  {/if}
+  <?php else: endif; ?>
   <li>
    <p class="btm_infor">© DeathGhost.cn 版权所有</p>
   </li>
  </ul>
 </aside>
 
-<section class="rt_wrap content mCustomScrollbar">
- <div class="rt_content">
-      <div class="page_title">
-       <h2 class="fl">管理员列表</h2>
-      </div>
-   
-      <table class="table">
-       <tr>
-        <th>Id</th>
-        <th>管理员账号</th>
-        <th>管理员角色</th>
-        <th>操作</th>
-       </tr>
-        {foreach $data as $vall}
-       <tr>
-        <td class="center">{$vall['admin_id']}</td>
-        <td class="center">{$vall['user_name']}</td>
-        <td>{if $vall['role_id'] == 0}超级管理员
-        {else}{if $vall['role_id'] == 1}商品管理员
-        {else}订单管理员
-        {/if}
-        {/if}
-        </td>
-        <td class="center">
-        {if $vall['role_id'] == 0}
-        {else}
-         <a href="/admin/adminuser/aduser_detail?id={$vall['admin_id']}" title="编辑" class="link_icon">&#101;</a>
-         <a href="admin_shan?id={$vall['admin_id']}" title="删除" class="link_icon">&#100;</a>
-         {/if}
-        </td>
-       </tr>
-       {/foreach}
-      </table>
-       <div class='paging' id='indicator'>
-  {$page}
-  </div>
- </div>
-</section>
+<style>
+.dataStatistic{width:400px;height:200px;border:1px solid #ccc;margin:0 auto;margin:10px;overflow:hidden}
+#cylindrical{width:400px;height:200px;margin-top:-15px}
+#line{width:400px;height:200px;margin-top:-15px}
+#pie{width:400px;height:200px;margin-top:-15px}
+</style>
+
+ 
 </body>
-<script src="/static/jquery.min.js"></script>   
-<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </html>
