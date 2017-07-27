@@ -33,7 +33,7 @@ class Adminuser extends Base
 		$email = input('email');
 		$time = time();
 		if ($this->adminrole->admin_user($username,$password,$role,$email,$time)) {
-			$this->success('添加成功');
+			$this->success('添加成功',"/admin/adminuser/user_rank");
 		} else {
 			$this->error('添加失败');
 		}
@@ -82,7 +82,7 @@ class Adminuser extends Base
 		$role = input('role');
 		$email = input('email');
 		if ($this->adminrole->xiuXiu($id,$username,$password,$role,$email)) {
-			$this->success('修改成功');
+			$this->redirect("/admin/adminuser/aduser_detail?id=$id");
 		} else {
 			$this->error('修改失败');
 		}
@@ -91,7 +91,7 @@ class Adminuser extends Base
 	{
 		$id = $_GET['id'];
 		if ($this->adminrole->xiuShan($id)) {
-			$this->success('删除成功');
+			$this->redirect("/admin/adminuser/user_rank");
 		} else {
 			$this->error('删除失败');
 		}

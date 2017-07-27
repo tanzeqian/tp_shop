@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_detail.html";i:1501119107;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_detail.html";i:1501152855;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +75,7 @@
   <li>
    <dl>
     <dt>管理员管理</dt>
-    <dd><a href="/admin/adminuser/user_rank">管理员列表</a></dd>
+    <dd><a href="/admin/user/user_list">管理员列表</a></dd>
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>

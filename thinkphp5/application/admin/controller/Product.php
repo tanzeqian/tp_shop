@@ -49,21 +49,23 @@ class Product extends Base
 			$data = $this->goods->paginate(10);
 			$dat = Session::get('user_name');
 			$role = Session::get('role_id');
+			$fen = $this->goods_category->fenlei();
 			$page = $data->render();
-			echo json_encode(['data'=>$data,'page'=>$page]);
+			echo json_encode(['data'=>$data,'dat'=>$dat,'role'=>$role,'page'=>$page,'fen'=>$fen]);
 		} else {
 			$data = $this->goods->paginate(10);
 			$dat = Session::get('user_name');
 			$role = Session::get('role_id');
+			$fen = $this->goods_category->fenlei();
 			$page = $data->render();
-			return $this->fetch('',['data'=>$data,'dat'=>$dat,'role'=>$role,'page'=>$page]);
+			return $this->fetch('',['data'=>$data,'dat'=>$dat,'role'=>$role,'page'=>$page,'fen'=>$fen]);
 		}
 
 	}
 	public function doPage()
 	{
 		$page = 10;//input('page');
-		$data = $this->order->getThePage($page,10);
+		$data = $this->goods->getThePage($page,10);
 
 		echo json_encode($data);
 
@@ -126,10 +128,8 @@ class Product extends Base
 		if($info){
 		// 成功上传后 获取上传信息
 		// 输出 jpg
-		echo $info->getExtension();
+		return $info->getExtension();
 		// 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-		echo $info->getSaveName();
-		// 输出 42a79759f284b767dfcb2a0197904287.jpg
 		echo $info->getFilename();
 		}else{
 		// 上传失败获取错误信息
@@ -139,12 +139,6 @@ class Product extends Base
 	//上传商品
 	public function shangchuan(Goods $goods)
 	{
-		// //验证失败
-		// $res = $this->validate(input(),'User');
-		// if ($res !== true) {
-		// 	$this->error($res);
-		// 	die;
-		// }
 		//查询数据库
 		$ming = input('ming');
 		$huohao = input('huohao');
@@ -155,14 +149,51 @@ class Product extends Base
 		$benjia = input('benjia');
 		$shijia = input('shijia');
 		$image = input('image');
+		$image = "/upload/$image";
 		$xiang = input('xiang');
 		$shu = input('shu');
 		if ($goods->shangPinb($ming,$huohao,$pin,$pag,$guige,$kucun,$benjia,$shijia,$image,$xiang,$shu)) {
-			$this->success('上传成功','admin/index/index');
+			$this->success('上传成功','/admin/product/product_list');
 		} else {
-			$this->error('上传失败');
+			$this->redirect('上传失败');
 		}
 	}
+	public function fenFen()
+	{
+		$id = input('id');
+		$a = $this->goods->fenBie($id);
+		return $a;
+	}	
+	public function shangJia()
+	{
+		$id = $_GET['id'];
+		if ($this->goods->shangAa($id)){
+			$this->redirect("/admin/product/product_list");
+		}
+	}
+	public function xiaJia()
+	{
+		$id = $_GET['id'];
+		if ($this->goods->shangXia($id)){
+			$this->redirect("/admin/product/product_list");
+		}
+	}
+	public function chazha()
+	{
+		$chaa = input('chaa');
+		$bb = $this->goods->chaAa($chaa);
+		return $bb;
+	}
+	public function product_shan()
+	{
+		$id = $_GET['id'];
+		if ($this->goods->proShan($id)) {
+			$this->redirect("/admin/product/product_list");
+		} else {
+			$this->error('删除失败');
+		}
+	}		
+
 
 }
 

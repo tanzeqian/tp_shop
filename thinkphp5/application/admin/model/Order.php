@@ -28,7 +28,17 @@ class Order extends Model
 	public function daikuan()
 	{
 
-		return $this->where("shipping_status = 0")->select();
+		return $this->where("shipping_status = 0 AND pay_status = 1")->select();
+	}
+	public function daikuan1()
+	{
+
+		return $this->where("shipping_status = 1 AND confirm_time = 0")->select();
+	}
+	public function daikuan2()
+	{
+
+		return $this->where("confirm_time != 0")->select();
 	}
 	public function orderwuliu($id,$wul,$addtime)
 	{
@@ -43,5 +53,9 @@ class Order extends Model
 	{
 		//$data = ['consignee' => $name,'mobile'=>$model,'address'=>$dizhi];
 		return $this->where('order_id',$id)->update(['consignee' => $name,'mobile'=>$model,'address'=>$dizhi]);
+	}
+	public function chaAa($chaa)
+	{
+		return $this->where("order_sn = '{$chaa}' OR consignee = '{$chaa}' OR mobile = '{$chaa}'")->select();
 	}
 }

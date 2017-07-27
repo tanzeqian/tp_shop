@@ -1,11 +1,11 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\index\index.html";i:1501078182;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\index\index.html";i:1501153836;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>商城首页</title>
-    <meta name="keywords" content="<?php echo $tpshop_config['store_name']; ?>"/>
-    <meta name="description" content="<?php echo $tpshop_config['store_name']; ?>"/>
+
+ 
     <link rel="stylesheet" type="text/css" href="/static/index/css/alone_index.css"/>
     <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/global.js"></script>
@@ -81,7 +81,7 @@
         <div class="nav-middan-z p">
             <div class="header w1224 p">
                 <div class="ecsc-logo">
-                    <a href="<?php echo url('Index/index'); ?>" class="logo"> <img src="<?php echo $tpshop_config['store_logo']; ?>"></a>
+                    <a href="<?php echo url('Index/index'); ?>" class="logo"> <img src="$tpshop_config['store_logo']}"></a>
                 </div>
                 <!--搜索-s-->
                 <div class="ecsc-search">
@@ -434,10 +434,10 @@
                     <dl class="foot-con continue">
                         <dt>联系我们</dt>
                         <dd>
-                            <span class="cellphone_con"><?php echo $tpshop_config['phone']; ?></span>
+                            <span class="cellphone_con">$tpshop_config['phone']}</span>
                             <span class="time_con">周一至周日8:00-18:00</span>
                             <span class="cost_con">（仅收市话费）</span>
-                            <a class="software_con" href="tencent://message/?uin=<?php echo $tpshop_config['qq']; ?>&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">
+                            <a class="software_con" href="tencent://message/?uin=$tpshop_config['qq']}&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">
                                 <img src="__STATIC__/images/continue.png"/>
                             </a>
                         </dd>
@@ -453,7 +453,7 @@
     <div class="tp_h_alone">
         <div class="slidebar_alo">
             <ul>
-                <li class="re_cuso"><a title="点击这里给我发消息" href="tencent://message/?uin=<?php echo $tpshop_config['qq']; ?>&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">客服服务</a></li>
+                <li class="re_cuso"><a title="点击这里给我发消息" href="tencent://message/?uin=$tpshop_config['qq']}&amp;Site=TPshop商城&amp;Menu=yes" target="_blank">客服服务</a></li>
                 <li class="re_wechat">
                     <a target="_blank" href="" >微信关注</a>
                     <div class="rtipscont" style="">

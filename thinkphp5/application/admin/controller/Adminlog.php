@@ -26,7 +26,7 @@ class Adminlog extends Controller
 		if (!empty($data)) {
 			session('user_name',$username);
 			session('role_id',$data[0]['role_id']);
-			$this->success('登陆成功','admin/index/index');
+			$this->redirect('admin/index/index');
 		} else {
 			$this->error('登录失败');
 		}

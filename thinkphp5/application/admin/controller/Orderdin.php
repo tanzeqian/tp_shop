@@ -105,6 +105,14 @@ class Orderdin extends Base
 			$dinn = $order->daikuan();
 			return $dinn;
 		}
+		if($id == 4){
+			$dinnn = $order->daikuan1();
+			return $dinnn;
+		}
+		if($id == 5){
+			$dinnnn = $order->daikuan2();
+			return $dinnnn;
+		}
 		
 	}	
 	public function wuliudan(Order $order)
@@ -134,5 +142,11 @@ class Orderdin extends Base
 		}
 		
 	}
+	public function chazha()
+	{
+		$chaa = input('chaa');
+		$bb = $this->order->chaAa($chaa);
+		return $bb;
+	}	
 }
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1501119322;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1501145789;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +76,7 @@
   <li>
    <dl>
     <dt>管理员管理</dt>
-    <dd><a href="/admin/adminuser/user_rank">管理员列表</a></dd>
+    <dd><a href="/admin/user/user_list">管理员列表</a></dd>
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
@@ -94,14 +94,16 @@
       </div>
       <section class="mtb">
        <select class="select" id="dai">
-        <option value="1">订单状态</option>
+        <option >订单状态</option>
         <option value="2">待付款</option>
         <option value="3">待发货</option>
+        <option value="4">已发货</option>
+        <option value="5">完成订单</option>
        </select>
-       <input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
-       <input type="button" value="查询" class="group_btn"/>
+       <input type="text" id="cha" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
+       <input type="button" id="chaxun" value="查询" class="group_btn"/>
       </section>
-      <table class="table" id="userInfo">
+      <table class="table">
        <tr>
         <th>订单编号</th>
         <th>收件人</th>
@@ -111,10 +113,12 @@
         <th>配送方式</th>
         <th>操作</th>
        </tr>
-
+       </table>
+       <table class="table" id="userInfo">
+       
       <?php foreach($data as $va): ?>
-       <tr >
-        <td class="center" style="width: 500px;"><?php echo $va['order_sn']; ?></td>
+      <tr >
+        <td ><?php echo $va['order_sn']; ?></td>
         <td><?php echo $va['consignee']; ?></td>
         <td><?php echo $va['mobile']; ?></td>
         <td>
@@ -148,6 +152,24 @@
     $.post(
       'daiFu',
       {id:id},
+      function success(data)
+      { 
+         $('#userInfo').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['pay_name'];
+           
+          $("#userInfo").append("<tr><td>"+data[i]['order_sn']+"</td><td>"+data[i]['consignee']+"</td><td>"+data[i]['mobile']+"</td><td>"+data[i]['address']+"</td><td>"+data[i]['goods_price']+"</td><td>"+data[i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data[i]['order_id']+" id='loading' title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data[i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
+        }
+      }    
+    )
+  }
+);
+  $('#chaxun').click(  
+  function(){
+    var chaa = $('#cha').val();
+    $.post(
+      'chazha',
+      {chaa:chaa},
       function success(data)
       { 
          $('#userInfo').empty();

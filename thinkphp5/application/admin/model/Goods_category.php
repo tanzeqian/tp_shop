@@ -32,6 +32,13 @@ class Goods_category extends Model
 
 		return $data;
 	}
+	public function fenlei()
+	{
+
+		return $this->field('name,id')->where('parent_id != 0')->select();
+	}
+	
+	
 	
 
 }

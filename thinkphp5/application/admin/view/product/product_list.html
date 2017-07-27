@@ -79,7 +79,7 @@
   <li>
    <dl>
     <dt>管理员管理</dt>
-    <dd><a href="/admin/admin/adminuser/user_rank">管理员列表</a></dd>
+    <dd><a href="/admin/adminuser/user_rank">管理员列表</a></dd>
     <dd><a href="/admin/adminuser/admin_detail">添加管理员</a></dd>
    </dl>
   </li>
@@ -94,17 +94,19 @@
 <section class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
       <div class="page_title">
-       <h2 class="fl">商品列表示例</h2>
+       <h2 class="fl">商品列表</h2>
        <a href="product_detail.html" class="fr top_rt_btn add_icon">添加商品</a>
       </div>
       <form action="doLogin"  method="post">
       <section class="mtb">
-       <select class="select">
+       <select class="select" id="frn">
         <option>下拉菜单</option>
-        <option>菜单1</option>
+        {foreach $fen as $valaa}
+         <option value="{$valaa['id']}">{$valaa['name']}</option>
+        {/foreach}
        </select>
-       <input type="text" id="tt" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
-       <input type="submit" value="查询" class="group_btn"/>
+       <input type="text" id="cha" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
+       <input type="button" value="查询" id="chaxun" class="group_btn"/>
       </section>
       </form>
       <table class="table">
@@ -113,20 +115,26 @@
         <th>产品名称</th>
         <th>货号</th>
         <th>单价</th>
-        <th>单位</th>
+        <th>上架</th>
         <th>精品</th>
         <th>新品</th>
         <th>热销</th>
         <th>库存</th>
         <th>操作</th>
        </tr>
+       </table>
+       <table class="table" id="userInfo">
        {foreach $data as $vall}
        <tr>
         <td class="center"><img src="{$vall['original_img']}" width="50" height="50"/></td>
         <td>{$vall['goods_name']}</td>
         <td class="center">{$vall['goods_sn']}</td>
         <td class="center"><strong class="rmb_icon">{$vall['shop_price']}</strong></td>
-        <td class="center">件</td>
+        {if $vall['is_on_sale'] == 1}
+        <td class="center"><a href="/admin/product/shangJia?id={$vall['goods_id']}" title="是" class="link_icon">&#89;</td>
+        {else}
+        <td class="center"><a href="/admin/product/xiaJia?id={$vall['goods_id']}" title="否" class="link_icon">&#88;</a></td>
+        {/if}
         {if $vall['is_recommend'] == 1}
         <td class="center"><a title="是" class="link_icon">&#89;</a></td>
         {else}
@@ -145,18 +153,54 @@
         <td class="center">{$vall['store_count']}</td>
         <td class="center">
          <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="" title="删除" class="link_icon">&#100;</a>
+         <a href="product_shan?id={$vall['goods_id']}" title="删除" class="link_icon">&#100;</a>
         </td>
-       </tr>
-       {/foreach}
+       </tr>    
+       {/foreach}       
       </table>
-       <div class='paging' id='indicator'>
-  {$page}
-  </div>
- </div>
+      {if !empty($data)}
+<tr>{$page}</tr>
+{else}
+{/if}
 </section>
 </body>
 <script src="/static/jquery.min.js"></script>
    
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script>
+  $('#frn').change(  
+  function(){
+    var id = $(this).val();
+    $.post(
+      'fenFen',
+      {id:id},
+      function success(data)
+      { 
+        $('#userInfo').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['pay_name'];          
+          $("#userInfo").append("<tr><td class='center'><img src="+data[i]['original_img']+" width='50' height='50'></td><td>"+data[i]['goods_name']+"</td><td class='center'>"+data[i]['goods_sn']+"</td><td class='center'><strong class='rmb_icon'>"+data[i]['shop_price']+"</strong></td>{if "+data[0]['is_on_sale'] == 1+"}<td class='center'><a href=/admin/product/shangJia?id="+data[0]['goods_id']+" title='是' class='link_icon'>&#89;</td>{else}<td class='center'><a href=/admin/product/xiaJia?id="+data[0]['goods_id']+" title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_recommend'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</a></td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_new'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</a></td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_hot'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}<td class='center'>"+data[i]['store_count']+"</td><td class='center'><a href='' title='预览' class='link_icon' target='_blank'>&#118;</a><a href='' title='删除' class='link_icon'>&#100;</a></td></tr>");
+        }
+      }    
+    )
+  }
+);
+$('#chaxun').click(  
+  function(){
+    var chaa= $('#cha').val();
+    $.post(
+      'chazha',
+      {chaa:chaa},
+      function success(data)
+      { 
+        $('#userInfo').empty();
+        for (var i = 0; i < data.length; i++) {
+            var $claa = data[i]['pay_name'];          
+          $("#userInfo").append("<tr><td class='center'><img src="+data[i]['original_img']+" width='50' height='50'></td><td>"+data[i]['goods_name']+"</td><td class='center'>"+data[i]['goods_sn']+"</td><td class='center'><strong class='rmb_icon'>"+data[i]['shop_price']+"</strong></td>{if "+data[0]['is_on_sale'] == 1+"}<td class='center'><a href=/admin/product/shangJia?id="+data[0]['goods_id']+" title='是' class='link_icon'>&#89;</td>{else}<td class='center'><a href=/admin/product/xiaJia?id="+data[0]['goods_id']+" title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_recommend'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</a></td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_new'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</a></td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}{if "+data[i]['is_hot'] == 1+"}<td class='center'><a title='是' class='link_icon'>&#89;</td>{else}<td class='center'><a title='否' class='link_icon'>&#88;</a></td>{/if}<td class='center'>"+data[i]['store_count']+"</td><td class='center'><a href='' title='预览' class='link_icon' target='_blank'>&#118;</a><a href='' title='删除' class='link_icon'>&#100;</a></td></tr>");
+        }
+      }    
+    )
+  }
+);
+</script>
 </html>

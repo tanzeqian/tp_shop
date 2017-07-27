@@ -10,4 +10,5 @@ class Order_goods extends Model
 
 		return $this->where($id)->select();
 	}
+	
 }
