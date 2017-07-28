@@ -47,7 +47,7 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="index.html">起始页</a></h2>
+ <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
    {if $role == 1 || $role == 0}
   <li>
@@ -105,11 +105,10 @@
        <tr>
         <th>Id</th>
         <th>会员头像</th>
-        <th>是否被冻结</th>
         <th>手机号码</th>
         <th>电子邮件</th>
-        <th>验证</th>
-        <th>第三方登录</th>
+        <th>允许登录</th>
+        <th>用户余额</th>
         <th>登录名称</th>
         <th>最后登录时间</th>
         <th>操作</th>
@@ -124,13 +123,14 @@
         <img src="/static/admin/upload/user_002.png" width="50" height="50"/>
         {/if}
         </td>
-        <td>{if $va['is_lock'] == 0}否
-        {else}是
-        {/if}</td>
         <td class="center">{$va['mobile']}</td>
         <td class="center">{$va['email']}</td>
-        <td class="center"><a title="已验证" class="link_icon">&#89;</a></td>
-        <td class="center">{$va['oauth']}</td>
+        <td class="center">{if $va['is_lock'] == 0}<a href="user_jinZhi?id={$va['user_id']}" class="link_icon">&#89;</a>
+        {else}
+        <a href="user_jiechu?id={$va['user_id']}" class="link_icon">&#88;</a>
+        {/if}
+        </td>
+        <td class="center">{$va['user_money']}</td>
         <td class="center">
          <strong>{$va['nickname']}</strong>
         </td>

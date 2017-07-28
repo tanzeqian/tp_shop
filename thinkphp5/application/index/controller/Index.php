@@ -14,6 +14,7 @@
  */ 
 namespace app\index\controller; 
 use think\Controller;
+use think\Session;
 use think\Url;
 use think\Config;
 use think\Page;
@@ -21,11 +22,24 @@ use think\Verify;
 use think\Image;
 use think\Db;
 use app\index\model\Ad;
+use vendor\disanfang\open;
+use vendor\disanfang\open51094;
 class Index extends Base {
-
-
-    
     public function index(){
+        $name = null;    
+        $open = new open51094();
+        if (!empty($_GET['code'])) {
+            $code = $_GET['code'];
+
+            $name = $open->me($code);
+           
+            session('username',$name['name']);
+
+            $appa = session('username');
+            $this->assign('appa',$appa);
+        }
+
+       
         
         //轮播图
         $ad2 = db('ad')->where('pid=2')->order('start_time','desc')->limit(5)->cache(true,1)->select();   
@@ -91,55 +105,10 @@ class Index extends Base {
         return $this->fetch();
 
 
-    }
+    
  
-    /**
-     *  公告详情页
-     */
-    public function notice(){
-        return $this->fetch();
-    }
-    
-    // 二维码
-    public function qr_code_raw(){        
-        // 导入Vendor类库包 Library/Vendor/Zend/Server.class.php
-        //http://www.tp-shop.cn/Home/Index/erweima/data/www.99soubao.com
-         //require_once 'vendor/phpqrcode/phpqrcode.php';
-         vendor('phpqrcode.phpqrcode'); 
-          //import('Vendor.phpqrcode.phpqrcode');
-            error_reporting(E_ERROR);            
-            $url = urldecode($_GET["data"]);
-            \QRcode::png($url);
-			exit;        
-    }
-    
-    // 二维码
-    public function qr_code()
-    {
-        vendor('topthink.think-image.src.Image');
-        vendor('phpqrcode.phpqrcode');
-
-        error_reporting(E_ERROR);
-        $url = isset($_GET['data']) ? $_GET['data'] : '';
-        $url = urldecode($url);
-        $head_pic = input('get.head_pic', '');
-        $back_img = input('get.back_img', '');
-        $valid_date = input('get.valid_date', 0);
-        
-        $qr_code_path = './public/upload/qr_code/';
-        if (!file_exists($qr_code_path)) {
-            mkdir($qr_code_path);
-        }
-        
-        /* 生成二维码 */
-        $qr_code_file = $qr_code_path.time().rand(1, 10000).'.png';
-        \QRcode::png($url, $qr_code_file, QR_ECLEVEL_M);
-        
-        /* 二维码叠加水印 */
-        $QR = Image::open($qr_code_file);
-        $QR_width = $QR->width();
-        $QR_height = $QR->height();
-
+   
+   
         /* 添加背景图 */
         if ($back_img && file_exists($back_img)) {
             $back =Image::open($back_img);

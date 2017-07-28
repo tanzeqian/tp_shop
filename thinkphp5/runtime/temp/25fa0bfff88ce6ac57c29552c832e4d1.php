@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\user\user_list.html";i:1501075237;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\user\user_list.html";i:1501233786;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="index.html">起始页</a></h2>
+ <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
    <?php if($role == 1 || $role == 0): ?>
   <li>
@@ -101,11 +101,10 @@
        <tr>
         <th>Id</th>
         <th>会员头像</th>
-        <th>是否被冻结</th>
         <th>手机号码</th>
         <th>电子邮件</th>
-        <th>验证</th>
-        <th>第三方登录</th>
+        <th>允许登录</th>
+        <th>用户余额</th>
         <th>登录名称</th>
         <th>最后登录时间</th>
         <th>操作</th>
@@ -120,13 +119,14 @@
         <img src="/static/admin/upload/user_002.png" width="50" height="50"/>
         <?php endif; ?>
         </td>
-        <td><?php if($va['is_lock'] == 0): ?>否
-        <?php else: ?>是
-        <?php endif; ?></td>
         <td class="center"><?php echo $va['mobile']; ?></td>
         <td class="center"><?php echo $va['email']; ?></td>
-        <td class="center"><a title="已验证" class="link_icon">&#89;</a></td>
-        <td class="center"><?php echo $va['oauth']; ?></td>
+        <td class="center"><?php if($va['is_lock'] == 0): ?><a href="user_jinZhi?id=<?php echo $va['user_id']; ?>" class="link_icon">&#89;</a>
+        <?php else: ?>
+        <a href="user_jiechu?id=<?php echo $va['user_id']; ?>" class="link_icon">&#88;</a>
+        <?php endif; ?>
+        </td>
+        <td class="center"><?php echo $va['user_money']; ?></td>
         <td class="center">
          <strong><?php echo $va['nickname']; ?></strong>
         </td>

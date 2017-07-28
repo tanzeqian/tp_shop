@@ -103,22 +103,22 @@
         <td>联系电话：{$vall['mobile']}</td>
         <td>收件地址：{$vall['address']}</td>
         <td>{if !empty ($vall['shipping_time'])}
-        发货时间：{$vall['shipping_time']|date="Y-m-d H:i",###}
+        发货时间：{$vall['shipping_time']|date="Y-m-d H:i:s",###}
         {else}
         发货时间：---
         {/if}
         </td>
        </tr>
        <tr>
-        <td>下单时间：{$vall['add_time']|date="Y-m-d H:i",###}</td>
+        <td>下单时间：{$vall['add_time']|date="Y-m-d H:i:s",###}</td>
         <td>{if !empty ($vall['pay_time'])}
-        付款时间：{$vall['pay_time']|date="Y-m-d H:i",###}
+        付款时间：{$vall['pay_time']|date="Y-m-d H:i:s",###}
         {else}
         付款时间：---
         {/if}
         </td>
         <td>{if !empty ($vall['confirm_time'])}
-         确认时间：{$vall['confirm_time']|date="Y-m-d H:i",###}
+         确认时间：{$vall['confirm_time']|date="Y-m-d H:i:s",###}
         {else}
         确认时间：---</td>
         {/if}
@@ -163,7 +163,9 @@
       {foreach $din as $valee}
       <form action="wuliudan?id={$valee['order_id']}" method="post">
       <aside class="mtb" style="text-align:right;">
-      物流单号：<input type="text" value="{$valee['wuliu']}" name="wu" class="group_btn"/>
+      
+      物流单号：<input type="text" value="{$valee['wuliu']}" name="wu" id="hao" class="group_btn"/>
+      <input type="button" value="物流查询"  id="wukuai" class="group_btn"/>
  <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
       {if $valee['pay_status'] == 0}
       <a href="order_xiu?id={$valee['order_id']}"><input type="button" value="修改订单"  class="group_btn"/>
@@ -176,8 +178,35 @@
       </aside>
       </form>
       {/foreach}
-      
+      <div>
+        <table class="table" id="userInfo">
+        </table>
+      </div>
  </div>
 </section>
 </body>
+<script type="text/javascript">
+$('#wukuai').click(  
+  function(){
+    var hao = $("#hao").val();
+    $.post(
+      'kuaidi',
+      {hao:hao},
+      function success(data)
+      { 
+        
+           var a = (data['result']['list']);
+           for (var i = 0; i < a.length; i++) {
+            var $claa = a[i]['status'];
+            var $cla = a[i]['time'];
+            $("#userInfo").append("<tr><td>"+$cla+''+$claa+"</td></tr>");
+         
+        }
+          
+        
+      }    
+    )
+  }
+);
+</script>
 </html>

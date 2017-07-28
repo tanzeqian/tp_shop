@@ -28,6 +28,8 @@ return [
     'auto_bind_module'       => false,
     // 注册的根命名空间
     'root_namespace'         => [
+        'vendor\disanfang' => '../vendor\disanfang/',
+        'extend\alidayu' => '../extend\alidayu/',
     ],
     // 扩展函数文件
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],

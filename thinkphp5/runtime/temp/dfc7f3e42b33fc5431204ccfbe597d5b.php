@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\index\index.html";i:1501119623;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\index\index.html";i:1501233970;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +47,7 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="index.html">起始页</a></h2>
+ <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
  <?php if($role == 1 || $role == 0): ?>
   <li>
@@ -81,8 +81,7 @@
   </li>
   <?php else: endif; ?>
   <li>
-   <p class="btm_infor">© DeathGhost.cn 版权所有</p>
-  </li>
+
  </ul>
 </aside>
 
@@ -92,6 +91,65 @@
 #line{width:400px;height:200px;margin-top:-15px}
 #pie{width:400px;height:200px;margin-top:-15px}
 </style>
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">销售量统计</h2>
+      </div>
+    <div class="dataStatistic">
+        <div id="line">
+        </div>
+    </div>
+ </div>
+</section>
+<script src="/static/admin/js1/amcharts.js" type="text/javascript"></script>
+<script src="/static/admin/js1/serial.js" type="text/javascript"></script>
+<script src="/static/admin/js1/pie.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        GetSerialChart();
+        MakeChart(json);
+    });
+    var json = [
+  { "name": "7.21", "value": "35" },
+  { "name": "7.22", "value": "60" },
+  { "name": "7.23", "value": "22" },
+  { "name": "7.24", "value": "65" },
+  { "name": "7.25", "value": "35" },
+  { "name": "7.26", "value": "22" },
+  { "name": "7.27", "value": "43" },
+  { "name": "7.28", "value": "55" }
+  ]
+    //折线图
+    AmCharts.ready(function () {
+        var chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = json;
+        chart.categoryField = "name";
+        chart.angle = 30;
+        chart.depth3D = 20;
+        //标题
+        //chart.addTitle("3D折线图Demo", 15);  
+        var graph = new AmCharts.AmGraph();
+        chart.addGraph(graph);
+        graph.valueField = "value";
+        //背景颜色透明度
+        graph.fillAlphas = 0.3;
+        //类型
+        graph.type = "line";
+        //圆角
+        graph.bullet = "round";
+        //线颜色
+        graph.lineColor = "#8e3e1f";
+        //提示信息
+        graph.balloonText = "[[name]]: [[value]]";
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.autoGridCount = false;
+        categoryAxis.gridCount = json.length;
+        categoryAxis.gridPosition = "start";
+        chart.write("line");
+    });
+
+</script>
 
  
 </body>

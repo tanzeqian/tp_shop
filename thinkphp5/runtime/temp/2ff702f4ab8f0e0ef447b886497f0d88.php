@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_list.html";i:1501159955;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:93:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\product\product_list.html";i:1501233759;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@
 <!--aside nav-->
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
- <h2><a href="index.html">起始页</a></h2>
+ <h2><a href="/admin/index/index">起始页</a></h2>
  <ul>
    <?php if($role == 1 || $role == 0): ?>
   <li>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_detail.html";i:1501074640;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:94:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_detail.html";i:1501223470;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,20 +99,20 @@
         <td>联系电话：<?php echo $vall['mobile']; ?></td>
         <td>收件地址：<?php echo $vall['address']; ?></td>
         <td><?php if(!empty ($vall['shipping_time'])): ?>
-        发货时间：<?php echo date("Y-m-d H:i",$vall['shipping_time']); else: ?>
+        发货时间：<?php echo date("Y-m-d H:i:s",$vall['shipping_time']); else: ?>
         发货时间：---
         <?php endif; ?>
         </td>
        </tr>
        <tr>
-        <td>下单时间：<?php echo date("Y-m-d H:i",$vall['add_time']); ?></td>
+        <td>下单时间：<?php echo date("Y-m-d H:i:s",$vall['add_time']); ?></td>
         <td><?php if(!empty ($vall['pay_time'])): ?>
-        付款时间：<?php echo date("Y-m-d H:i",$vall['pay_time']); else: ?>
+        付款时间：<?php echo date("Y-m-d H:i:s",$vall['pay_time']); else: ?>
         付款时间：---
         <?php endif; ?>
         </td>
         <td><?php if(!empty ($vall['confirm_time'])): ?>
-         确认时间：<?php echo date("Y-m-d H:i",$vall['confirm_time']); else: ?>
+         确认时间：<?php echo date("Y-m-d H:i:s",$vall['confirm_time']); else: ?>
         确认时间：---</td>
         <?php endif; ?>
         <td>评价时间时间：---</td>
@@ -152,7 +152,9 @@
       <?php foreach($din as $valee): ?>
       <form action="wuliudan?id=<?php echo $valee['order_id']; ?>" method="post">
       <aside class="mtb" style="text-align:right;">
-      物流单号：<input type="text" value="<?php echo $valee['wuliu']; ?>" name="wu" class="group_btn"/>
+      
+      物流单号：<input type="text" value="<?php echo $valee['wuliu']; ?>" name="wu" id="hao" class="group_btn"/>
+      <input type="button" value="物流查询"  id="wukuai" class="group_btn"/>
  <!--       <a href="order_xiu"><input type="submit" value="修改订单" class="group_btn"/></a> -->
       <?php if($valee['pay_status'] == 0): ?>
       <a href="order_xiu?id=<?php echo $valee['order_id']; ?>"><input type="button" value="修改订单"  class="group_btn"/>
@@ -163,8 +165,35 @@
       </aside>
       </form>
       <?php endforeach; ?>
-      
+      <div>
+        <table class="table" id="userInfo">
+        </table>
+      </div>
  </div>
 </section>
 </body>
+<script type="text/javascript">
+$('#wukuai').click(  
+  function(){
+    var hao = $("#hao").val();
+    $.post(
+      'kuaidi',
+      {hao:hao},
+      function success(data)
+      { 
+        
+           var a = (data['result']['list']);
+           for (var i = 0; i < a.length; i++) {
+            var $claa = a[i]['status'];
+            var $cla = a[i]['time'];
+            $("#userInfo").append("<tr><td>"+$cla+''+$claa+"</td></tr>");
+         
+        }
+          
+        
+      }    
+    )
+  }
+);
+</script>
 </html>

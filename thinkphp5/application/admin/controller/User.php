@@ -3,6 +3,7 @@ namespace app\admin\controller;
 use app\admin\controller\Base;
 use think\Session;
 use app\admin\model\Users;
+use app\admin\model\User_address;
 use app\admin\model\Admin;
 use think\Db;
 use think\Request;
@@ -10,9 +11,11 @@ use vendor\csl\Page as MyPage;
 class User extends Base
 {
 	protected $users;
+	protected $user_address;
 	public function _initialize()
 	{
 		$this->users = new Users();
+		$this->user_address = new User_address();
 		if (!session('?user_name')){
       $this->error("请先登录","/admin/adminlog/login");
   		}
@@ -42,8 +45,6 @@ class User extends Base
 		echo json_encode($data);
 
 	}
-
-
 	public function user_detail(Users $users)
 	{
 		$id = $_GET['id'];
@@ -88,4 +89,5 @@ class User extends Base
 		}
 		return $tan;
 	}
+	
 }

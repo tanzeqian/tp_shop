@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1501145789;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:92:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/admin\view\orderdin\order_list.html";i:1501224599;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +94,7 @@
       </div>
       <section class="mtb">
        <select class="select" id="dai">
-        <option >订单状态</option>
+        <option value="1">订单状态</option>
         <option value="2">待付款</option>
         <option value="3">待发货</option>
         <option value="4">已发货</option>
@@ -137,7 +137,7 @@
       <div class='paging' id='indicator'>
   <?php echo $page; ?>
   </div>
-      
+      <input type="hidden" class="zhuang" value='0'>
  </div>
 </section>
 </body>
@@ -149,19 +149,49 @@
   $('#dai').change(  
   function(){
     var id = $(this).val();
+    $('.zhuang').attr('value',id);
     $.post(
-      'daiFu',
+      'order_list',
       {id:id},
       function success(data)
       { 
+      //console.log(data['page']);
+       //console.log(data['data']['data']);
          $('#userInfo').empty();
-        for (var i = 0; i < data.length; i++) {
-            var $claa = data[i]['pay_name'];
-           
-          $("#userInfo").append("<tr><td>"+data[i]['order_sn']+"</td><td>"+data[i]['consignee']+"</td><td>"+data[i]['mobile']+"</td><td>"+data[i]['address']+"</td><td>"+data[i]['goods_price']+"</td><td>"+data[i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data[i]['order_id']+" id='loading' title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data[i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
+          $('#indicator').empty();
+        for (var i in data['data']['data']) {
+            //var $claa = data[i]['pay_name'];
+        
+          $("#userInfo").append("<tr><td>"+data['data']['data'][i]['order_sn']+"</td><td>"+data['data']['data'][i]['consignee']+"</td><td>"+data['data']['data'][i]['mobile']+"</td><td>"+data['data']['data'][i]['address']+"</td><td>"+data['data']['data'][i]['goods_price']+"</td><td>"+data['data']['data'][i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data['data']['data'][i]['order_id']+" id='loading' title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data['data']['data'][i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
         }
+        $('#indicator').html(data['page']);
       }    
     )
+  }
+);
+  $('#indicator').delegate('a','click', 
+  function(){
+    var id = $('.zhuang').attr('value');
+    var url = $(this).attr('href');
+    //console.log(id);
+    $.get(
+      url+"&id="+id,
+      
+      function success(data)
+      { 
+     // console.log(data['page']);
+       //console.log(data['data']['data']);
+         $('#userInfo').empty();
+          $('#indicator').empty();
+        for (var i in data['data']['data']) {
+            //var $claa = data[i]['pay_name'];
+        
+          $("#userInfo").append("<tr><td>"+data['data']['data'][i]['order_sn']+"</td><td>"+data['data']['data'][i]['consignee']+"</td><td>"+data['data']['data'][i]['mobile']+"</td><td>"+data['data']['data'][i]['address']+"</td><td>"+data['data']['data'][i]['goods_price']+"</td><td>"+data['data']['data'][i]['shipping_name']+"</td><td class='center'><a href=order_detail?id="+data['data']['data'][i]['order_id']+" id='loading' title='查看订单' class='link_icon' >&#118;</a><a href='deleDe?id="+data['data']['data'][i]['order_id']+" title='删除' class='link_icon'>&#100;</a></td></tr>");
+        }
+        $('#indicator').html(data['page']);
+      }    
+    )
+    return false;
   }
 );
   $('#chaxun').click(  
@@ -182,6 +212,7 @@
     )
   }
 );
+
 
     </script>
     <script>

@@ -25,4 +25,5 @@ class Users extends Model
 	{
 		return db('users')->where('user_id',$id)->delete();
 	}
+	
  }

@@ -8,7 +8,8 @@ use app\admin\model\Goods;
 use app\admin\model\Region2;
 use think\Db;
 use think\Request;
-use vendor\csl\Page as MyPage;
+use think\Paginator;
+//use vendor\csl\Page as MyPage;
 class Orderdin extends Base
 {
 	protected $order;
@@ -25,11 +26,32 @@ class Orderdin extends Base
 	{
 		
 		if ($request->isAjax()) {
-			$data = $this->order->paginate(10);
+			$id = input('id');
+			switch ($id) {
+				case '1':
+					$where = '';
+					break;
+				case '2':
+					$where = ['pay_status' => 0];
+					break;
+				case '3':
+					$where = ['shipping_status' => 0 , 'pay_status' => 1];
+					break;
+				case '4':
+					$where = ['shipping_status' => 1 , 'confirm_time' => 0];
+					break;
+					case '5':
+					$where = 'confirm_time > 0';
+					break;
+				
+				default:
+					break;
+			}
+			$data = db('order')->where($where)->paginate(10);
 			$dat = Session::get('user_name');
 			$role = Session::get('role_id');
 			$page = $data->render();
-			echo json_encode(['data'=>$data,'page'=>$page]);
+			return ['data'=>$data,'page'=>$page];
 		} else {
 			$data = $this->order->paginate(10);
 			$dat = Session::get('user_name');
@@ -94,27 +116,7 @@ class Orderdin extends Base
 		$dinn = $this->order_goods->dinxinn($id);
 		return $dinn;
 	}	
-	public function daiFu(Order $order)
-	{
-
-		$id = input('id');
-		if($id == 2){
-			$dinn = $order->daifukuan();
-			return $dinn;
-		}else if($id == 3){
-			$dinn = $order->daikuan();
-			return $dinn;
-		}
-		if($id == 4){
-			$dinnn = $order->daikuan1();
-			return $dinnn;
-		}
-		if($id == 5){
-			$dinnnn = $order->daikuan2();
-			return $dinnnn;
-		}
 		
-	}	
 	public function wuliudan(Order $order)
 	{
 		
@@ -148,5 +150,39 @@ class Orderdin extends Base
 		$bb = $this->order->chaAa($chaa);
 		return $bb;
 	}	
+	public function kuaidi(){
+			$hao = input('hao');
+
+		 	$host = "http://jisukdcx.market.alicloudapi.com/express/query";
+		    $method = "GET";
+		    $appcode = "08b6509579a3463d84095fefd7965199";
+		    $headers = array();
+		    array_push($headers, "Authorization:APPCODE " . $appcode);
+		    $querys = "number=$hao&type=auto";
+		    $bodys = "";
+		    $url = $host . "?" . $querys;
+
+		    $curl = curl_init();
+		    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+		    curl_setopt($curl, CURLOPT_URL, $url);
+		    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+		    curl_setopt($curl, CURLOPT_FAILONERROR, false);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		    curl_setopt($curl, CURLOPT_HEADER, true);
+		    if (1 == strpos("$".$host, "https://"))
+		    {
+		        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+		    }
+		    	curl_setopt($curl, CURLOPT_POSTFIELDS, $bodys);
+                    $response = curl_exec($curl);
+                    $header_size    = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+                    //echo  $header_size;
+                    $headers        = substr($response, 0, $header_size);
+                    //echo  $headers;
+                    $body       = substr($response, $header_size);
+                    return $body = json_decode($body,true);
+
+			}
 }
 

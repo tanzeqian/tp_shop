@@ -15,6 +15,8 @@ namespace app\index\controller;
 use app\index\logic\UsersLogic;
 use app\index\logic\CartLogic;
 use app\index\model\Message;
+use extend\alidayu\TopClient;
+use extend\alidayu\AlibabaAliqinFcSmsNumSendRequest;
 use think\Controller;
 use think\Url;
 use think\Page;
@@ -198,29 +200,60 @@ class User extends Base{
 
     public function sendSMS()
     {
-        //验证码
-        $phone = input('username');
-        file_put_contents('1.txt',$phone);
+        // //验证码
+        // $phone = input('username');
+        // file_put_contents('1.txt',$phone);
 
-        $num = rand(1000,9999);
-        session('yzm',$num);
-        //$_SESSION['smscode'] = $num;
-        //var_dump($_SESSION['smscode']);
+        // $num = rand(1000,9999);
+        // session('yzm',$num);
+        // //$_SESSION['smscode'] = $num;
+        // //var_dump($_SESSION['smscode']);
 
-        $options['accountsid']='5fa15d09dd9f945aaf01de467f9d31ff';
-        $options['token']='32bfab25958d63a961a5cae083283193';
-        //初始化 $options必填
-        $ucpass = new Ucpaas($options);
-        //开发者账号信息查询默认为json或xml
-        $ucpass->getDevinfo('json');
-        $appId = "3ebb77de815446008053cc8e539a68b2";
-        $to = $phone;
-        file_put_contents('2.txt',$to);
-        $templateId = "107978";//短信模版ID
-        $param= $num;//参数
+        // $options['accountsid']='5fa15d09dd9f945aaf01de467f9d31ff';
+        // $options['token']='32bfab25958d63a961a5cae083283193';
+        // //初始化 $options必填
+        // $ucpass = new Ucpaas($options);
+        // //开发者账号信息查询默认为json或xml
+        // $ucpass->getDevinfo('json');
+        // $appId = "3ebb77de815446008053cc8e539a68b2";
+        // $to = $phone;
+        // file_put_contents('2.txt',$to);
+        // $templateId = "107978";//短信模版ID
+        // $param= $num;//参数
 
-        echo $ucpass->templateSMS($appId,$to,$templateId,$param);/**/
-        //file_put_contents('3.txt',$ucpass->templateSMS($appId,$to,$templateId,$param));die;
+        // echo $ucpass->templateSMS($appId,$to,$templateId,$param);/**/
+        // //file_put_contents('3.txt',$ucpass->templateSMS($appId,$to,$templateId,$param));die;
+        //echo "string";die;
+        $tel = input('username');//手机号  
+        //dump($tel);die;        
+        $c = new TopClient;//大于客户端   
+        $c->format = 'json';//设置返回值得类型
+
+        $c->appkey = "24448875";//阿里大于注册应用的key
+
+        $c->secretKey = "dbb68f3ed9c6979a493da78628db9e36";//注册的secretkey
+                                                           
+        //请求对象，需要配置请求的参数   
+        $req = new AlibabaAliqinFcSmsNumSendRequest;
+        $req->setExtend("123456");//公共回传参数，可以不传
+        $req->setSmsType("normal");//短信类型，传入值请填写normal
+        
+        //签名，阿里大于-控制中心-验证码--配置签名 中配置的签名，必须填
+        $req->setSmsFreeSignName("杂七杂八");
+        //你在短信中显示的验证码，这个要保存下来用于验证
+        $num = rand(100000,999999);
+        $_SESSION['smscode'] = $num;
+
+        //短信模板变量，传参规则{"key":"value"}，key的名字须和申请模板中的变量名一致，传参时需传入{"code":"1234","product":"alidayu"}
+        $req->setSmsParam("{\"number\":\"$num\"}");//模板参数
+                                                   
+        //短信接收号码。
+         $req->setRecNum($tel);
+
+        //短信模板。阿里大于-控制中心-验证码--配置短信模板 必须填
+        $req->setSmsTemplateCode("SMS_71335933");
+        $resp = $c->execute($req);//发送请求
+        return $resp;
 
     }
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\index\index.html";i:1501153836;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\index\index.html";i:1501213538;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,7 @@
     <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/global.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico" media="screen"/>
+
 </head>
 <body class="gray_f5">
     <!--header-s-->
@@ -37,8 +38,15 @@
                     </div>
                     <!-- 收货地址，物流运费 -end-->
                         <div class="fl nologin">
+                        <?php if(empty ($appa)): ?>
                             <a class="red" href="Index/user/login">Hi.请登录</a>
                             <a href="Index/user/reg">免费注册</a>
+                            <?php else: ?>
+                            <a class="red" href="Index/user/login"><?php echo $appa; ?></a>
+                            <a  href="Index/user/logout"  title="退出" target="_self">安全退出</a>
+                            <?php endif; ?>
+
+                            
                         </div>
                         <div class="fl islogin">
                             <a class="red userinfo" href="<?php echo url('Index/user/index'); ?>" ></a>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\user\login.html";i:1501078182;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:83:"C:\wamp\www\shop\TP_shop\thinkphp5\public/../application/index\view\user\login.html";i:1501224954;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/index/css/myaccount.css" />
     <script src="/static/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/layer/layer.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://open.51094.com/user/myscript/15954f25430274.html"></script>
 </head>
 <body>
 <div class="loginsum_cm">
@@ -75,32 +76,8 @@
                         <div class="tecant_c">
                             <ul>
                                 <tpshop sql="select * from __PREFIX__plugin where type='login' AND status = 1" item="v" key="k">
-                                    <if condition="$v['code'] eq 'weixin'">
-                                        <li class="spacer"></li>
-                                        <li>
-                                            <a class="justclix" href="<?php echo url('LoginApi/login',array('oauth'=>'weixin')); ?>" title="weixin">
-                                                <i class="judgp co_wechat"></i>
-                                                <span>微信</span>
-                                            </a>
-                                        </li>
-                                    </if>
-                                    <if condition="$v['code'] eq 'qq'">
-                                        <li class="spacer"></li>
-                                        <li>
-                                            <a class="justclix" href="<?php echo url('LoginApi/login',array('oauth'=>'qq')); ?>" title="QQ">
-                                                <i class="judgp co_qq"></i>
-                                                <span>QQ</span>
-                                            </a>
-                                        </li>
-                                    </if>
-                                    <if condition="$v['code'] eq 'alipay'">
-                                        <li>
-                                            <a class="justclix" href="<?php echo url('LoginApi/login',array('oauth'=>'alipay')); ?>" title="支付宝">
-                                                <i class="judgp co_alipay"></i>
-                                                <span>支付宝</span>
-                                            </a>
-                                        </li>
-                                    </if>
+                                <span id="hzy_fast_login"></span>
+                                   
                                 </tpshop>
                             </ul>
                         </div>
